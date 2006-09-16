@@ -28,10 +28,12 @@ package org.htmlparser.tests.tagTests;
 import org.htmlparser.Node;
 import org.htmlparser.PrototypicalNodeFactory;
 import org.htmlparser.Tag;
+import org.htmlparser.filters.NodeClassFilter;
 import org.htmlparser.tags.Div;
 import org.htmlparser.tags.Span;
 import org.htmlparser.tags.TableTag;
 import org.htmlparser.tests.ParserTestCase;
+import org.htmlparser.util.NodeList;
 import org.htmlparser.util.ParserException;
 import org.htmlparser.util.ParserUtils;
 
@@ -61,6 +63,21 @@ public class ObjectCollectionTest extends ParserTestCase {
             spans[1].toPlainTextString()
         );
     }
+    private void assertSpanContent(NodeList spans) {
+        assertEquals("number of span objects expected",2,spans.size ());
+        assertType("span",Span.class,spans.elementAt (0));
+        assertType("span",Span.class,spans.elementAt (1));
+        assertStringEquals(
+            "span[0] text",
+            "The Refactoring Challenge",
+            spans.elementAt (0).toPlainTextString()
+        );
+        assertStringEquals(
+            "span[1] text",
+            "&#013;id: 6",
+            spans.elementAt (1).toPlainTextString()
+        );
+    }
 
     public void testSimpleSearch() throws ParserException {
         createParser(
@@ -68,7 +85,7 @@ public class ObjectCollectionTest extends ParserTestCase {
             "<SPAN>&#013;id: 6</SPAN>"
         );
         parser.setNodeFactory (new PrototypicalNodeFactory (new Span ()));
-        assertSpanContent(parser.extractAllNodesThatAre(Span.class));
+        assertSpanContent(parser.extractAllNodesThatMatch (new NodeClassFilter (Span.class)));
     }
 
     public void testOneLevelNesting() throws ParserException {

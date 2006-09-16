@@ -29,11 +29,13 @@ import org.htmlparser.Node;
 import org.htmlparser.PrototypicalNodeFactory;
 import org.htmlparser.Tag;
 import org.htmlparser.Text;
+import org.htmlparser.filters.NodeClassFilter;
 import org.htmlparser.tags.HeadTag;
 import org.htmlparser.tags.Html;
 import org.htmlparser.tags.ImageTag;
 import org.htmlparser.tags.LinkTag;
 import org.htmlparser.tests.ParserTestCase;
+import org.htmlparser.util.NodeList;
 import org.htmlparser.util.ParserException;
 import org.htmlparser.util.SimpleNodeIterator;
 
@@ -410,10 +412,10 @@ public class LinkTagTest extends ParserTestCase {
             "<td nowrap> &nbsp;\n"+
                 "<a href=s/7509><b>Yahoo! Movies</b></a>" +
             "</td>","http://www.yahoo.com");
-        Node linkNodes [] = parser.extractAllNodesThatAre(LinkTag.class);
+        NodeList linkNodes = parser.extractAllNodesThatMatch (new NodeClassFilter (LinkTag.class));
 
-        assertEquals("number of links",2,linkNodes.length);
-        LinkTag linkTag = (LinkTag)linkNodes[0];
+        assertEquals("number of links",2,linkNodes.size ());
+        LinkTag linkTag = (LinkTag)linkNodes.elementAt (0);
         assertStringEquals("Link","http://www.yahoo.com/s/8741",linkTag.getLink());
         // Verify the link data
         assertStringEquals("Link Text","",linkTag.getLinkText());

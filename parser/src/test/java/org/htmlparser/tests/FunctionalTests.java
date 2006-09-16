@@ -34,6 +34,7 @@ import junit.framework.TestSuite;
 import org.htmlparser.Node;
 import org.htmlparser.Parser;
 import org.htmlparser.PrototypicalNodeFactory;
+import org.htmlparser.lexer.Lexer;
 import org.htmlparser.tags.ImageTag;
 import org.htmlparser.util.DefaultParserFeedback;
 import org.htmlparser.util.NodeIterator;
@@ -55,12 +56,23 @@ public class FunctionalTests extends ParserTestCase {
      * to check if the no of image tags are correctly
      * identified by the parser
      */
-    public void testNumImageTagsInYahooWithoutRegisteringScanners() throws ParserException {
-        // First count the image tags as is
-        int imgTagCount;
-        int parserImgTagCount = countImageTagsWithHTMLParser();
-        imgTagCount = findImageTagCount(getParser ());
-        assertEquals("Image Tag Count",imgTagCount,parserImgTagCount);
+    public void testNumImageTagsInYahooWithoutRegisteringScanners() throws ParserException
+    {
+        boolean old_remark_handling = Lexer.STRICT_REMARKS;
+        try
+        {
+            // this page is full of bad comments like <!---resources--->
+            Lexer.STRICT_REMARKS = false;
+            // First count the image tags as is
+            int imgTagCount;
+            int parserImgTagCount = countImageTagsWithHTMLParser();
+            imgTagCount = findImageTagCount(getParser ());
+            assertEquals("Image Tag Count",imgTagCount,parserImgTagCount);
+        }
+        finally
+        {
+            Lexer.STRICT_REMARKS = old_remark_handling;
+        }
     }
 
     public int findImageTagCount(Parser parser) {

@@ -771,7 +771,7 @@ public class ParserTest extends ParserTestCase
         String path;
         File file;
         PrintWriter out;
-        Node[] nodes;
+        NodeList nodes;
 
         html = "<html></html>";
         createParser (html);
@@ -838,14 +838,14 @@ public class ParserTest extends ParserTestCase
             try
             {
                 parser.setInputHTML (html);
-                nodes = parser.extractAllNodesThatAre (LinkTag.class);
+                nodes = parser.extractAllNodesThatMatch (new NodeClassFilter (LinkTag.class));
             }
             catch (ParserException e)
             {
                 e.printStackTrace ();
-                nodes = new Node[0];
+                nodes = new NodeList ();
             }
-            assertTrue ("node count", 3 == nodes.length);
+            assertTrue ("node count", 3 == nodes.size ());
         }
         catch (Exception e)
         {

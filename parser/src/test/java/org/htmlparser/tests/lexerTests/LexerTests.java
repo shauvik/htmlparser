@@ -620,6 +620,9 @@ public class LexerTests extends ParserTestCase
         mAcceptable.add ("LINK");
         mAcceptable.add ("H1");
         mAcceptable.add ("H3");
+        mAcceptable.add ("OBJECT");
+        mAcceptable.add ("PARAM");
+        mAcceptable.add ("EMBED");
     }
 
     /**
@@ -924,6 +927,31 @@ public class LexerTests extends ParserTestCase
         assertTrue (node instanceof StyleTag);
         assertStringEquals ("bad cdata", cdata, ((StyleTag)node).getStyleCode ());
         assertNull ("too many nodes", iterator.nextNode ());
+    }
+
+    /**
+     * See bug #1493884 Lexer returns a TagNode with a 'null' name
+     */
+    public void testDosLineEndingInName () throws ParserException
+    {
+        String html;
+        NodeIterator iterator;
+        Node node;
+
+        html = "<!\r\nMSIE->";
+        parser = new Parser ();
+        parser.setInputHTML (html);
+        iterator = parser.elements ();
+        node = iterator.nextNode ();
+        if (node == null)
+            fail ("too few nodes");
+        else
+        {
+            assertNotNull ("null node", node);
+            assertTrue (node instanceof Tag);
+            assertNotNull ("null name", ((Tag)node).getTagName ());
+            assertStringEquals ("bad parse", "!", ((Tag)node).getTagName ());
+        }
     }
 }
 

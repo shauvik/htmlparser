@@ -225,7 +225,7 @@ public class FormTagTest extends ParserTestCase {
         for (NodeIterator e = ((FormTag)node[0]).children (); e.hasMoreNodes ();)
             e.nextNode ().collectInto (remarkNodes, filter);
         assertEquals("Remark Node Count",1,remarkNodes.size ());
-        assertEquals("First Remark Node"," Hello World ",remarkNodes.elementAt (0).toPlainTextString());
+        assertEquals("First Remark Node"," Hello World ",remarkNodes.elementAt (0).getText ());
     }
     /**
      * Bug 652674 - forms with comments are not being parsed
@@ -295,14 +295,14 @@ public class FormTagTest extends ParserTestCase {
             testHTML
         );
         ((PrototypicalNodeFactory)parser.getNodeFactory ()).unregisterTag (new FormTag ());
-        Node [] nodes =
-            parser.extractAllNodesThatAre(
+        NodeList nodes =
+            parser.extractAllNodesThatMatch (new NodeClassFilter (
                 FormTag.class
-            );
+            ));
         assertEquals(
-            "shouldnt have found form tag",
+            "shouldn't have found form tag",
             0,
-            nodes.length
+            nodes.size ()
         );
     }
 
@@ -434,9 +434,9 @@ public class FormTagTest extends ParserTestCase {
             testHTML
         );
         FormTag formTag =
-            (FormTag)(parser.extractAllNodesThatAre(
+            (FormTag)(parser.extractAllNodesThatMatch (new NodeClassFilter (
                 FormTag.class
-            )[0]);
+            )).elementAt (0));
         assertNotNull("Should have found a form tag",formTag);
         assertStringEquals("name","form0",formTag.getFormName());
         assertNull("action",formTag.getAttribute("ACTION"));
@@ -501,9 +501,9 @@ public class FormTagTest extends ParserTestCase {
             "</body>\n";
         createParser (html);
         formTag =
-            (FormTag)(parser.extractAllNodesThatAre (
+            (FormTag)(parser.extractAllNodesThatMatch (new NodeClassFilter (
                 FormTag.class
-            )[0]);
+            )).elementAt (0));
         assertNotNull ("Should have found a form tag",formTag);
         assertStringEquals ("name", "searchForm", formTag.getFormName ());
         nl = formTag.getFormInputs ();
@@ -552,9 +552,9 @@ public class FormTagTest extends ParserTestCase {
             "</html>\n";
         createParser (html);
         formTag =
-            (FormTag)(parser.extractAllNodesThatAre (
+            (FormTag)(parser.extractAllNodesThatMatch (new NodeClassFilter (
                 FormTag.class
-            )[0]);
+            )).elementAt (0));
         assertNotNull ("Should have found a form tag",formTag);
         nl = formTag.getFormInputs ();
         assertTrue ("3 inputs", 3 == nl.size ());

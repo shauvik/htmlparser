@@ -99,8 +99,7 @@ public class LabelTagTest extends ParserTestCase
         assertTrue(node[0] instanceof LabelTag);
         LabelTag labelTag = (LabelTag) node[0];
         assertStringEquals("Label", html, labelTag.toHtml());
-        Hashtable attr = labelTag.getAttributes();
-        assertNull("ID",attr.get("id"));
+        assertNull("ID",labelTag.getAttribute ("id"));
     }
 
     public void testNestedLabels() throws ParserException
@@ -115,8 +114,7 @@ public class LabelTagTest extends ParserTestCase
         assertStringEquals("Label", label1 + "</label>", labelTag.toHtml());
         labelTag = (LabelTag) node[1];
         assertStringEquals("Label", label2 + "</label>",labelTag.toHtml());
-        Hashtable attr = labelTag.getAttributes();
-        assertNull("ID",attr.get("id"));
+        assertNull ("ID", labelTag.getAttribute ("id"));
     }
 
     public void testNestedLabels2() throws ParserException

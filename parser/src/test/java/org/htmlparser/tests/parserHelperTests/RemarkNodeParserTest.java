@@ -29,6 +29,7 @@ import org.htmlparser.PrototypicalNodeFactory;
 import org.htmlparser.Remark;
 import org.htmlparser.Tag;
 import org.htmlparser.Text;
+import org.htmlparser.lexer.Lexer;
 import org.htmlparser.tests.ParserTestCase;
 import org.htmlparser.util.ParserException;
 
@@ -83,7 +84,7 @@ public class RemarkNodeParserTest extends ParserTestCase
         assertEquals("Text of the Remark #10","\n   Whats gonna happen now ?\n",Remark.getText());
     }
 
-    public void testToPlainTextString() throws ParserException {
+    public void testGetText () throws ParserException {
         createParser(
             "<!-- saved from url=(0022)http://internet.e-mail -->\n"+
             "<HTML>\n"+
@@ -99,7 +100,7 @@ public class RemarkNodeParserTest extends ParserTestCase
         // The first node should be a Remark
         assertTrue("First node should be a Remark",node[0] instanceof Remark);
         Remark Remark = (Remark)node[0];
-        assertEquals("Plain Text of the Remark #1"," saved from url=(0022)http://internet.e-mail ",Remark.toPlainTextString());
+        assertEquals("Plain Text of the Remark #1"," saved from url=(0022)http://internet.e-mail ",Remark.getText ());
         // The tenth node should be a Remark
         assertTrue("Tenth node should be a Remark",node[9] instanceof Remark);
         Remark = (Remark)node[9];
@@ -362,20 +363,66 @@ public class RemarkNodeParserTest extends ParserTestCase
         throws
             ParserException
     {
-        createParser (
-              "<html>\n"
-            + "<head>\n"
-            + "<title>foobar</title>\n"
-            + "</head>\n"
-            + "<body>\n"
-            + "<!-- foobar --!>\n"
-            + "</body>\n"
-            + "</html>\n"
-            );
-        parser.setNodeFactory (new PrototypicalNodeFactory (true));
-        parseAndAssertNodeCount (18);
-        assertTrue("Node should be a Remark but was " + node[12], node[12] instanceof Remark);
-        assertStringEquals ("remark text", "<!-- foobar --!>", node[12].toHtml ());
+        boolean old_remark_handling = Lexer.STRICT_REMARKS;
+        try
+        {
+            // handling this requires non-strict handling
+            Lexer.STRICT_REMARKS = false;
+            createParser (
+                  "<html>\n"
+                + "<head>\n"
+                + "<title>foobar</title>\n"
+                + "</head>\n"
+                + "<body>\n"
+                + "<!-- foobar --!>\n"
+                + "</body>\n"
+                + "</html>\n"
+                );
+            parser.setNodeFactory (new PrototypicalNodeFactory (true));
+            parseAndAssertNodeCount (18);
+            assertTrue("Node should be a Remark but was " + node[12], node[12] instanceof Remark);
+            assertStringEquals ("remark text", "<!-- foobar --!>", node[12].toHtml ());
+        }
+        finally
+        {
+            Lexer.STRICT_REMARKS = old_remark_handling;
+        }
     }
 
+    /**
+     * Test a comment ending with -.
+     * See also the Acid2 test at http://www.webstandards.org/act/acid2/test.html.
+     */
+    public void testDashEnding ()
+        throws
+            ParserException
+    {
+        String preamble = "<div class=\"parser\">";
+        String remark = "<!-- ->ERROR<!- -->";
+        String rest = "</div></div> <!-- two dashes is what delimits a comment, so the text \"->ERROR<!-\" earlier on this line is actually part of a comment -->";
+        createParser (preamble + remark + rest);
+        parser.setNodeFactory (new PrototypicalNodeFactory (true));
+        parseAndAssertNodeCount (6);
+        assertTrue("Node should be a Remark but was " + node[1], node[1] instanceof Remark);
+        assertStringEquals ("remark text", remark, node[1].toHtml ());
+    }
+
+    /**
+     * Test a comment ending with ---.
+     * See bug #1345049 HTMLParser should not terminate a comment with ---&gt;
+     * See also the Acid2 test at http://www.webstandards.org/act/acid2/test.html.
+     */
+    public void test3DashesEnding ()
+        throws
+            ParserException
+    {
+        String preamble = "<div class=\"parser\">";
+        String remark = "<!-- --->ERROR<!- -->";
+        String rest = "</div></div> <!-- two dashes is what delimits a comment, so the text \"->ERROR<!-\" earlier on this line is actually part of a comment -->";
+        createParser (preamble + remark + rest);
+        parser.setNodeFactory (new PrototypicalNodeFactory (true));
+        parseAndAssertNodeCount (6);
+        assertTrue("Node should be a Remark but was " + node[1], node[1] instanceof Remark);
+        assertStringEquals ("remark text", remark, node[1].toHtml ());
+    }
 }

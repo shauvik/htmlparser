@@ -29,9 +29,11 @@ import org.htmlparser.Node;
 import org.htmlparser.Parser;
 import org.htmlparser.PrototypicalNodeFactory;
 import org.htmlparser.Tag;
+import org.htmlparser.filters.NodeClassFilter;
 import org.htmlparser.tags.LinkTag;
 import org.htmlparser.tags.MetaTag;
 import org.htmlparser.tests.ParserTestCase;
+import org.htmlparser.util.NodeList;
 import org.htmlparser.util.ParserException;
 
 public class TagTests extends ParserTestCase {
@@ -362,9 +364,9 @@ public class TagTests extends ParserTestCase {
         public void run() {
             try {
                 mResult = false;
-                Node linkTag [] = mParser.extractAllNodesThatAre(LinkTag.class);
-                mLink1 = (LinkTag)linkTag[0];
-                mLink2 = (LinkTag)linkTag[1];
+                NodeList linkTag = mParser.extractAllNodesThatMatch (new NodeClassFilter (LinkTag.class));
+                mLink1 = (LinkTag)linkTag.elementAt (0);
+                mLink2 = (LinkTag)linkTag.elementAt (1);
                 if (mId < mMax / 2) {
                     if (mLink1.getLink().equals("/cgi-bin/view_search?query_text=postdate>20020701&txt_clr=White&bg_clr=Red&url=http://localhost/Testing/Report1.html") &&
                         mLink2.getLink().equals("http://normallink.com/sometext.html"))

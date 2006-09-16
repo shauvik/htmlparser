@@ -29,6 +29,7 @@
         <version>2.1-SNAPSHOT</version>
         <executions>
           <execution>
+            <phase>deploy</phase>
             <goals>
               <goal>sign</goal>
             </goals>

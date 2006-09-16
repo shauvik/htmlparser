@@ -126,7 +126,7 @@ public class NodeListTest extends ParserTestCase {
             public void accept(NodeVisitor visitor) {
             }
 
-            public String toHtml() {
+            public String toHtml(boolean verbose) {
                 return null;
             }
 

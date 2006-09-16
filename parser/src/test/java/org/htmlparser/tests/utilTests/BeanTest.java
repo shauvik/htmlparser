@@ -494,7 +494,8 @@ public class BeanTest extends ParserTestCase
     /**
      * Test output with pre and script tags
      */
-    public void xtestOutputWithPreAndScriptTags() {
+    public void xtestOutputWithPreAndScriptTags ()
+    {
         StringBean sb;
         sb = new StringBean ();
 
@@ -509,5 +510,25 @@ public class BeanTest extends ParserTestCase
         check (sb, "<body><pre>"+sampleScript+"</pre></body>", sampleScript);
     }
 
+    /**
+     * Test output with non-breaking tag within text.
+     */
+    public void testTagWhitespace ()
+    {
+        StringBean sb;
+        sb = new StringBean ();
+
+        String pre = "AAAAA BBBBB AAA";
+        String mid = "AA";
+        String post = " BBBBB";
+        String html =
+          "<HTML>\r\n"
+        + "<body>\r\n"
+        + "<p>" + pre + "<font color='red'>" + mid + "</font>" + post + "</p>\r\n"
+        + "</body>\r\n"
+        + "</HTML>\r\n";
+
+        check (sb, html, pre + mid + post);
+    }
 }
 
