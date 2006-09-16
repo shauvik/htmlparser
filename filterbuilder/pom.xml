@@ -75,6 +75,28 @@
         <enabled>false</enabled>
       </releases>
     </pluginRepository>
+    <pluginRepository>
+      <name>Codehaus Development Repository</name>
+      <id>codehaus</id>
+      <url>http://repository.codehaus.org/org/codehaus/plexus</url>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+    </pluginRepository>
+    <pluginRepository>
+      <id>codehaus snapshots</id>
+      <name>Codehaus Snapshot Development Repository</name>
+      <url>http://snapshots.repository.codehaus.org</url>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+      <releases>
+        <enabled>false</enabled>
+      </releases>
+    </pluginRepository>
   </pluginRepositories>
   <dependencies>
     <dependency>
