@@ -85,7 +85,7 @@ use constant MAILNAME => "/etc/mailname";
 my $Log_Source_Command = "cvs log";
 
 # In case we have to print it out:
-my $VERSION = '$Revision: 1.1 $';
+my $VERSION = '$Revision$';
 $VERSION =~ s/\S+\s+(\S+)\s+\S+/$1/;
 
 ## Vars set by options:
