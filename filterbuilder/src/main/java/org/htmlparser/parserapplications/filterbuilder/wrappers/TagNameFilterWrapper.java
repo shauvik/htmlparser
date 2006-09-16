@@ -1,0 +1,254 @@
+// HTMLParser Library - A java-based parser for HTML
+// http://htmlparser.org
+// Copyright (C) 2006 Derrick Oswald
+//
+// Revision Control Information
+//
+// $URL$
+// $Author$
+// $Date$
+// $Revision$
+//
+// This library is free software; you can redistribute it and/or
+// modify it under the terms of the Common Public License; either
+// version 1.0 of the License, or (at your option) any later version.
+//
+// This library is distributed in the hope that it will be useful,
+// but WITHOUT ANY WARRANTY; without even the implied warranty of
+// MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+// Common Public License for more details.
+//
+// You should have received a copy of the Common Public License
+// along with this library; if not, the license is available from
+// the Open Source Initiative (OSI) website:
+//   http://opensource.org/licenses/cpl1.0.php
+
+package org.htmlparser.parserapplications.filterbuilder.wrappers;
+
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
+
+import javax.swing.JComboBox;
+
+import org.htmlparser.Node;
+import org.htmlparser.NodeFilter;
+import org.htmlparser.Parser;
+import org.htmlparser.Tag;
+import org.htmlparser.filters.TagNameFilter;
+import org.htmlparser.parserapplications.filterbuilder.Filter;
+import org.htmlparser.tags.CompositeTag;
+import org.htmlparser.util.NodeIterator;
+import org.htmlparser.util.NodeList;
+import org.htmlparser.util.ParserException;
+
+/**
+ * Wrapper for TagNameFilters.
+ */
+public class TagNameFilterWrapper
+    extends
+        Filter
+    implements
+        ActionListener
+{
+    /**
+     * The underlying filter.
+     */
+    protected TagNameFilter mFilter;
+
+    /**
+     * Combo box for tag name.
+     */
+    protected JComboBox mName;
+
+    /**
+     * Create a wrapper over a new TagNameFilter.
+     */ 
+    public TagNameFilterWrapper ()
+    {
+        mFilter = new TagNameFilter ();
+
+        // add the tag name choice
+        mName = new JComboBox ();
+        mName.setEditable (true);
+        add (mName);
+        mName.addItem (mFilter.getName ());
+        mName.addActionListener (this);
+    }
+
+    //
+    // Filter overrides and concrete implementations
+    //
+
+    /**
+     * Get the name of the filter.
+     * @return A descriptive name for the filter.
+     */
+    public String getDescription ()
+    {
+        return ("Tag named");
+    }
+
+    /**
+     * Get the resource name for the icon.
+     * @return The icon resource specification.
+     */
+    public String getIconSpec ()
+    {
+        return ("images/TagNameFilter.gif");
+    }
+
+    /**
+     * Get the underlying node filter object.
+     * @return The node filter object suitable for serialization.
+     */
+    public NodeFilter getNodeFilter ()
+    {
+        TagNameFilter ret;
+        
+        ret = new TagNameFilter ();
+        ret.setName (mFilter.getName ());
+            
+        return (ret);
+    }
+
+    /**
+     * Assign the underlying node filter for this wrapper.
+     * @param filter The filter to wrap.
+     * @param context The parser to use for conditioning this filter.
+     * Some filters need contextual information to provide to the user,
+     * i.e. for tag names or attribute names or values,
+     * so the Parser context is provided. 
+     */
+    public void setNodeFilter (NodeFilter filter, Parser context)
+    {
+        Set set;
+
+        mFilter = (TagNameFilter)filter;
+        set = new HashSet ();
+        context.reset ();
+        try
+        {
+            for (NodeIterator iterator = context.elements (); iterator.hasMoreNodes (); )
+                addName (set, iterator.nextNode ());
+        }
+        catch (ParserException pe)
+        {
+            // oh well, we tried
+        }
+        for (Iterator iterator = set.iterator (); iterator.hasNext (); )
+            mName.addItem (iterator.next ());
+        mName.setSelectedItem (mFilter.getName ());
+    }
+
+    /**
+     * Get the underlying node filter's subordinate filters.
+     * @return The node filter object's contained filters.
+     */
+    public NodeFilter[] getSubNodeFilters ()
+    {
+        return (new NodeFilter[0]);
+    }
+
+    /**
+     * Assign the underlying node filter's subordinate filters.
+     * @param filters The filters to insert into the underlying node filter.
+     */
+    public void setSubNodeFilters (NodeFilter[] filters)
+    {
+        // should we complain?
+    }
+
+    /**
+     * Convert this filter into Java code.
+     * Output whatever text necessary and return the variable name.
+     * @param out The output buffer.
+     * @param context Three integers as follows:
+     * <li>indent level - the number of spaces to insert at the beginning of each line</li>
+     * <li>filter number - the next available filter number</li>
+     * <li>filter array number - the next available array of filters number</li>
+     * @return The variable name to use when referencing this filter (usually "filter" + context[1]++) 
+     */
+    public String toJavaCode (StringBuffer out, int[] context)
+    {
+        String ret;
+        
+        ret = "filter" + context[1]++;
+        spaces (out, context[0]);
+        out.append ("TagNameFilter ");
+        out.append (ret);
+        out.append (" = new TagNameFilter ();");
+        newline (out);
+        spaces (out, context[0]);
+        out.append (ret);
+        out.append (".setName (\"");
+        out.append (mFilter.getName ());
+        out.append ("\");");
+        newline (out);
+        
+        return (ret);
+    }
+
+    /**
+     * Add the tag name and it's children's tag names to the set of tag names.
+     * @param set The set to add to.
+     * @param node The node to get the names from.
+     */
+    protected void addName (Set set, Node node)
+    {
+        NodeList children;
+
+        if (node instanceof Tag)
+        {
+            set.add (((Tag)node).getTagName ());
+            if (node instanceof CompositeTag)
+            {
+                children = ((CompositeTag)node).getChildren ();
+                if (null != children)
+                    for (int i = 0; i < children.size (); i++)
+                        addName (set, children.elementAt (i));
+            }
+        }
+    }
+    //
+    // NodeFilter interface
+    //
+
+    /**
+     * Predicate to determine whether or not to keep the given node.
+     * The behaviour based on this outcome is determined by the context
+     * in which it is called. It may lead to the node being added to a list
+     * or printed out. See the calling routine for details.
+     * @return <code>true</code> if the node is to be kept, <code>false</code>
+     * if it is to be discarded.
+     * @param node The node to test.
+     */
+    public boolean accept (Node node)
+    {
+        return (mFilter.accept (node));
+    }
+
+    //
+    // ActionListener interface
+    //
+
+    /**
+     * Invoked when an action occurs on the combo box.
+     * @param event Details about the action event.
+     */
+    public void actionPerformed (ActionEvent event)
+    {
+        Object source;
+        Object[] selection;
+
+        source = event.getSource ();
+        if (source == mName)
+        {
+            selection = mName.getSelectedObjects ();
+            if ((null != selection) && (0 != selection.length))
+                mFilter.setName ((String)selection[0]);
+        }
+    }
+}

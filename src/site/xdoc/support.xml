@@ -1,0 +1,34 @@
+<document>
+  <properties>
+    <author email="derrickoswald@sourceforge.net">Derrick Oswald</author>
+    <title>HTML Parser Support Request</title>
+  </properties>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"></meta>
+    <meta name="KeyWords" content="support request,htmlparser,java"/>
+    <link rel="stylesheet" type="text/css" href="javadoc/stylesheet.css" title="Style"/>
+  </head>
+  <body>
+    <section name="Support Request">
+  <p/>You can submit support requests here. Before you proceed, please note that 
+    you <strong>must</strong> <a href="http://sourceforge.net/account/login.php">sign 
+    in at sourceforge</a>, for only then will our responses reach you.
+    If you do not have a sourceforge login, you can get one
+    <a href="http://sourceforge.net/account/register.php">here</a>.
+  <p/>Please note that this is an open source project, and most of us are hard pressed 
+    for time. We are not obliged to help you but we do so anyway. You can help us 
+    by first researching your problem, and then requesting for support when you 
+    are really stuck. You should have consulted the
+    <a href="faq.html">frequently asked questions</a>, 
+    <a href="javadoc/index.html" target="_parent">JavaDocs</a>, and 
+    <a href="samples.html">sample programs</a> 
+    before you submit your request. It might also be much faster to get help from 
+    the htmlparser user community, by signing up on the
+    <a href="http://lists.sourceforge.net/lists/listinfo/htmlparser-user">
+    HTMLParser User mailing list</a>.<br/>
+  <p/>Once you are ready,
+    <a href="http://sourceforge.net/tracker/?func&#61;add&amp;group_id&#61;24399&amp;atid&#61;381400">
+    click here to submit your report</a>.
+    </section>
+  </body>
+</document>

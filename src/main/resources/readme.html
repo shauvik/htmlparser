@@ -1,0 +1,172 @@
+<html>
+  <head>
+    <title>HTMLParser To Do List</title>
+  </head>
+  <body>
+<pre>
+<h1>This is a placeholder for a real readme</h1>
+
+<h2>ToDo Before SVN Commit</h2>
+
+<h3>Site</h3>
+reduce # of developers - eliminate everyone who didn't answer last ping, then add project team to POM
+overview, building (complete rewrite for maven), using
+
+<h3>Samples</h3>
+Adding the copy operation to set up the samples in the target site causes dependancy problems (at least in the install phase):
+                &lt;mkdir dir=&quot;target/site/samples&quot;/&gt;
+                &lt;copy file=&quot;filterbuilder/src/main/resources/filterbuilder.jnlp&quot; tofile=&quot;target/site/samples/filterbuilder.jnlp&quot; overwrite=&quot;true&quot;/&gt;
+                &lt;copy file=&quot;sitecapturer/src/main/resources/sitecapturer.jnlp&quot; tofile=&quot;target/site/samples/sitecapturer.jnlp&quot; overwrite=&quot;true&quot;/&gt;
+                &lt;copy file=&quot;thumbelina/src/main/resources/thumbelina.jnlp&quot; tofile=&quot;target/site/samples/thumbelina.jnlp&quot; overwrite=&quot;true&quot;/&gt;
+                &lt;copy file=&quot;lexer/target/signed/htmllexer.jar&quot; tofile=&quot;target/site/samples/htmllexer.jar&quot; overwrite=&quot;true&quot;/&gt;
+                &lt;copy file=&quot;parser/target/signed/htmlparser.jar&quot; tofile=&quot;target/site/samples/htmlparser.jar&quot; overwrite=&quot;true&quot;/&gt;
+                &lt;copy file=&quot;filterbuilder/target/signed/filterbuilder.jar&quot; tofile=&quot;target/site/samples/filterbuilder.jar&quot; overwrite=&quot;true&quot;/&gt;
+                &lt;copy file=&quot;sitecapturer/target/signed/sitecapturer.jar&quot; tofile=&quot;target/site/samples/sitecapturer.jar&quot; overwrite=&quot;true&quot;/&gt;
+                &lt;copy file=&quot;thumbelina/target/signed/thumbelina.jar&quot; tofile=&quot;target/site/samples/thumbelina.jar&quot; overwrite=&quot;true&quot;/&gt;
+
+<h3>Configuration Items</h3>
+scripts in bin/ need to be updated to add htmllexer.jar (besides htmlparser.jar)
+change .jnlp files to match target location on Sourceforge
+
+<h3>Version</h3>
+check if SNAPSHOT is best mechanism for initial settings
+version in Parser and Lexer constants
+ - versionsource target conversion
+      &lt;plugin&gt;
+        &lt;artifactId&gt;maven-antrun-plugin&lt;/artifactId&gt;
+        &lt;executions&gt;
+          &lt;execution&gt;
+            &lt;phase&gt;validate&lt;/phase&gt;
+            &lt;configuration&gt;
+              &lt;tasks&gt;
+    &lt;tstamp&gt;
+      &lt;format property=&quot;TODAY&quot; pattern=&quot;yyyyMMdd&quot; locale=&quot;en&quot;/&gt;
+      &lt;format property=&quot;TODAY_STRING&quot; pattern=&quot;MMM dd, yyyy&quot;/&gt;
+    &lt;/tstamp&gt;
+    &lt;property name=&quot;versionTag&quot; value=&quot;${versionQualifier}_${TODAY}&quot;/&gt;
+    &lt;echo message=&quot;today is ${TODAY_STRING}&quot;/&gt;
+    &lt;echo message=&quot;versionTag=${versionTag}&quot;/&gt;
+
+    &lt;!-- retrieve VERSION_XXX properties from Parser.java  --&gt;
+    &lt;loadproperties srcFile=&quot;${basedir}/src/main/java/org/htmlparser/Parser.java&quot;&gt;
+      &lt;filterchain&gt;
+        &lt;linecontains&gt;
+          &lt;contains value=&quot;VERSION_&quot;/&gt;
+        &lt;/linecontains&gt;
+    	&lt;filterreader classname=&quot;org.apache.tools.ant.filters.StripLineBreaks&quot;&gt;
+          &lt;param name=&quot;linebreaks&quot; value=&quot;)&amp;quot;&quot;/&gt;
+        &lt;/filterreader&gt;
+      &lt;/filterchain&gt;
+    &lt;/loadproperties&gt;
+
+    &lt;echo message=&quot;previous version number = ${VERSION_NUMBER}&quot;/&gt;
+    &lt;echo message=&quot;previous version type = ${VERSION_TYPE}&quot;/&gt;
+    &lt;echo message=&quot;previous version date = ${VERSION_DATE}&quot;/&gt;
+
+              &lt;/tasks&gt;
+            &lt;/configuration&gt;
+            &lt;goals&gt;
+              &lt;goal&gt;run&lt;/goal&gt;
+            &lt;/goals&gt;
+          &lt;/execution&gt;
+        &lt;/executions&gt;
+      &lt;/plugin&gt;
+
+<h3>Subversion</h3>
+make sure subversion client changes properties of text files:
+  $ svn propset svn:keywords "Date Revision Author HeadURL Id" <filename>
+subversion structure (see http://apollo.ucalgary.ca/tlcprojectswiki/index.php/Public/Project_Versioning_-_Best_Practices):
+trunk
+  pom.xml
+  src
+  lexer
+  parser
+  beanybaby
+  filterbuilder
+  sitecapturer
+  thumbelina
+branches
+tags
+
+<h3>Deploy</h3>
+need .m2/settings.xml with ftp, and other distribution settings http://maven.apache.org/maven-settings/settings.html
+or use %M2_HOME%/conf/settings.xml or ${basedir}/profiles.xml
+
+<h2>Later</h2>
+
+<h3>Unit tests</h3>
+CharacterTranslationTest is weird with compiler and it's own SimpleClassLoader so it fails - fix
+
+<h3>Non-maven Support</h3>
+ant script generation
+netbeans and eclipse project generation
+
+<h3>JavaDoc</h3>
+Javadoc doesn't work across modules, avoid use of antrun.
+Many problems with javadoc formating...
+  overview, copyright date
+or need to somehow get the antrun plugin to run as part of the site:site goal
+  workaround: mvn clean install site assembly:assembly
+
+<h3>Site</h3>
+For some reason the following are now illegal in the site.xml... why?
+  &lt;title&gt;HTML Parser&lt;/title&gt;
+  &lt;footer&gt;
+    &lt;A href=&quot;http://sourceforge.net/projects/htmlparser&quot;&gt;
+    &lt;img src=&quot;http://sourceforge.net/sflogo.php?group_id&amp;#61;24399&amp;amp;type&amp;#61;1&quot; width=&quot;88&quot; height=&quot;31&quot; border=&quot;0&quot; alt=&quot;SourceForge.net&quot;/&gt;&lt;/A&gt;
+  &lt;/footer&gt;
+  &lt;search/&gt;
+dependencies report is failing with null pointer because of:
+      &lt;dependencies&gt;
+        &lt;dependency&gt;
+          &lt;groupId&gt;com.sun&lt;/groupId&gt;
+          &lt;artifactId&gt;tools&lt;/artifactId&gt;
+          &lt;version&gt;1.5.0&lt;/version&gt;
+          &lt;scope&gt;system&lt;/scope&gt;
+          &lt;systemPath&gt;${java.home}/../lib/tools.jar&lt;/systemPath&gt;
+        &lt;/dependency&gt;
+      &lt;/dependencies&gt;
+contributors.html -&gt; project members, may need a new velocity template
+update samples page
+check package.html files
+
+<h3>Refactor</h3>
+Move lexer and parser applications to just 'applications', 'examples' or 'samples'.
+  - new package.html as mixture of parserapplications and lexerapplications
+Move BeanyBaby out of beans and into 'applications', 'examples' or 'samples'.
+  - need to update project pom modules section and javadoc section
+  - also update assembly files
+Move SiteCapturer into it's own directory.
+split out lexertests (dependancy on ParserTestCase and hence Parser)
+
+<h3>GroupId</h3>
+Is &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt; needed in maven-jar-plugin override for signing jars?
+
+<h3>Java-Beans</h3>
+Avoid using manifest file and generated manifest has Extension-Name attribute,
+see http://jira.codehaus.org/browse/MJAR-38
+http://jira.codehaus.org/browse/MJAR-39
+and http://jira.codehaus.org/browse/MWAR-34
+
+<h3>Code Checking</h3>
+checkstyle doesn't understand my settings
+code checking tools:
+      &lt;plugin&gt;
+        &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+        &lt;artifactId&gt;maven-pmd-plugin&lt;/artifactId&gt;
+      &lt;/plugin&gt;
+      &lt;plugin&gt;
+        &lt;groupId&gt;org.apache.maven.plugins&lt;/groupId&gt;
+        &lt;artifactId&gt;maven-checkstyle-plugin&lt;/artifactId&gt;
+        &lt;configuration&gt;
+          &lt;configLocation&gt;src/main/resources/htmlparser_checks.xml&lt;/configLocation&gt;
+          &lt;basedir&gt;src/main/java&lt;/basedir&gt;
+         &lt;/configuration&gt;
+      &lt;/plugin&gt;
+
+<h3>Site</h3>
+combine mailing list documentation which is currently in two places
+
+</pre>
+  </body>
+</html>

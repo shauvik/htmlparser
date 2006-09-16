@@ -1,0 +1,32 @@
+<document>
+  <properties>
+    <author email="derrickoswald@sourceforge.net">Derrick Oswald</author>
+    <title>HTML Parser Bug Reports</title>
+  </properties>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"></meta>
+    <meta name="KeyWords" content="bug reports,htmlparser,java"/>
+    <link rel="stylesheet" type="text/css" href="javadoc/stylesheet.css" title="Style"/>
+  </head>
+  <body>
+    <section name="Bug Reports">
+<p/>You can submit bug reports here. Before you proceed, please note that you
+    <strong>must</strong>
+    <a href="http://sourceforge.net/account/login.php">login to sourceforge</a>. 
+    This is required so that bug status reports can be forwarded to you.
+    If you do not have a sourceforge login, you can get one
+    <a href="http://sourceforge.net/account/register.php">here</a>.
+<p/>Checklist <strong>BEFORE</strong> you submit your bug report :<p/>
+<ul>
+  <li>Have you pretty much isolated the problem to the HTML Parser component.</li>
+  <li>Have you <a href="http://sourceforge.net/tracker/?func&#61;browse&amp;group_id=24399&amp;atid&#61;381399">checked 
+    the list of older bug reports</a></li>
+  <li>Have you written a testcase to simulate your bug?
+    We do take reports without testcases, but please note that such reports may take 
+    longer for us to respond to.</li>
+</ul>
+<p/>Once you are ready, <a href="http://sourceforge.net/tracker/?func&#61;add&amp;group_id&#61;24399&amp;atid=381399">click 
+  here to submit your report</a> (upload your testcase as a file attachment).s
+    </section>
+  </body>
+</document>

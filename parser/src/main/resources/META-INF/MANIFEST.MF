@@ -1,0 +1,17 @@
+Manifest-Version: 1.0
+Main-Class: org.htmlparser.Parser
+
+Name: org/htmlparser/Parser.class
+Java-Bean: True
+
+Name: org/htmlparser/beans/StringBean.class
+Java-Bean: True
+
+Name: org/htmlparser/beans/HTMLTextBean.class
+Java-Bean: True
+
+Name: org/htmlparser/beans/LinkBean.class
+Java-Bean: True
+
+Name: org/htmlparser/beans/HTMLLinkBean.class
+Java-Bean: True

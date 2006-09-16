@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?> 
+<!-- JNLP File for FilterBuilder --> 
+<jnlp spec="1.0+" codebase="file:///C:/Data%20Files/Personal/htmlparser/target/site/samples" > 
+   <information> 
+      <title>FilterBuilder</title> 
+      <vendor>htmlparser.org</vendor> 
+      <description>filter generator</description> 
+      <description kind="short">FilterBuilder is a GUI application for generating java code to filter HTML pages.</description> 
+      <offline-allowed/> 
+    </information>
+    <security>
+      <all-permissions/> 
+    </security>
+    <resources> 
+      <j2se version="1.3+" java-vm-args="-verbose" href="http://java.sun.com/products/autodl/j2se"/>
+      <jar href="filterbuilder.jar"/>
+      <jar href="htmllexer.jar"/>
+      <jar href="htmlparser.jar"/>
+    </resources> 
+    <application-desc main-class="org.htmlparser.parserapplications.filterbuilder.FilterBuilder"/> 
+</jnlp> 

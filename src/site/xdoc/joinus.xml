@@ -1,0 +1,38 @@
+<document>
+  <properties>
+    <author email="derrickoswald@sourceforge.net">Derrick Oswald</author>
+    <title>Join the HTML Parser Project</title>
+  </properties>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"></meta>
+    <meta name="KeyWords" content="join,htmlparser,java"/>
+    <link rel="stylesheet" type="text/css" href="javadoc/stylesheet.css" title="Style"/>
+  </head>
+  <body>
+    <section name="Join The HTML Parser Project">
+  <p>If you wish to join the htmlparser project as a developer, you have to register 
+    as a developer at <a href="http://sourceforge.net/account/register.php">SourceForge</a>.
+  </p>
+  <p>Send your sourceforge login name or id and a brief resume (a write-up about yourself) to
+    <a href="http://sourceforge.net/sendmessage.php?touser=605407">Derrick Oswald</a>
+  </p>
+  <p>You also need to sign up on the 
+    <a href="http://lists.sourceforge.net/lists/listinfo/htmlparser-developer">HTMLParser-Developer</a>
+    mailing list - this is the forum we use for collaborating on this project.
+    You may also want to sign up on the
+    <a href="http://lists.sourceforge.net/lists/listinfo/htmlparser-user">HTMLParser-User</a>
+    mailing list to monitor other user activity.
+  </p>
+  <p>What would you gain by joining us :
+    <ul>
+    <li>If you are a student, you'ld learn a lot about architecture, test-driven 
+    development and refactoring.</li>
+    <li>If you are a professional, you'd have fun interacting with other professionals 
+    and making a super-fast parser even more powerful.</li>
+    </ul>
+  </p>
+  <p>We'll be happy to have you with us!
+  </p>
+    </section>
+  </body>
+</document>

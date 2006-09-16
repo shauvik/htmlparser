@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<project name="HTML Parser">
+
+  <bannerLeft>
+
+    <src>images/htmlparserlogo.jpg</src>
+
+  </bannerLeft>
+
+  <bannerRight>
+
+    <name>SourceForge</name>
+
+    <src>http://sourceforge.net/sflogo.php?group_id&#61;24399&amp;type&#61;1</src>
+
+    <href>http://sourceforge.net/projects/htmlparser</href>
+
+  </bannerRight>
+
+  <body>
+
+    <!-- Links defined across the top right of the site -->
+
+    <links>
+
+      <item name="Project Page"  href="http://sourceforge.org/projects/htmlparser"/>
+
+    </links>
+    ${reports}
+
+    <menu name="Downloads">
+
+      <item name="Current" href="http://sourceforge.net/project/showfiles.php?group_id&#61;24399&amp;package_id&#61;47712" />
+
+      <item name="Older" href="http://sourceforge.net/project/showfiles.php?group_id&#61;24399&amp;package_id&#61;17243" />
+
+      <item name="Subversion" href="http://svn.sourceforge.net/viewcvs.cgi/htmlparser/" />
+
+      <item name="Legacy CVS" href="http://htmlparser.cvs.sourceforge.net/htmlparser/" />
+
+    </menu>
+
+    <menu name="Documentation">
+
+      <item name="Project Page" href="http://sourceforge.org/projects/htmlparser" />
+
+      <item name="FAQ" href="faq.html" />
+
+      <item name="ToDo" href="todo.html" />
+
+      <item name="JavaDocs" href="javadoc/index.html" />
+
+
+      <item name="Samples" href="samples.html" />
+
+
+    </menu>
+
+    <menu name="Support">
+
+      <item name="Mailing Lists" href="mailinglists.html" />
+
+      <item name="Report Bugs" href="bug.html" />
+
+      <item name="Request Support" href="support.html" />
+
+      <item name="Join Us" href="joinus.html" />
+
+    </menu>
+
+  </body>
+
+</project>
+
