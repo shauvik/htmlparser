@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?> 
 <!-- JNLP File for Thumbelina --> 
-<jnlp spec="1.0+" codebase="file:///C:/Data%20Files/Personal/htmlparser/target/site/samples" > 
+<jnlp spec="1.0+" codebase="http://htmlparser.sourceforge.net/samples" > 
    <information> 
       <title>Thumbelina</title> 
       <vendor>htmlparser.org</vendor> 

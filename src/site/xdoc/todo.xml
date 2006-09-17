@@ -12,7 +12,6 @@
     <section name="ToDo Before SVN Commit">
       <subsection name="Configuration Items">
         <p>scripts in bin/ require a lib directory with all the .jar files</p>
-        <p>change .jnlp files to match target location on Sourceforge</p>
       </subsection>
       <subsection name="Samples">
         <p>Adding the copy operation to set up the samples in the target site causes dependancy problems (at least in the install phase):
@@ -33,7 +32,7 @@
     <section name="Higher Priority">
       <subsection name="Version">
         <p>check if SNAPSHOT is best mechanism for initial settings</p>
-        <p>version in Parser and Lexer constants</p>
+        <p>automatic version in Parser and Lexer constants</p>
         <p>versionsource target conversion</p>
         <source>
           &lt;plugin&gt;
@@ -81,8 +80,8 @@
         CharacterTranslationTest is weird with compiler and it's own SimpleClassLoader so it fails - fix
       </subsection>
       <subsection name="Non-maven Support">
-        ant script generation
-        netbeans and eclipse project generation
+        <p>ant script generation</p>
+        <p>netbeans and eclipse project generation</p>
       </subsection>
       <subsection name="Deploy">
         <p>need .m2/settings.xml with ftp, and other distribution settings http://maven.apache.org/maven-settings/settings.html</p>

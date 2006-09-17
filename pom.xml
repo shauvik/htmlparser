@@ -50,8 +50,8 @@
     <developer>
       <id>derrickoswald</id>
       <name>Derrick Oswald</name>
-      <email>derrickoswald@sourceforge.org</email>
-      <url>http://ca.geocities.com/derrickoswald@rogers.com/index.html</url>
+      <email>http://sourceforge.net/sendmessage.php?touser=605407</email>
+      <url>http://sourceforge.net/users/derrickoswald</url>
       <organization>Autodesk</organization>
       <organizationUrl>http://www.autodesk.com</organizationUrl>
       <roles>
@@ -63,7 +63,7 @@
     <developer>
       <id>somik</id>
       <name>Somik Raha</name>
-      <email>somik@users.sourceforge.net</email>
+      <email>http://sourceforge.net/sendmessage.php?touser=187944</email>
       <url>http://sourceforge.net/users/somik/</url>
       <organization>Industrial Logic Inc.</organization>
       <organizationUrl>http://www.industriallogic.com</organizationUrl>
@@ -73,9 +73,8 @@
       <timezone>-8</timezone>
       <properties/>
     </developer>
-  </developers>
-  <contributors>
-    <contributor>
+    <developer>
+      <id>ian_macfarlane</id>
       <name>Ian Macfarlane</name>
       <email>http://sourceforge.net/sendmessage.php?touser=1367545</email>
       <url>http://www.ianmacfarlane.com/</url>
@@ -84,7 +83,20 @@
       </roles>
       <timezone>-5</timezone>
       <properties/>
-    </contributor>
+    </developer>
+    <developer>
+      <id>dwalters128</id>
+      <name>David Walters</name>
+      <email>http://sourceforge.net/sendmessage.php?touser=957342</email>
+      <url>http://sourceforge.net/users/dwalters128/</url>
+      <roles>
+        <role>Developer</role>
+      </roles>
+      <timezone>-5</timezone>
+      <properties/>
+    </developer>
+  </developers>
+  <contributors>
   </contributors>
   <licenses>
     <license>
