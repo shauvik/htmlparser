@@ -7,116 +7,146 @@
   </HEAD>
   <BODY bgcolor="white">
   <H1>How to Build the HTML Parser libraries</H1>
-  <H2>JDK</H2>
+  <H2>Java</H2>
   Set up java. I won't include instructions here, just a link to the
-  <a href="http://java.sun.com/j2se">Sun j2se site</a>. I use version 1.5, and you
+  <a href="http://java.sun.com/j2se">Sun j2se site</a>. I use version 1.5 (1.5.0_06-b05), and you
   need a JDK (java development kit), not a JRE (java runtime environment).<p>
   Test your installation by typing command:<p>
   <code>javac</code><p>
   This should display help on the java compiler options.
-  <H2>Ant</H2>
-  Set up ant, the Java-based build tool from the 
-  <a href="http://jakarta.apache.org/ant/index.html">Apache Jakarta project</a>.
-  It is kind of like Make, but without Make's wrinkles. The build.xml file the
-  HTML Parser uses relies on command tags available in
-  Ant version 1.4.1 or higher. The version currently used on the build machine
-  is 1.6.2. The current version of Ant is available 
-  <a href="http://archive.apache.org/dist/ant/ant-current-bin.zip">here</a>.<p>
-  Basically you unzip the file into a directory and add an ANT_HOME environment
-  variable that points at it. Test your installation by typing the command:<p>
-  <code>ant -help</code><p>
-  This should display help on ant options.
-  <H2>Third Party Libraries</H2>
-  Any needed third-party libraries are included in the lib directory.<p>
-  The unit test code relies on lib/junit.jar from the <a href="http://sourceforge.net/projects/junit">JUnit project</a>.
-  The version used on the build machine is 3.8.1 which you can get 
-  <a href="http://prdownloads.sourceforge.net/junit/junit3.8.1.zip?download">here</a>.
+  <H2>Maven</H2>
+  Set up maven (maven 2), the Java-based build tool from the 
+  <a href="http://maven.apache.org/">Apache Maven project</a>.
+  Test your installation by typing the command:<p>
+  <code>mvn -help</code><p>
+  This should display help on maven options.
+<!--
   <H2>Sources</H2>
   The distribution zip file contains a src.jar file. If you've unpacked the
-  distribution this file should be in the top level directory you chose.<p>
+  distribution, this file should be in the top level directory you chose.<p>
   Unjar this file with the command:<p>
   <code>jar -xf src.jar</code><p>
-  There should now be a build.xml in the top level directory.
-  <H2>Building</H2>
-  The default ant target 'htmlparser' builds everything:<p>
-  <code>ant</code><p>
-  If you just want to build some of the parts see the help list:<p>
-  <pre><code>ant -projecthelp
- Package        glom the release and source files into the distribution zip file
- Release        prepare the release files
- changelog      create the change log from CVS logs
- checkstyle     check source code adheres to coding standards
- clean          cleanup
- compile        compile all java files
- compilelexer   compile lexer java files
- compileparser  compile parser java files
- htmlparser     same as Package plus cleanup
- init           initialize version properties
- jar            create htmlparser.jar and htmllexer.jar
- jarlexer       create htmllexer.jar
- jarparser      create htmlparser.jar
- javadoc        create JavaDoc (API) documentation
- sources        create the source zip
- test           run the JUnit tests
- thumbelina     create thumbelina.jar
- versionSource  update the version in all java files
-  </code></pre><p>
-  <H2>Developing</H2>
-  For development purposes you might want to get an Integrated Development
-  Environment (IDE) such as <a href="http://www.netbeans.org/">NetBeans</a> or <a
-  href="http://eclipse.org/">Eclipse</a>.
-  Mount the org directory where the HTML Parser was installed along with the
-  <code>junit.jar</code> file from the <code>lib</code> directory, and the
-  <code>tools.jar</code> file from the java JDK lib directory
-  <code>[where java is installed]/lib/tools.jar<code>. "Build All" should work.
-  <H2>CVS</H2>
-  The most recent files are only available via CVS:
+  There should now be a pom.xml, build.xml and build.cmd in the top level directory,
+  plus several subdirectories.
+-->
+  <H2>Subversion</H2>
+  The latest sources are only available from the <A href="http://svn.sourceforge.net/viewvc/htmlparser/">Subversion
+  repository</A> on <A href="http://http://sourceforge.org">Sourceforge</A>.<p>
+  Install the <A href="http://subversion.tigris.org/">Subversion client</A>,
+  change to an appropriate subdirectory and issue the checkout command:
   <pre>
-  server: cvs.htmlparser.sourceforge.net
-  repository: /cvsroot/htmlparser
+      svn co https://svn.sourceforge.net/svnroot/htmlparser htmlparser
   </pre>
-  For read-only access use 'pserver' and anonymous access with no password.
-  For commit access you'll need to set up ssh (see 
-<a href="http://sourceforge.net/docman/display_doc.php?docid=6841&group_id=1">an
-introduction to SSH on sourceforge</a> and 
-<a href="http://sourceforge.net/docman/display_doc.php?docid=761&group_id=1">a
-guide on setting up ssh keys</a>).
-<p>Short instructions from Karle Kaila:<p>
+  If you've never done this before it will ask you to validate the sourceforge subversion server ssl certificate and
+  then proceed to fetch the head revision files (in trunk):
+  <pre>
+A    htmlparser\trunk
+A    htmlparser\trunk\lexer
+A    htmlparser\trunk\lexer\src
+A    htmlparser\trunk\lexer\src\main
+A    htmlparser\trunk\lexer\src\main\java
+A    htmlparser\trunk\lexer\src\main\java\org
+A    htmlparser\trunk\lexer\src\main\java\org\htmlparser
+A    htmlparser\trunk\lexer\src\main\java\org\htmlparser\http
+A    htmlparser\trunk\lexer\src\main\java\org\htmlparser\http\ConnectionMonitor.java
+A    htmlparser\trunk\lexer\src\main\java\org\htmlparser\http\Cookie.java
+...
+A    htmlparser\trunk\parser\pom.xml
+A    htmlparser\trunk\parser\build.xml
+A    htmlparser\trunk\build.xml
+Checked out revision 5.
+  </pre>
+  The head revision number will differ from the example above.<p>
+  The sources are laid out in the <A href="http://apollo.ucalgary.ca/tlcprojectswiki/index.php/Public/Project_Versioning_-_Best_Practices">standard structure</A>:
+  <pre>
+        <source>
+          <b>htmlparser</b>               subversion directory for htmlparser
+            <b>trunk</b>                  directory for head revision
+              pom.xml              main project maven project object model
+              build.xml            generated ant build script
+              build.cmd            helper command file for deployment
+              <b>src</b>                  main project sources
+              <b>lexer</b>                lexer component subdirectory
+              <b>parser</b>               parser component subdirectory
+              <b>filterbuilder</b>        FilterBuilder example application subdirectory
+              <b>sitecapturer</b>         SiteCapturer example application subdirectory
+              <b>thumbelina</b>           Thumbelina example application subdirectory
+            <b>branches</b>               directory for branches
+            <b>tags</b>                   directory for tags
+        </source>
+  </pre>
+  <H2>Building</H2>
+  Each project can be built separately, but to build everything change to the
+  trunk directory and issue the 'install' target:
+  <pre>
+  $ <B>cd htmlparser/trunk</B>
+  $ <B>mvn install</B>
+  </pre>
+  This generates a 'target' directory for each component/application and installs the
+  built artifacts into your local maven repository:
+  <pre>
+    windows:    C:\Documents and Settings\<i>username</i>\.m2\repository
+    linux:      $home/.m2/repository
+  </pre>
+  You may want to generate the site and documentation by adding the 'site' target:
+  <pre>
+  $ <B>mvn install site</B>
+  </pre>
+  To avoid running the unit tests add the maven.test.skip switch to the maven command line:
+  <pre>
+    mvn -Dmaven.test.skip=true ..
+  </pre>
+  To build the diretribution components use the assembly:assembly target:
+  <pre>
+  $ <B>mvn install assembly:assembly</B>
+  </pre>
+  In order to sign jar files for the Java web start components you will need to generate a self signing certificate in a keystore:
 <pre>
-I have installed SSH software from <a
-href="http://www.f-secure.com">www.f-secure.com</a>
+<b>keytool -keystore <i>your keystore location</i> -alias <i>your signing key alias</i> -genkey</b>
+Enter keystore password:  <b><i>your keystore password</i></b>
+What is your first and last name?
+  [Unknown]:  <b><i>your full name</i></b>
+What is the name of your organizational unit?
+  [Unknown]:  <b><i>your organizational unit</i></b>
+What is the name of your organization?
+  [Unknown]:  <b><i>your organization</i></b>
+What is the name of your City or Locality?
+  [Unknown]:  <b><i>your city</i></b>
+What is the name of your State or Province?
+  [Unknown]:  <b><i>your state or province</i></b>
+What is the two-letter country code for this unit?
+  [Unknown]:  <b><i>your country code</i></b>
+Is CN=<i>your full name</i>, OU=<i>your organizational unit</i>, O=<i>your organization</i>, L=<i>your city</i>, ST=<i>your state or province</i>, C=<i>your country code</i> correct?
+  [no]:  <b>y</b>
 
-I think it was something like F-Secure SSH 5.2 for Win95/98/ME/NT4.0/2000/XP Client
+Enter key password for <derrick>
+        (RETURN if same as keystore password): <b><i>your signing key password</i></b>
 
-It is a nice grapfical SSH client both for terminal use and filetransfer
-and it also contains commandline ssh2 software that CVS needs.
-
-To access CVS I first set it up with these commands
-
-set CVS_RSH=ssh2
-set CVSROOT=username@cvs.htmlparser.sourceforge.net:/cvsroot/htmlparser
-
-username = your sourceforge username
-
-In an empty directory I then can give CVS commands such as
-
-cvs chekcout htmlparser
-
-It asks for your password to sourceforge
-
-This retrieves the latest  fileversions.
-Check the CVS commands in some handbook you can find on the internet.
-The manual I found is called Version Management with CVS by Per Cederqvist et al.
-perhaps from http://www.cvshome.org
-
-Derrick says:
-I need
-CVSROOT=:ext:username@cvs.htmlparser.sourceforge.net:/cvsroot/htmlparser
-CVS_RSH=ssh
+<b>keytool -keystore <i>your keystore location</i> -alias <i>your signing key alias</i> -selfcert</b>
+Enter keystore password:  <b><i>your keystore password</i></b>
 </pre>
-  <H2>Other</H2>
-  Some of the build.xml targets (like changelog) rely on Perl to execute, and
-  need a sourceforge login via ssh (secure shell). This is unlikely to be needed
-  by the casual user.
+  and create a settings.xml file in the .m2 directory:
+  <pre>
+    windows:    C:\Documents and Settings\<i>username</i>\.m2\settings.xml
+    linux:      $home/.m2/settings.xml
+  </pre>
+  containing:
+<pre>
+&lt;settings&gt;
+  &lt;profiles&gt;
+    &lt;profile&gt;
+      &lt;activation&gt;
+        &lt;activeByDefault&gt;true&lt;/activeByDefault&gt;
+      &lt;/activation&gt;
+      &lt;properties&gt;
+        &lt;keystore.location&gt;<b><i>your keystore location</i></b>&lt;/keystore.location&gt;
+        &lt;keystore.storepass&gt;<b><i>your keystore password</i></b>&lt;/keystore.storepass&gt;
+        &lt;keystore.alias&gt;<b><i>your signing key alias</i></b>&lt;/keystore.alias&gt;
+        &lt;keystore.keypass&gt;<b><i>your signing key password</i></b>&lt;/keystore.keypass&gt;
+      &lt;/properties&gt;
+    &lt;/profile&gt;
+  &lt;/profiles&gt;
+&lt;/settings&gt;
+</pre>
   </BODY>
 </HTML>

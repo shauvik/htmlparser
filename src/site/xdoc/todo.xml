@@ -10,28 +10,6 @@
   </head>
   <body>
     <section name="ToDo Before SVN Commit">
-      <subsection name="Subversion">
-        <p>make sure subversion client changes properties of text files:
-        <source>
-          $ svn propset svn:keywords "Date Revision Author HeadURL Id" &lt;filename&gt;
-        </source>
-        </p>
-        <p>subversion structure (see http://apollo.ucalgary.ca/tlcprojectswiki/index.php/Public/Project_Versioning_-_Best_Practices):
-          <source>
-            trunk
-              pom.xml
-              src
-              lexer
-              parser
-              beanybaby
-              filterbuilder
-              sitecapturer
-              thumbelina
-            branches
-            tags
-          </source>
-        </p>
-      </subsection>
       <subsection name="Configuration Items">
         <p>scripts in bin/ require a lib directory with all the .jar files</p>
         <p>change .jnlp files to match target location on Sourceforge</p>
@@ -125,9 +103,6 @@
       </subsection>
     </section>
     <section name="Lower Priority">
-      <subsection name="Documentation">
-        overview, building (complete rewrite for maven), using
-      </subsection>
       <subsection name="Site">
        <p>For some reason the following are now illegal in the site.xml... why?
           <source>

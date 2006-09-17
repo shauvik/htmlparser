@@ -23,9 +23,8 @@
   If you are using Java 5, you may need to specify option "-source 1.3" to avoid
   some warnings.
   <h3>Step 2: Setting the CLASSPATH</h3>
-  To use the HTML Parser you will need to add the htmlparser.jar to the classpath.
-  This jar includes all the files in htmllexer.jar, which is the subset of classes
-  used by the lexer. If you are using an IDE, you need to add the htmlparser.jar
+  To use the HTML Parser you will need to add the htmlparser.jar and htmllexer.jar to the classpath.
+  If you are using an IDE, you need to add the htmlparser.jar and htmllexer.jar
   to the list of jars/libraries used by your project.
   <h4>NetBeans</h4>
   <ul>
@@ -34,8 +33,8 @@
   <li>Select the Compile tab.</li>
   <li>Click the Add Jar/Folder button.</li>
   <li>Browse to &lt;htmlp_dir&gt;/lib (where where &lt;htmlp_dir&gt; is the
-  directory where you unzipped the distribution: xxx/htmlparser1_5),
-  select the htmlparser.jar file and click on OK.</li>
+  directory where you unzipped the distribution: xxx/HTMLParserProject-2.0),
+  select the htmlparser.jar and htmllexer.jar files and click on OK.</li>
   </ul>
   <h4>Eclipse</h4>
   <ul>
@@ -44,22 +43,22 @@
   <li>Select the Libraries tab.</li>
   <li>Click the Add External Jars button.</li>
   <li>Browse to &lt;htmlp_dir&gt;/lib (where where &lt;htmlp_dir&gt; is the
-  directory where you unzipped the distribution: xxx/htmlparser1_5),
-  select the htmlparser.jar file and click on OK.</li>
+  directory where you unzipped the distribution: xxx/HTMLParserProject-2.0),
+  select the htmlparser.jar and htmllexer.jar files and click on OK.</li>
   </ul>
   <h4>Command Line</h4>
-  You can either add the jar to the CLASSPATH environment variable, or specify
+  You can either add the jars to the CLASSPATH environment variable, or specify
   it each time on the command line:
   <h5>Windows</h5>
-  <pre>set CLASSPATH=[htmlp_dir]\lib\htmlparser.jar;%CLASSPATH%</pre>
+  <pre>set CLASSPATH=[htmlp_dir]\lib\htmlparser.jar;[htmlp_dir]\lib\htmllexer.jar;%CLASSPATH%</pre>
   where [htmlp_dir] is the directory where you unzipped the distribution:
-  xxx\htmlparser1_5, or use:
-  <pre>javac -classpath=[htmlp_dir]\lib\htmlparser.jar  MyProgram.java</pre>
+  xxx\HTMLParserProject-2.0, or use:
+  <pre>javac -classpath=[htmlp_dir]\lib\htmlparser.jar;[htmlp_dir]\lib\htmllexer.jar  MyProgram.java</pre>
   <h5>Linux</h5>
-  <pre>export CLASSPATH=[htmlp_dir]/lib/htmlparser.jar:$CLASSPATH</pre>
+  <pre>export CLASSPATH=[htmlp_dir]/lib/htmlparser.jar:[htmlp_dir]/lib/htmllexer.jar:$CLASSPATH</pre>
   where [htmlp_dir] is the directory where you unzipped the distribution:
-  xxx/htmlparser1_5, or use
-  <pre>javac -classpath=[htmlp_dir]/lib/htmlparser.jar  MyProgram.java</pre>
+  xxx/HTMLParserProject-2.0, or use
+  <pre>javac -classpath=[htmlp_dir]/lib/htmlparser.jar:[htmlp_dir]/lib/htmllexer.jar  MyProgram.java</pre>
   <h3>Step 3: Import Necessary Classes</h3>
   Whatever classes you use from the HTML Parser libraries will need to be
   imported by your program. For example, the simplest usage is:
@@ -104,13 +103,13 @@
   The above program in a file called Test.java can be compiled and run with the commands:
   <h5>Windows</h5>
   <pre>
-  javac -classpath=[htmlp_dir]\lib\htmlparser.jar  Test.java
-  java -classpath=.;[htmlp_dir]\lib\htmlparser.jar  Test.java
+  javac -classpath=[htmlp_dir]\lib\htmlparser.jar;[htmlp_dir]\lib\htmllexer.jar  Test.java
+  java -classpath=.;[htmlp_dir]\lib\htmlparser.jar;[htmlp_dir]\lib\htmllexer.jar  Test.java
   </pre>
   <h5>Linux</h5>
   <pre>
-  javac -classpath=[htmlp_dir]/lib/htmlparser.jar  Test.java
-  java -classpath=.:[htmlp_dir]/lib/htmlparser.jar  Test.java
+  javac -classpath=[htmlp_dir]/lib/htmlparser.jar:[htmlp_dir]/lib/htmllexer.jar  Test.java
+  java -classpath=.:[htmlp_dir]/lib/htmlparser.jar:[htmlp_dir]/lib/htmllexer.jar  Test.java
   </pre>
   </body>
 </html>
