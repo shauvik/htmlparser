@@ -9,7 +9,7 @@
   <description>SiteCapturer is an example application for spidering and saving a website.</description>
   <url>http://htmlparser.org</url>
   <parent>
-    <artifactId>HTMLParserProject</artifactId>
+    <artifactId>HTMLParser</artifactId>
     <groupId>org.htmlparser</groupId>
     <version>2.0</version>
   </parent>

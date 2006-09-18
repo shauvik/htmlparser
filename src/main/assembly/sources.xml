@@ -10,8 +10,12 @@
       </includes>
     </fileSet>
     <fileSet>
-      <directory>src</directory>
-      <outputDirectory>src</outputDirectory>
+      <includes>
+        <include>src/**</include>
+      </includes>
+      <excludes>
+        <exclude>src/main/resources/logofiles/**</exclude>
+      </excludes>
     </fileSet>
     <fileSet>
       <directory>parser</directory>
