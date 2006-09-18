@@ -59,9 +59,9 @@ HTMLPARSER_LIB="${HTMLPARSER_HOME}/lib"
 
 # add in the parser .jar file
 if [ -z "$LOCALCLASSPATH" ] ; then
-  LOCALCLASSPATH="${HTMLPARSER_LIB}/htmlparser.jar:${HTMLPARSER_LIB}/htmllexer.jar"
+  LOCALCLASSPATH="${HTMLPARSER_LIB}/sitecapturer.jar:${HTMLPARSER_LIB}/htmlparser.jar:${HTMLPARSER_LIB}/htmllexer.jar"
 else
-  LOCALCLASSPATH="${HTMLPARSER_LIB}/htmlparser.jar:${HTMLPARSER_LIB}/htmllexer.jar":"$LOCALCLASSPATH"
+  LOCALCLASSPATH="${HTMLPARSER_LIB}/sitecapturer.jar:${HTMLPARSER_LIB}/htmlparser.jar:${HTMLPARSER_LIB}/htmllexer.jar":"$LOCALCLASSPATH"
 fi
 
 # handle 1.1x JDKs

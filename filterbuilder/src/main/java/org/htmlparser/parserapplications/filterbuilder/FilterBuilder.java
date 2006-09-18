@@ -718,7 +718,7 @@ public class FilterBuilder
      *             System.out.println (bean.getNodes ().toHtml ());
      *         }
      *         else
-     *             System.out.println ("Usage: java -classpath .:htmlparser.jar Test <url>");
+     *             System.out.println ("Usage: java -classpath .:htmlparser.jar:htmllexer.jar Test <url>");
      *     }
      * }
      * </pre>
@@ -841,7 +841,8 @@ public class FilterBuilder
         Filter.newline (out);
         context[0] = 12;
         Filter.spaces (out, context[0]);
-        out.append ("System.out.println (\"Usage: java -classpath .:htmlparser.jar ");
+        String sep = System.getProperty ("path.separator");
+        out.append ("System.out.println (\"Usage: java -classpath ." + sep + "htmlparser.jar" + sep + "htmllexer.jar ");
         out.append (name);
         out.append (" <url>\");");
         Filter.newline (out);

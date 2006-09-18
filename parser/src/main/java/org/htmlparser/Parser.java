@@ -119,7 +119,7 @@ public class Parser
      * The floating point version number ({@value}).
      */
     public static final double
-    VERSION_NUMBER = 1.6
+    VERSION_NUMBER = 2.0
     ;
 
     /**
@@ -133,7 +133,7 @@ public class Parser
      * The date of the version ({@value}).
      */
     public static final String
-    VERSION_DATE = "Jun 10, 2006"
+    VERSION_DATE = "Sep 17, 2006"
     ;
 
     // End of formatting

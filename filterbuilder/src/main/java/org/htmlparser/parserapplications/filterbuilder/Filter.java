@@ -94,6 +94,11 @@ public abstract class Filter
     protected static Hashtable mWrappers = new Hashtable ();
 
     /**
+     * Line separator string.
+     */
+    protected static String mNewLine = System.getProperty ("line.separator");
+
+    /**
      * Create a filter.
      * Set up the default display.
      * Only a border with the label of the filter name,
@@ -504,6 +509,6 @@ public abstract class Filter
      */
     public static void newline (StringBuffer out)
     {
-        out.append ('\n');
+        out.append (mNewLine);
     }
 }

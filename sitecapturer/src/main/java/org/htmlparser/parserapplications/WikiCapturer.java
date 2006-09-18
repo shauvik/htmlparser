@@ -148,7 +148,7 @@ public class WikiCapturer
                 JOptionPane.PLAIN_MESSAGE,
                 null,
                 null,
-                "http://htmlparser.sourceforge.net/wiki");
+                "http://htmlparser.sourceforge.net");
             if (null != url)
                 worker.setSource (url);
             else

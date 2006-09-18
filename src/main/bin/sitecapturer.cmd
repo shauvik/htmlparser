@@ -28,16 +28,20 @@ setlocal enableextensions
 if errorlevel 1 goto no_extensions_error
 for %%i in ("%0") do set cmd_path=%%~dpi
 for /D %%i in ("%cmd_path%..\lib\") do set lib_path=%%~dpi
+if not exist "%lib_path%sitecapturer.jar" goto no_sitecapturer_jar_error
 if not exist "%lib_path%htmllexer.jar" goto no_htmllexer_jar_error
 if not exist "%lib_path%htmlparser.jar" goto no_htmlparser_jar_error
 for %%i in (java.exe) do set java_executable=%%~$PATH:i
 if "%java_executable%"=="" goto no_java_error
 @echo on
-%java_executable% -classpath "%lib_path%htmlparser.jar;%lib_path%htmllexer.jar" org.htmlparser.parserapplications.SiteCapturer %1 %2 %3
+%java_executable% -classpath "%lib_path%sitecapturer.jar;%lib_path%htmlparser.jar;%lib_path%htmllexer.jar" org.htmlparser.parserapplications.SiteCapturer %1 %2 %3
 @echo off
 goto end
 :no_extensions_error
 echo Unable to use CMD extensions
+goto end
+:no_sitecapturer_jar_error
+echo Unable to find sitecapturer.jar
 goto end
 :no_htmllexer_jar_error
 echo Unable to find htmllexer.jar

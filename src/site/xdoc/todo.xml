@@ -10,9 +10,6 @@
   </head>
   <body>
     <section name="ToDo Before SVN Commit">
-      <subsection name="Configuration Items">
-        <p>scripts in bin/ require a lib directory with all the .jar files</p>
-      </subsection>
       <subsection name="Samples">
         <p>Adding the copy operation to set up the samples in the target site causes dependancy problems (at least in the install phase):
         <source>

@@ -67,32 +67,6 @@
   </tr>
   <tr> 
     <td valign="top">
-    <strong>Link Extractor</strong><br/>
-    </td>
-    <td>
-    <i>Extract links/mail addresses from a web page.</i><br/>
-    <a href="javadoc/org/htmlparser/parserapplications/LinkExtractor.html" target="_parent">org.htmlparser.parserapplications.LinkExtractor</a>
-    <pre>
-    <code>bin/linkextractor http://website_url [-maillinks]</code>
-    the optional -maillinks argument causes mailto: links to be printed
-    </pre>
-    </td>
-  </tr>
-  <tr> 
-    <td valign="top">
-    <strong>String Extractor</strong><br/>
-    </td>
-    <td>
-    <i>Extract text from a web page.</i><br/>
-    <a href="javadoc/org/htmlparser/parserapplications/StringExtractor.html" target="_parent">org.htmlparser.parserapplications.StringExtractor</a>
-    <pre>
-    <code>bin/stringextractor http://website_url [-links]</code>
-    the optional -links argument causes hyperlinks to be shown within the text
-    </pre>
-    </td>
-  </tr>
-  <tr> 
-    <td valign="top">
     <strong>Site Capturer</strong><br/>
     </td>
     <td>
