@@ -28,7 +28,6 @@
     </section>
     <section name="Higher Priority">
       <subsection name="Version">
-        <p>check if SNAPSHOT is best mechanism for initial settings</p>
         <p>automatic version in Parser and Lexer constants</p>
         <p>versionsource target conversion</p>
         <source>

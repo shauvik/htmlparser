@@ -5,13 +5,13 @@
   <artifactId>htmlparser</artifactId>
   <packaging>jar</packaging>
   <name>HTML Parser Jar</name>
-  <version>2.0</version>
+  <version>2.0${snapshot}</version>
   <description>HTML Parser is the high level syntactical analyzer.</description>
   <url>http://htmlparser.org</url>
   <parent>
     <artifactId>HTMLParser</artifactId>
     <groupId>org.htmlparser</groupId>
-    <version>2.0</version>
+    <version>2.0${snapshot}</version>
   </parent>
   <build>
     <finalName>${artifactId}</finalName>
@@ -117,7 +117,7 @@
     <dependency>
       <groupId>org.htmlparser</groupId>
       <artifactId>htmllexer</artifactId>
-      <version>2.0</version>
+      <version>2.0${snapshot}</version>
       <scope>compile</scope>
     </dependency>
   </dependencies>
