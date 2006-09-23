@@ -8,8 +8,8 @@
   <property name="maven.repo.local" value="${user.home}/.m2/repository"/>
   <path id="build.classpath">
     <fileset dir="${maven.repo.local}">
+      <include name="org/htmlparser/htmllexer/2.0-SNAPSHOT/htmllexer-2.0-SNAPSHOT.jar"/>
       <include name="sax/sax/2.0.1/sax-2.0.1.jar"/>
-      <include name="org/htmlparser/htmllexer/2.0/htmllexer-2.0.jar"/>
     </fileset>
   </path>
   <target name="clean" description="Clean the output directory">
@@ -78,7 +78,7 @@
   </target>
   <target name="get-deps" depends="test-offline" description="Download all dependencies" unless="maven.mode.offline">
     <mkdir dir="${maven.repo.local}"/>
+    <get src="http://repo1.maven.org/maven2/org/htmlparser/htmllexer/2.0-SNAPSHOT/htmllexer-2.0-SNAPSHOT.jar" dest="${maven.repo.local}/org/htmlparser/htmllexer/2.0-SNAPSHOT/htmllexer-2.0-SNAPSHOT.jar" usetimestamp="true" ignoreerrors="true"/>
     <get src="http://repo1.maven.org/maven2/sax/sax/2.0.1/sax-2.0.1.jar" dest="${maven.repo.local}/sax/sax/2.0.1/sax-2.0.1.jar" usetimestamp="true" ignoreerrors="true"/>
-    <get src="http://repo1.maven.org/maven2/org/htmlparser/htmllexer/2.0/htmllexer-2.0.jar" dest="${maven.repo.local}/org/htmlparser/htmllexer/2.0/htmllexer-2.0.jar" usetimestamp="true" ignoreerrors="true"/>
   </target>
 </project>

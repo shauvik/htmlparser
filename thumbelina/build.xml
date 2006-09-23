@@ -8,8 +8,8 @@
   <property name="maven.repo.local" value="${user.home}/.m2/repository"/>
   <path id="build.classpath">
     <fileset dir="${maven.repo.local}">
-      <include name="org/htmlparser/htmlparser/2.0/htmlparser-2.0.jar"/>
-      <include name="org/htmlparser/htmllexer/2.0/htmllexer-2.0.jar"/>
+      <include name="org/htmlparser/htmlparser/2.0-SNAPSHOT/htmlparser-2.0-SNAPSHOT.jar"/>
+      <include name="org/htmlparser/htmllexer/2.0-SNAPSHOT/htmllexer-2.0-SNAPSHOT.jar"/>
     </fileset>
   </path>
   <target name="clean" description="Clean the output directory">
@@ -24,7 +24,9 @@
       <classpath refid="build.classpath"/>
     </javac>
     <copy todir="${maven.build.output}">
-      <fileset dir="src/main/resources"/>
+      <fileset dir="src/main/java">
+        <include name="**/*.gif"/>
+      </fileset>
     </copy>
   </target>
   <target name="jar" depends="compile,test" description="Clean the JAR">
@@ -49,7 +51,7 @@
   </target>
   <target name="get-deps" depends="test-offline" description="Download all dependencies" unless="maven.mode.offline">
     <mkdir dir="${maven.repo.local}"/>
-    <get src="http://repo1.maven.org/maven2/org/htmlparser/htmlparser/2.0/htmlparser-2.0.jar" dest="${maven.repo.local}/org/htmlparser/htmlparser/2.0/htmlparser-2.0.jar" usetimestamp="true" ignoreerrors="true"/>
-    <get src="http://repo1.maven.org/maven2/org/htmlparser/htmllexer/2.0/htmllexer-2.0.jar" dest="${maven.repo.local}/org/htmlparser/htmllexer/2.0/htmllexer-2.0.jar" usetimestamp="true" ignoreerrors="true"/>
+    <get src="http://repo1.maven.org/maven2/org/htmlparser/htmlparser/2.0-SNAPSHOT/htmlparser-2.0-SNAPSHOT.jar" dest="${maven.repo.local}/org/htmlparser/htmlparser/2.0-SNAPSHOT/htmlparser-2.0-SNAPSHOT.jar" usetimestamp="true" ignoreerrors="true"/>
+    <get src="http://repo1.maven.org/maven2/org/htmlparser/htmllexer/2.0-SNAPSHOT/htmllexer-2.0-SNAPSHOT.jar" dest="${maven.repo.local}/org/htmlparser/htmllexer/2.0-SNAPSHOT/htmllexer-2.0-SNAPSHOT.jar" usetimestamp="true" ignoreerrors="true"/>
   </target>
 </project>
