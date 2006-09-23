@@ -390,7 +390,10 @@ public class Lexer
                     }
                 }
                 else
+                {
+                    mPage.ungetCharacter (mCursor); // see bug #1547354 <<tag> parsed as text
                     ret = parseString (start, quotesmart);
+                }
                 break;
             default:
                 mPage.ungetCharacter (mCursor); // string needs to see leading foreslash

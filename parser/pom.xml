@@ -23,6 +23,7 @@
         </includes>
       </resource>
     </resources>
+    <testSourceDirectory>src/test/java</testSourceDirectory>
     <plugins>
       <plugin>
         <artifactId>maven-jar-plugin</artifactId>
@@ -49,6 +50,15 @@
               <addClasspath>true</addClasspath>
             </manifest>
           </archive>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <configuration>
+          <includes>
+            <include>org/htmlparser/tests/AllTests.java</include>
+          </includes>
         </configuration>
       </plugin>
     </plugins>

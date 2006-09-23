@@ -168,7 +168,7 @@ public class StreamTests extends ParserTestCase
         long available2;
 
         // pick a big file
-        link = "http://htmlparser.sourceforge.net/javadoc_1_3/index-all.html";
+        link = "http://htmlparser.sourceforge.net/javadoc/index-all.html";
         try
         {
             url = new URL (link);
@@ -277,7 +277,7 @@ public class StreamTests extends ParserTestCase
         int index;
 
         // pick a small file > 2000 bytes
-        link = "http://htmlparser.sourceforge.net/javadoc_1_3/overview-summary.html";
+        link = "http://htmlparser.sourceforge.net/javadoc/overview-summary.html";
         bytes1 = new ArrayList ();
         bytes2 = new ArrayList ();
         try
@@ -352,7 +352,7 @@ public class StreamTests extends ParserTestCase
         int index;
 
         // pick a small file > 2000 bytes
-        link = "http://htmlparser.sourceforge.net/javadoc_1_3/overview-summary.html";
+        link = "http://htmlparser.sourceforge.net/javadoc/overview-summary.html";
         bytes1 = new ArrayList ();
         bytes2 = new ArrayList ();
         try

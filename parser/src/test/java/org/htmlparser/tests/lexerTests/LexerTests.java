@@ -35,6 +35,9 @@ import org.htmlparser.Remark;
 import org.htmlparser.Tag;
 import org.htmlparser.Text;
 import org.htmlparser.lexer.Lexer;
+import org.htmlparser.nodes.TextNode;
+import org.htmlparser.tags.Html;
+import org.htmlparser.tags.ImageTag;
 import org.htmlparser.tags.ScriptTag;
 import org.htmlparser.tags.StyleTag;
 import org.htmlparser.tests.ParserTestCase;
@@ -951,6 +954,39 @@ public class LexerTests extends ParserTestCase
             assertTrue (node instanceof Tag);
             assertNotNull ("null name", ((Tag)node).getTagName ());
             assertStringEquals ("bad parse", "!", ((Tag)node).getTagName ());
+        }
+    }
+    
+    
+    /**
+     * See bug #1547354 <<tag> parsed as text
+     */
+    public void testDoubleAngle () throws ParserException
+    {
+        String html;
+        NodeIterator iterator;
+        Node node;
+        Html htmltag;
+        NodeList children;
+
+        html = "<html><<img src=\"xyz\"></html>";
+        parser = new Parser ();
+        parser.setInputHTML (html);
+        iterator = parser.elements ();
+        node = iterator.nextNode ();
+        if (node == null)
+            fail ("too few nodes");
+        else
+        {
+            assertNotNull ("null node", node);
+            assertTrue (node instanceof Html);
+            htmltag = (Html)node;
+            children = htmltag.getChildren ();
+            assertNotNull ("null children", children);
+            assertTrue ("wrong node count in html", 2 == children.size ());
+            assertTrue ("no text node first", children.elementAt (0) instanceof TextNode);
+            assertStringEquals ("bad parse", "<", children.elementAt (0).toHtml ());
+            assertTrue ("no img node second", children.elementAt (1) instanceof ImageTag);
         }
     }
 }
