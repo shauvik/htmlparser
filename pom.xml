@@ -5,7 +5,7 @@
   <artifactId>HTMLParser</artifactId>
   <packaging>pom</packaging>
   <name>HTML Parser</name>
-  <version>2.0${snapshot}</version>
+  <version>2.0-SNAPSHOT</version>
   <description>HTML Parser is a Java library used to parse HTML in either a linear or nested fashion. Primarily used for transformation or extraction, it features filters, visitors, custom tags and easy to use JavaBeans. It is a fast, robust and well tested package.</description>
   <url>http://htmlparser.org</url>
   <issueManagement>
@@ -145,6 +145,13 @@ Dependencies is severely broken:
     </plugins>
   </reporting>
   <build>
+    <extensions>
+      <extension>
+        <groupId>org.apache.maven.wagon</groupId>
+         <artifactId>wagon-ssh-external</artifactId>
+         <version>1.0-beta-1</version>
+      </extension>
+    </extensions>
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -283,17 +290,17 @@ overview is broken...
   </build>
   <distributionManagement>
     <!-- use the following if you're not using a snapshot version. -->
-    <repository>
-      <id>repo</id>
-      <name>Local</name>
-      <url>file:///C:/Documents&#x0020;and&#x0020;Settings/Derrick/.m2/repository</url>
-    </repository>
+    <!-- repository>
+      <id>sourceforge-repository</id>
+      <name>Sourceforge</name>
+      <url>scpexe://shell.sourceforge.net/home/groups/h/ht/htmlparser/htdocs/m2-repo</url>
+    </repository -->
     <!-- use the following if you ARE using a snapshot version. -->
-    <!-- snapshotRepository>
-      <id>repo</id>
-      <name>Local</name>
-      <url>file:///C:/maventest</url>
-    </snapshotRepository -->
+    <snapshotRepository>
+      <id>sourceforge-snapshot-repository</id>
+      <name>Sourceforge SNAPSHOT</name>
+      <url>scpexe://shell.sourceforge.net/home/groups/h/ht/htmlparser/htdocs/m2-snapshot-repo</url>
+    </snapshotRepository>
   </distributionManagement>
   <profiles>
     <profile>

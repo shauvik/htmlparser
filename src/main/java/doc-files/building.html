@@ -31,7 +31,7 @@
 -->
   <H2>Subversion</H2>
   The latest sources are only available from the <A href="http://svn.sourceforge.net/viewvc/htmlparser/">Subversion
-  repository</A> on <A href="http://http://sourceforge.org">Sourceforge</A>.<p>
+  repository</A> on <A href="http://sourceforge.org">Sourceforge</A>.<p>
   Install the <A href="http://subversion.tigris.org/">Subversion client</A>,
   change to an appropriate subdirectory and issue the checkout command:
   <pre>
@@ -54,7 +54,7 @@ A    htmlparser\trunk\lexer\src\main\java\org\htmlparser\http\Cookie.java
 A    htmlparser\trunk\parser\pom.xml
 A    htmlparser\trunk\parser\build.xml
 A    htmlparser\trunk\build.xml
-Checked out revision 5.
+Checked out revision 13.
   </pre>
   The head revision number will differ from the example above.<p>
   The sources are laid out in the <A href="http://apollo.ucalgary.ca/tlcprojectswiki/index.php/Public/Project_Versioning_-_Best_Practices">standard structure</A>:
@@ -76,7 +76,7 @@ Checked out revision 5.
         </source>
   </pre>
   <H2>Building</H2>
-  Each project can be built separately, but to build everything change to the
+  Each project can be built separately, but to build everything, change to the
   trunk directory and issue the 'install' target:
   <pre>
   $ <B>cd htmlparser/trunk</B>
@@ -88,17 +88,21 @@ Checked out revision 5.
     windows:    C:\Documents and Settings\<i>username</i>\.m2\repository
     linux:      $home/.m2/repository
   </pre>
-  You may want to generate the site and documentation by adding the 'site' target:
-  <pre>
-  $ <B>mvn install site</B>
-  </pre>
   To avoid running the unit tests add the maven.test.skip switch to the maven command line:
   <pre>
     mvn -Dmaven.test.skip=true ..
   </pre>
-  To build the diretribution components use the assembly:assembly target:
+  To build the distribution components use the site, deploy and assembly:assembly target:
   <pre>
-  $ <B>mvn install assembly:assembly</B>
+  $ <B>mvn -Dmaven.test.skip=true site deploy assembly:assembly</B>
+  </pre>
+  Note that, in this case, the unit tests must be avoided because the stupid surefire plugin with
+  its separate class loader uses the signed jar file for the htmllexer, but not for the htmlparser,
+  leading to an exception like:
+  <pre>
+org.apache.maven.surefire.testset.TestSetFailedException: org.htmlparser.tests.AllTests; nested exception is java.lang.SecurityExcep
+tion: class "org.htmlparser.util.ParserException"'s signer information does not match signer information of other classes in the sam
+e package
   </pre>
   In order to sign jar files for the Java web start components you will need to generate a self signing certificate in a keystore:
 <pre>
@@ -119,13 +123,13 @@ What is the two-letter country code for this unit?
 Is CN=<i>your full name</i>, OU=<i>your organizational unit</i>, O=<i>your organization</i>, L=<i>your city</i>, ST=<i>your state or province</i>, C=<i>your country code</i> correct?
   [no]:  <b>y</b>
 
-Enter key password for <derrick>
+Enter key password for &lt;<i>your signing key alias</i>&gt;
         (RETURN if same as keystore password): <b><i>your signing key password</i></b>
 
 <b>keytool -keystore <i>your keystore location</i> -alias <i>your signing key alias</i> -selfcert</b>
 Enter keystore password:  <b><i>your keystore password</i></b>
 </pre>
-  and create a settings.xml file in the .m2 directory:
+  You will need to create a settings.xml file in the .m2 directory:
   <pre>
     windows:    C:\Documents and Settings\<i>username</i>\.m2\settings.xml
     linux:      $home/.m2/settings.xml
@@ -133,8 +137,12 @@ Enter keystore password:  <b><i>your keystore password</i></b>
   containing:
 <pre>
 &lt;settings&gt;
+  &lt;activeProfiles&gt;
+    &lt;activeProfile&gt;default&lt;/activeProfile&gt;
+  &lt;/activeProfiles&gt;
   &lt;profiles&gt;
     &lt;profile&gt;
+      &lt;id&gt;default&lt;/id&gt;
       &lt;activation&gt;
         &lt;activeByDefault&gt;true&lt;/activeByDefault&gt;
       &lt;/activation&gt;
@@ -143,11 +151,21 @@ Enter keystore password:  <b><i>your keystore password</i></b>
         &lt;keystore.storepass&gt;<b><i>your keystore password</i></b>&lt;/keystore.storepass&gt;
         &lt;keystore.alias&gt;<b><i>your signing key alias</i></b>&lt;/keystore.alias&gt;
         &lt;keystore.keypass&gt;<b><i>your signing key password</i></b>&lt;/keystore.keypass&gt;
-        &lt;snapshot&gt;&lt;/snapshot&gt;&nbsp;&lt!-- set to -SNAPSHOT for snapshot releases --&gt;
       &lt;/properties&gt;
     &lt;/profile&gt;
   &lt;/profiles&gt;
-&lt;/settings&gt;
+  &lt;servers&gt;
+    &lt;server&gt;
+      &lt;id&gt;sourceforge-snapshot-repository&lt;/id&gt;
+      &lt;username&gt;<b><i>your sourceforge login name</i></b>&lt;/username&gt;
+      &lt;configuration&gt;
+        &lt;sshExecutable&gt;plink&lt;/sshExecutable&gt;
+        &lt;scpExecutable&gt;pscp&lt;/scpExecutable&gt;
+      &lt;/configuration&gt;
+    &lt;/server&gt;
+  &lt;/servers&gt;&lt;/settings&gt;
 </pre>
+  The servers section is only required for the deploy lifecycle, in order to upload to the temporary maven repository using PuTTY tools.
+  The necessary private key is assumed to be loaded into Pagent.
   </BODY>
 </HTML>
