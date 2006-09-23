@@ -562,6 +562,18 @@ public class TagNode
      */
     public String toHtml (boolean verbatim)
     {
+        return (toTagHtml ());
+    }
+
+    /**
+     * Return the tag HTML.
+     * Like <code>toHtml()</code> but since this is not implemented
+     * by {@link org.htmlparser.tags.CompositeTag}, only renders the start tag.
+     * @return The sequence of characters for the start tag only.
+     * @see #toHtml()
+     */
+    public String toTagHtml ()
+    {
         int length;
         int size;
         Vector attributes;

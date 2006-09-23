@@ -225,9 +225,18 @@ public interface Tag extends Node
      * @return The (zero based) line number in the page where this tag starts.
      */
     int getStartingLineNumber ();
+
     /**
      * Get the line number where this tag ends.
      * @return The (zero based) line number in the page where this tag ends.
      */
     int getEndingLineNumber ();
+
+    /**
+     * Return the tag HTML.
+     * Like <code>toHtml()</code> but since this is not implemented
+     * by {@link org.htmlparser.tags.CompositeTag}, only renders the start tag.
+     * @return The sequence of characters for the start tag only.
+     */
+    String toTagHtml ();
 }
