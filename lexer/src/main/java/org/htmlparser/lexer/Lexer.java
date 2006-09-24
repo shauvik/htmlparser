@@ -669,6 +669,35 @@ public class Lexer
 
     /**
      * Advance the cursor through a JIS escape sequence.
+     *
+     * NOTE:<br>
+     * A list of ISO-2022 escape sequences for charset switching.<br>
+     * For more detail, see ISO-2022, RFC1468 or RFC1554.<p>
+     *
+     * [ double byte characters ]
+     * <ul>
+     * <li>(*) JIS X 0208-1978(old JIS): [ESC] $ @
+     * <li>(*) JIS X 0208-1983(new JIS): [ESC] $ B
+     * <li>JIS X 0208-1990: [ESC] & @ [ESC] $ B
+     * <li>JIS X 0212-1990: [ESC] $ ( D
+     * <li>1st plane of JIS X 0213:2000: [ESC] $ ( O
+     * <li>1st plane of JIS X 0213:2004: [ESC] $ ( Q
+     * <li>2nd plane of JIS X 0213:2000: [ESC] $ ( P
+     * </ul>
+     *
+     * <p>[ single byte characters ]
+     * <ul>
+     * <li>(*) ISO/IEC 646 IRV(US-ASCII): [ESC] ( B
+     * <li>(*) JIS X 0201-1976 ("Roman" set)
+     * <ul>
+     * <li>[ESC] ( J
+     * <li>[ESC] ( H (NOT RECOMMENDED but rarely used)
+     * </ul>
+     * <li>JIS X 0201-1976 ("Kana" set): [ESC] ( I (NOT RECOMMENDED but rarely used)
+     * </ul>
+     *
+     * <p>(*): commonly used
+     *
      * @param cursor A cursor positioned within the escape sequence.
      * @exception ParserException If a problem occurs reading from the source.
      */
@@ -701,7 +730,7 @@ public class Lexer
                             state = 0;
                         break;
                     case 2:
-                        if ('J' == ch)
+                        if ('B' == ch || 'J' == ch || 'H' == ch || 'I' == ch)
                             done = true;
                         else
                             state = 0;
@@ -747,8 +776,26 @@ public class Lexer
                     ch = mPage.getCharacter (mCursor);
                     if (Page.EOF == ch)
                         done = true;
-                    else if ('B' == ch)
+                    // JIS X 0208-1978 and JIS X 0208-1983
+                    else if ('@' == ch || 'B' == ch)
                         scanJIS (mCursor);
+                    /*
+                    // JIS X 0212-1990
+                    else if ('(' == ch)
+                    {
+                        ch = mPage.getCharacter (mCursor);
+                        if (Page.EOF == ch)
+                            done = true;
+                        else if ('D' == ch)
+                            scanJIS (mCursor);
+                        else
+                        {
+                            mPage.ungetCharacter (mCursor);
+                            mPage.ungetCharacter (mCursor);
+                            mPage.ungetCharacter (mCursor);
+                        }
+                    }
+                    */
                     else
                     {
                         mPage.ungetCharacter (mCursor);
