@@ -91,9 +91,14 @@ public class BaseHrefTag
     public void doSemanticAction () throws ParserException
     {
         Page page;
+        String base;
         
         page = getPage ();
         if (null != page)
-            page.setBaseUrl (getBaseUrl ());
+        {
+            base = getBaseUrl ();
+            if ((null != base) && !base.equals (""))
+                page.setBaseUrl (base);
+        }
     }
 }

@@ -25,6 +25,9 @@
 
 package org.htmlparser.tests.tagTests;
 
+import java.util.Properties;
+
+import org.htmlparser.Parser;
 import org.htmlparser.PrototypicalNodeFactory;
 import org.htmlparser.Tag;
 import org.htmlparser.tags.BaseHrefTag;
@@ -76,4 +79,24 @@ public class BaseHrefTagTest extends ParserTestCase {
         assertStringEquals("Base Tag HTML", html, baseTag.toHtml());
     }
 
+    public void testAbsoluteLink () throws ParserException
+    {
+        Parser parser;
+        String url;
+        String relative_url;
+        String absolute_url;
+
+        parser = new Parser ();
+        url = "http://codeproject.com";
+        relative_url = "/favicon.ico";
+        
+        Properties props = new Properties ();
+        props.put ("User-Agent", "Mozilla/4.0 (compatible; MSIE 5.00; Windows 98)");
+        Parser.getConnectionManager ().setRequestProperties (props);
+        
+        parser.setURL (url);
+        parser.parse (null);
+        absolute_url = parser.getLexer ().getPage ().getAbsoluteURL (relative_url);
+        assertStringEquals ("wrong absolute URL", url + relative_url, absolute_url);
+    }
 }
