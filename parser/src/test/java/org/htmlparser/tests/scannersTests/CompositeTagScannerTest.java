@@ -25,6 +25,15 @@
 
 package org.htmlparser.tests.scannersTests;
 
+import java.io.ByteArrayInputStream;
+
+import org.xml.sax.Attributes;
+import org.xml.sax.InputSource;
+import org.xml.sax.SAXException;
+import org.xml.sax.XMLReader;
+import org.xml.sax.helpers.DefaultHandler;
+import org.xml.sax.helpers.XMLReaderFactory;
+
 import org.htmlparser.Node;
 import org.htmlparser.PrototypicalNodeFactory;
 import org.htmlparser.Tag;
@@ -761,5 +770,54 @@ public class CompositeTagScannerTest extends ParserTestCase {
         assertTrue ("link contents", link.getLink ().equals ("http://www.nba.com/heat/"));
         assertType ("bogus div", Div.class, div.childAt (2));
         assertTrue ("bogus div should have no children", 0 == ((Div)div.childAt (2)).getChildCount ());
+    }
+
+    /**
+     * See bug #1547582 Closing DL tag appears out of order.
+     */
+    public void testParse () throws Exception
+    {
+        String html;
+        XMLReader reader;
+        MyHandler handler;
+        InputSource source;
+        String parsed;
+        
+        html =
+            "<DL>" +
+            "    <DT>Level 1" +
+            "    <DT>Level 1" +
+            "    <DL>" +
+            "        <DT>Level 2" +
+            "        <DT>Level 2" +
+            "    </DL><p>" +
+            "</DL><p>";
+        reader = XMLReaderFactory
+            .createXMLReader ("org.htmlparser.sax.XMLReader");
+        handler = new MyHandler ();
+        reader.setContentHandler (handler);
+        source = new InputSource (new ByteArrayInputStream (html.getBytes ()));
+        reader.parse (source);
+        parsed = handler.parsedTags;
+        assertEquals (
+            "<DL><DT></DT><DT></DT><DL><DT></DT><DT></DT></DL><P></P></DL><P></P>",
+            parsed);
+    }
+
+    class MyHandler extends DefaultHandler
+    {
+        String parsedTags = "";
+        
+        public void startElement (String uri, String localName, String qName, Attributes attributes)
+            throws SAXException
+        {
+            parsedTags += "<" + localName + ">";
+        }
+        
+        public void endElement (String uri, String localName, String qName)
+            throws SAXException
+        {
+            parsedTags += "</" + localName + ">";
+        }
     }
 }

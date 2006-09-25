@@ -36,6 +36,11 @@ public class DefinitionListBullet extends CompositeTag
     private static final String[] mIds = new String[] {"DD", "DT"};
 
     /**
+     * The set of tag names that indicate the end of this tag.
+     */
+    private static final String[] mTagEnders = new String[] {"DD", "DT", "DL"};
+
+    /**
      * The set of end tag names that indicate the end of this tag.
      */
     private static final String[] mEndTagEnders = new String[] {"DL", "BODY", "HTML"};
@@ -62,7 +67,7 @@ public class DefinitionListBullet extends CompositeTag
      */
     public String[] getEnders ()
     {
-        return (mIds);
+        return (mTagEnders);
     }
 
     /**

@@ -79,18 +79,22 @@ public class BaseHrefTagTest extends ParserTestCase {
         assertStringEquals("Base Tag HTML", html, baseTag.toHtml());
     }
 
+    /**
+     * See bug #1552504 Base tag without href causes invalid absoloute links
+     */
     public void testAbsoluteLink () throws ParserException
     {
         Parser parser;
         String url;
         String relative_url;
+        Properties props;
         String absolute_url;
 
         parser = new Parser ();
         url = "http://codeproject.com";
         relative_url = "/favicon.ico";
         
-        Properties props = new Properties ();
+        props = new Properties ();
         props.put ("User-Agent", "Mozilla/4.0 (compatible; MSIE 5.00; Windows 98)");
         Parser.getConnectionManager ().setRequestProperties (props);
         
