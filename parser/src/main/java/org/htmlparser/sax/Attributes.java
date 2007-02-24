@@ -236,7 +236,7 @@ public class Attributes
                 {
                     mSupport.processName (string, mParts, true);
                     if (  uri.equals (mParts[0])
-                        & localName.equalsIgnoreCase (mParts[1]))
+                        && localName.equalsIgnoreCase (mParts[1]))
                     {
                         ret = i;
                         i = size; // exit fast
