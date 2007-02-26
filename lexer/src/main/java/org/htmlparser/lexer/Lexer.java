@@ -610,7 +610,7 @@ public class Lexer
                     }
                     break;
                 default:
-                    throw new IllegalStateException ("how the fuck did we get in state " + state);
+                    throw new IllegalStateException ("Somehow managed to get into invalid state  " + state);
             }
         }
         end = mCursor.getPosition ();
@@ -1197,7 +1197,7 @@ public class Lexer
                    	}
                     break;
                 default:
-                    throw new IllegalStateException ("how the fuck did we get in state " + state);
+                    throw new IllegalStateException ("Somehow managed to get into invalid state  " + state);
             }
         }
 
@@ -1349,7 +1349,7 @@ public class Lexer
                                 state = 2;
                         break;
                     default:
-                        throw new IllegalStateException ("how the fuck did we get in state " + state);
+                        throw new IllegalStateException ("Somehow managed to get into invalid state  " + state);
                 }
         }
 
@@ -1544,7 +1544,7 @@ public class Lexer
                     }
                     break;
                 default:
-                    throw new IllegalStateException ("how the fuck did we get in state " + state);
+                    throw new IllegalStateException ("Somehow managed to get into invalid state  " + state);
             }
         }
 
@@ -1669,7 +1669,7 @@ public class Lexer
                     }
                     break;
                 default:
-                    throw new IllegalStateException ("how the fuck did we get in state " + state);
+                    throw new IllegalStateException ("Somehow managed to get into invalid state  " + state);
             }
         }
 
