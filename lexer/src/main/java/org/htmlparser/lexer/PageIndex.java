@@ -73,10 +73,11 @@ public class PageIndex
      */
     public PageIndex (Page page)
     {
+        mIncrement = mStartIncrement;
         mPage = page;
         mIndices = new int[mIncrement];
         mCount = 0;
-        mIncrement = mStartIncrement * 2;
+        mIncrement *= 2;
     }
 
     /**
