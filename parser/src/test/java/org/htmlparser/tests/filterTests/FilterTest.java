@@ -31,6 +31,8 @@ import org.htmlparser.filters.AndFilter;
 import org.htmlparser.filters.CssSelectorNodeFilter;
 import org.htmlparser.filters.HasAttributeFilter;
 import org.htmlparser.filters.HasChildFilter;
+import org.htmlparser.filters.HasSiblingFilter;
+import org.htmlparser.filters.LinkStringFilter;
 import org.htmlparser.filters.NodeClassFilter;
 import org.htmlparser.filters.NotFilter;
 import org.htmlparser.filters.OrFilter;
@@ -327,6 +329,26 @@ public class FilterTest extends ParserTestCase
             count++;
         }
         assertEquals ("wrong count", 1, count);
+    }
+
+    /*
+     * Bug #1630072 Wrong semantics of SiblingFilter
+     */
+    public void testSibling () throws Exception
+    {
+        String guts;
+        String html;
+        NodeList list;
+
+        guts = "<a href='http://whatever'>whatever</a><a href='http://whoever'>whoever</a>";
+        html = "<html><body>" + guts + "</body></html>";
+        createParser (html);
+        list = parser.extractAllNodesThatMatch (
+            new HasSiblingFilter (
+                new AndFilter (
+                    new TagNameFilter ("A"),
+                    new LinkStringFilter ("whatever"))));
+        assertEquals ("wrong count", 1, list.size ());
     }
 }
 

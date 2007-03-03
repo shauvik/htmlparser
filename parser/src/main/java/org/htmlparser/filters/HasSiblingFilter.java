@@ -105,8 +105,9 @@ public class HasSiblingFilter
                 {
                     count = siblings.size ();
                     for (int i = 0; !ret && (i < count); i++)
-                        if (getSiblingFilter ().accept (siblings.elementAt (i)))
-                            ret = true;
+                        if (siblings.elementAt (i) != node) // bug #1630072 Wrong semantics of SiblingFilter
+                            if (getSiblingFilter ().accept (siblings.elementAt (i)))
+                                ret = true;
                 }
             }
         }
