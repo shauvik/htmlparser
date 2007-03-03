@@ -77,7 +77,7 @@ public class TagNode
     /**
      * Set of tags that breaks the flow.
      */
-    protected static Hashtable breakTags;
+    protected static final Hashtable breakTags;
     static
     {
         breakTags = new Hashtable (30);

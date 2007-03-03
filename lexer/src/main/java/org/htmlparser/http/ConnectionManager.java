@@ -148,7 +148,7 @@ public class ConnectionManager
     /**
      * Cookie expiry date format for parsing.
      */
-    static protected SimpleDateFormat mFormat =
+    protected static final SimpleDateFormat mFormat =
         new SimpleDateFormat ("EEE, dd-MMM-yy kk:mm:ss z");
 
     /**
