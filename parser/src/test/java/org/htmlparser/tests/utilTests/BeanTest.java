@@ -530,5 +530,35 @@ public class BeanTest extends ParserTestCase
 
         check (sb, html, pre + mid + post);
     }
+
+    /*
+     * Bug #1574684 text extracted merges words in some cases
+     * Check that a newline is added after a heading end tag.
+     */
+    public void testHeadingBreak () throws Exception
+    {
+        String html = "<HTML><HEAD><TITLE>Hebrews Chapter 1 - American Standard Version</TITLE><link rel=stylesheet href=style1.css type=text/css><META NAME='keywords' CONTENT='American Standard Version, Hebrews 1'><META NAME='description' CONTENT='Hebrews Chapter 1.'><LINK REL='SHORTCUT ICON' href='cross.ico'><META HTTP-EQUIV=\"Content-Type\" content=\"text/html; charset=ISO-8859-1\"></HEAD><BODY BACKGROUND='Image1.jpg'><FORM name=MyForm><H3 ALIGN=CENTER>American Standard Version</H3><A HREF=B57C001.htm>Philemon 1</A><H2 ALIGN=CENTER>The Epistle to the Hebrews</H2><P><A HREF='index.htm'>Return to Index</A></P><CENTER><TABLE BORDER=0 CELLPADDING=5 WIDTH=90%><TR><TD></TD><TD><CENTER><H1>Chapter 1</H1></CENTER></TD></TR><TR><TD VALIGN=TOP><A NAME='V1'><H4>1</H4></TD><TD><P>God, having of old time spoken unto the fathers in the prophets by divers portions and in divers manners,<P></TD></TR><TR><TD VALIGN=TOP><A NAME='V2'><H4>2</H4></TD><TD><P>hath at the end of these days spoken unto us in [his] Son, whom he appointed heir of all things, through whom also he made the worlds;<P></TD></TR><TR><TD VALIGN=TOP><A NAME='V3'><H4>3</H4></TD><TD><P>who being the effulgence of his glory, and the very image of his substance, and upholding all things by the word of his power, when he had made purification of sins, sat down on the right hand of the Majesty on high;<P></TD></TR><TR><TD VALIGN=TOP><A NAME='V4'><H4>4</H4></TD><TD><P>having become by so much better than the angels, as he hath inherited a more excellent name than they.<P></TD></TR><TR><TD VALIGN=TOP><A NAME='V5'><H4>5</H4></TD><TD><P>For unto which of the angels said he at any time, Thou art my Son, This day have I begotten thee?     and again, I will be to him a Father, And he shall be to me a Son?<P></TD></TR><TR><TD VALIGN=TOP><A NAME='V6'><H4>6</H4></TD><TD><P>And when he again bringeth in the firstborn into the world he saith, And let all the angels of God worship him.<P></TD></TR><TR><TD VALIGN=TOP><A NAME='V7'><H4>7</H4></TD><TD><P>And of the angels he saith, Who maketh his angels winds, And his ministers a flame a fire:<P></TD></TR><TR><TD VALIGN=TOP><A NAME='V8'><H4>8</H4></TD><TD><P>but of the Son [he saith,] Thy throne, O God, is for ever and ever; And the sceptre of uprightness is the sceptre of thy kingdom.<P></TD></TR><TR><TD VALIGN=TOP><A NAME='V9'><H4>9</H4></TD><TD><P>Thou hast loved righteousness, and hated iniquity; Therefore God, thy God, hath anointed thee With the oil of gladness above thy fellows.<P></TD></TR><TR><TD VALIGN=TOP><A NAME='V10'><H4>10</H4></TD><TD><P>And, Thou, Lord, in the beginning didst lay the foundation of the       earth, And the heavens are the works of thy hands:<P></TD></TR><TR><TD VALIGN=TOP><A NAME='V11'><H4>11</H4></TD><TD><P>They shall perish; but thou continuest: And they all shall wax old as doth a garment;<P></TD></TR><TR><TD VALIGN=TOP><A NAME='V12'><H4>12</H4></TD><TD><P>And as a mantle shalt thou roll them up, As a garment, and they shall be changed: But thou art the same, And thy years shall not fail.<P></TD></TR><TR><TD VALIGN=TOP><A NAME='V13'><H4>13</H4></TD><TD><P>But of which of the angels hath he said at any time, Sit thou on my right hand, Till I make thine enemies the footstool of thy feet?<P></TD></TR><TR><TD VALIGN=TOP><A NAME='V14'><H4>14</H4></TD><TD><P>Are they not all ministering spirits, sent forth to do service for the sake of them that shall inherit salvation?<P></TD></TR></TABLE><!--Created by John M. Hurt, PO Box 31, Elmwood, TN USA jhurt@johnhurt.com--><P></P><A HREF=B58C002.htm>Hebrews 2</A><P><P ALIGN='CENTER'><IMG SRC='line6.gif' WIDTH=300 HEIGHT=12></P><P>&nbsp;<P>&nbsp;<P>&nbsp;<P><A HREF='about.htm'><FONT FACE=ARIAL size=2>Public Domain</A> Software <A HREF='http://www.htmlbible.com'><FONT FACE=ARIAL size=2>by</A> <A HREF='http://www.johnhurt.com'><FONT FACE=ARIAL size=2>johnhurt.com</A></FONT></CENTER></BODY></HTML>";
+        Parser parser;
+        StringBean sb;
+        String s;
+        int index;
+        String separator;
+        String newline;
+        
+        parser = new Parser (html);
+        sb = new StringBean ();
+        parser.visitAllNodesWith (sb);
+        s = sb.getStrings ();
+        index = s.indexOf ("Philemon 1");
+        assertTrue (
+            "text not right",
+            -1 != index);
+        separator = System.getProperty ("line.separator");
+        newline = s.substring (index - separator.length (), index);
+        assertTrue (
+            "no newline after heading",
+            newline.equals (separator));
+
+    }
 }
 

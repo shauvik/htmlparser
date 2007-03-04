@@ -691,6 +691,9 @@ public class StringBean extends NodeVisitor implements Serializable
             mIsScript = false;
         else if (name.equalsIgnoreCase ("STYLE"))
             mIsStyle = false;
+        // Bug # 1574684 text extracted merges words in some cases
+        if ((name.charAt (0) == 'H') && (2 == name.length ()) && Character.isDigit (name.charAt (1)))
+            carriageReturn ();
     }
 
     /**
