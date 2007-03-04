@@ -46,12 +46,45 @@ public class EncodingChangeException
         ParserException
 {
     /**
+     * The old encoding.
+     */
+    private String mOldEncoding;
+
+    /**
+     * The new encoding.
+     */
+    private String mNewEncoding;
+
+    /**
      * Create an exception idicative of a problematic encoding change.
      * @param message The message describing the error condifion.
+     * @param oldEncoding The encoding prior to the exception.
+     * @param newEncoding The encoding that was attempted.
      */
-    public EncodingChangeException (String message)
+    public EncodingChangeException (String message, String oldEncoding,
+                                    String newEncoding)
     {
         super(message);
+        mOldEncoding = oldEncoding;
+        mNewEncoding = newEncoding;
+    }
+
+    /**
+     * Gets the old encoding.
+     * @return the old encoding.
+     */
+    public String getOldEncoding ()
+    {
+        return (mOldEncoding);
+    }
+
+    /**
+     * Gets the new encoding.
+     * @return the new encoding.
+     */
+    public String getNewEncoding ()
+    {
+        return (mNewEncoding);
     }
 }
 
