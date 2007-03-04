@@ -732,6 +732,21 @@ public class Translate
      */
     public static String decode (String string)
     {
+        return decode(string, null);
+    }
+
+    /**
+     * Decode a string containing references.
+     * Change all numeric character reference and character entity references
+     * to unicode characters.
+     * @param string The string to translate.
+     * @param list If non-null on input, this list is populated with the offsets
+     * of translated entities - hence this will always contain an even number
+     * of Integer elements, the start and end index of the original character
+     * reference.
+     */
+    public static String decode (String string, java.util.List list)
+    {
         CharacterReferenceEx key;
         int amp;
         int index;
@@ -835,6 +850,11 @@ public class Translate
                         if (0 != number)
                         {
                             buffer.append ((char)number);
+                            if (null != list)
+                            {
+                                list.add (new Integer (amp));
+                                list.add (new Integer (i));
+                            }
                             index = i;
                             amp = index;
                         }
@@ -876,6 +896,11 @@ public class Translate
                             index += item.getKernel ().length ();
                             if ((index < length) && (';' == string.charAt (index)))
                                 index++;
+                            if (null != list)
+                            {
+                                list.add (new Integer (amp));
+                                list.add (new Integer (index));
+                            }
                             amp = index;
                         }
                     }
