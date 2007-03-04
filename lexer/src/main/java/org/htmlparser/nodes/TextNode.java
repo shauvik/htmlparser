@@ -211,12 +211,18 @@ public class TextNode
     }
 
     /**
-     * Returns if the node consists of only white space.
+     * Returns true if the node consists of only white space.
      * White space can be spaces, new lines, etc.
      */
     public boolean isWhiteSpace()
     {
-        if (mText == null || mText.trim().equals(""))
+        String text;
+        
+        text = mText;
+        if (null == text)
+            text = mPage.getText (getStartPosition (),  getEndPosition ());
+
+        if (text == null || text.trim().equals(""))
             return true;
         return false;
     }
