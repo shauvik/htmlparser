@@ -615,7 +615,7 @@ public class ConnectionManager
                         {
                             auth = getProxyUser () + ":" + getProxyPassword ();
                             encoded = encode (auth.getBytes("ISO-8859-1"));
-                            ret.setRequestProperty ("Proxy-Authorization", encoded);
+                            ret.setRequestProperty ("Proxy-Authorization", "Basic " + encoded);
                         }
 
                         // set the URL name and password
