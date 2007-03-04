@@ -145,8 +145,11 @@ public class MetaTag
         httpEquiv = getHttpEquiv ();
         if ("Content-Type".equalsIgnoreCase (httpEquiv))
         {
-            charset = getPage ().getCharset (getAttribute ("CONTENT"));
-            getPage ().setEncoding (charset);
+            if (Page.DEFAULT_CHARSET == getPage ().getEncoding ())
+            {
+                charset = getPage ().getCharset (getAttribute ("CONTENT"));
+                getPage ().setEncoding (charset);
+            }
         }
     }
 }
