@@ -50,6 +50,7 @@ import org.htmlparser.util.NodeIterator;
 import org.htmlparser.util.NodeList;
 import org.htmlparser.util.ParserException;
 import org.htmlparser.util.ParserFeedback;
+import org.htmlparser.util.Translate;
 
 /**
  * SAX parser.
@@ -638,6 +639,8 @@ public class XMLReader
         else if (node instanceof Text)
         {
             String text = mParser.getLexer ().getPage ().getText (node.getStartPosition (), node.getEndPosition ());
+            // bug #1678596 XMLReader doesn't unescape entities
+            text = Translate.decode (text);
             mContentHandler.characters (text.toCharArray (), 0, text.length ());
         }
         else if (node instanceof Tag)
