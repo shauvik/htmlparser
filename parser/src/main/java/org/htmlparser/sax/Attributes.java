@@ -55,6 +55,11 @@ public class Attributes
     protected String[] mParts;
 
     /**
+     * The non-whitespace attributes.
+     */
+    protected Vector mAttributes;
+
+    /**
      * Create an attibute access object.
      * @param tag The tag to expose.
      * @param support The namespace converter.
@@ -65,8 +70,35 @@ public class Attributes
         mTag = tag;
         mSupport = support;
         mParts = parts;
+        mAttributes = null;
     }
-    
+
+    protected Vector getAttributes ()
+    {
+        Vector attributes;
+        int size;
+        Attribute attribute;
+        String string;
+
+        if (null == mAttributes)
+        {
+            mAttributes = new Vector ();
+            attributes = mTag.getAttributesEx ();
+            if (null != attributes)
+            {
+                size = attributes.size ();
+                for (int i = 1; i < size; i++)
+                {
+                    attribute = (Attribute)attributes.elementAt (i);
+                    string = attribute.getName ();
+                    if (null != string) // not whitespace
+                        mAttributes.add (attribute);
+                }
+            }
+        }
+
+        return (mAttributes);
+    }
 
     ////////////////////////////////////////////////////////////////////
     // Indexed access.
@@ -88,7 +120,7 @@ public class Attributes
      */
     public int getLength ()
     {
-        return (mTag.getAttributesEx ().size () - 1);
+        return (getAttributes ().size ());
     }
 
 
@@ -138,11 +170,8 @@ public class Attributes
         Attribute attribute;
         String ret;
         
-        attribute = (Attribute)(mTag.getAttributesEx ().elementAt (index + 1));
-        if (attribute.isWhitespace ())
-            ret = "#text";
-        else
-            ret = attribute.getName ();
+        attribute = (Attribute)(getAttributes ().elementAt (index));
+        ret = attribute.getName ();
         
         return (ret);
     }
@@ -191,7 +220,7 @@ public class Attributes
         Attribute attribute;
         String ret;
         
-        attribute = (Attribute)(mTag.getAttributesEx ().elementAt (index + 1));
+        attribute = (Attribute)(getAttributes ().elementAt (index));
         ret = attribute.getValue ();
         if (null == ret)
             ret = "";
@@ -224,24 +253,18 @@ public class Attributes
 
         ret = -1;
 
-        attributes = mTag.getAttributesEx ();
-        if (null != attributes)
+        attributes = getAttributes ();
+        size = attributes.size ();
+        for (int i = 1; i < size; i++)
         {
-            size = attributes.size ();
-            for (int i = 1; i < size; i++)
+            attribute = (Attribute)attributes.elementAt (i);
+            string = attribute.getName ();
+            mSupport.processName (string, mParts, true);
+            if (  uri.equals (mParts[0])
+                && localName.equalsIgnoreCase (mParts[1]))
             {
-                attribute = (Attribute)attributes.elementAt (i);
-                string = attribute.getName ();
-                if (null != string) // not whitespace
-                {
-                    mSupport.processName (string, mParts, true);
-                    if (  uri.equals (mParts[0])
-                        && localName.equalsIgnoreCase (mParts[1]))
-                    {
-                        ret = i;
-                        i = size; // exit fast
-                    }
-                }
+                ret = i;
+                i = size; // exit fast
             }
         }
 
@@ -313,7 +336,16 @@ public class Attributes
      */
     public String getValue (String uri, String localName)
     {
-        return (mTag.getAttribute (localName));
+        int index;
+        String ret;
+
+        ret = null;
+
+        index = getIndex (uri, localName);
+        if (-1 != index)
+            ret = getValue (index);
+
+        return (ret);
     }
 
 
