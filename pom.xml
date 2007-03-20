@@ -2,9 +2,9 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.htmlparser</groupId>
-  <artifactId>HTMLParser</artifactId>
+  <artifactId>HTMLParserProject</artifactId>
   <packaging>pom</packaging>
-  <name>HTML Parser</name>
+  <name>HTML Parser Project</name>
   <version>2.0-SNAPSHOT</version>
   <description>HTML Parser is a Java library used to parse HTML in either a linear or nested fashion. Primarily used for transformation or extraction, it features filters, visitors, custom tags and easy to use JavaBeans. It is a fast, robust and well tested package.</description>
   <url>http://htmlparser.org</url>

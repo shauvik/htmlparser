@@ -9,7 +9,7 @@
   <description>Thumbelina is an example application for spidering and capturing resources.</description>
   <url>http://htmlparser.org</url>
   <parent>
-    <artifactId>HTMLParser</artifactId>
+    <artifactId>HTMLParserProject</artifactId>
     <groupId>org.htmlparser</groupId>
     <version>2.0-SNAPSHOT</version>
   </parent>
