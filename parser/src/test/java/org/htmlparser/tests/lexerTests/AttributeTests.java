@@ -34,6 +34,7 @@ import org.htmlparser.Tag;
 import org.htmlparser.lexer.PageAttribute;
 import org.htmlparser.nodes.TagNode;
 import org.htmlparser.tags.ImageTag;
+import org.htmlparser.tags.InputTag;
 import org.htmlparser.tags.LinkTag;
 import org.htmlparser.tests.ParserTestCase;
 import org.htmlparser.util.NodeIterator;
@@ -772,5 +773,56 @@ public class AttributeTests extends ParserTestCase
         assertStringEquals ("id wrong", id, link.getAttributeEx ("id").getValue ());
         assertStringEquals ("class wrong", cls, link.getAttributeEx ("class").getValue ());
         assertStringEquals ("href wrong", href, link.getAttributeEx ("href").getValue ());
+    }
+    
+    /**
+     * see bug #1761484 tag.setAttribute() not compatible with &lt;tag/&gt;
+     */
+    public void testAddAttributeInXmlTag1 () throws ParserException
+    {
+        String html = "<input type='text' name='foo'/>";
+        createParser (html);
+        parseAndAssertNodeCount (1);
+        assertTrue ("Node should be an InputTag", node[0] instanceof InputTag);
+        InputTag input = (InputTag)node[0];
+        assertTrue ("Node should be an XML tag", input.isEmptyXmlTag ());
+        input.setAttribute ("value", "bar", '\'');
+        assertTrue ("Node should be an XML tag after adding an attribute", input.isEmptyXmlTag ());
+        String new_tag = input.toHtml ();
+        assertStringEquals ("HTML incorrect", "<input type='text' name='foo' value='bar'/>", new_tag);
+    }
+
+    /**
+     * see bug #1761484 tag.setAttribute() not compatible with &lt;tag/&gt;
+     */
+    public void testAddAttributeInXmlTag2 () throws ParserException
+    {
+        String html = "<input type='text' name/>";
+        createParser (html);
+        parseAndAssertNodeCount (1);
+        assertTrue ("Node should be an InputTag", node[0] instanceof InputTag);
+        InputTag input = (InputTag)node[0];
+        assertTrue ("Node should be an XML tag", input.isEmptyXmlTag ());
+        input.setAttribute ("value", "bar", '\'');
+        assertTrue ("Node should be an XML tag after adding an attribute", input.isEmptyXmlTag ());
+        String new_tag = input.toHtml ();
+        assertStringEquals ("HTML incorrect", "<input type='text' name value='bar'/>", new_tag);
+    }
+
+    /**
+     * see bug #1761484 tag.setAttribute() not compatible with &lt;tag/&gt;
+     */
+    public void testAddAttributeInXmlTag3 () throws ParserException
+    {
+        String html = "<input type='text' name/>";
+        createParser (html);
+        parseAndAssertNodeCount (1);
+        assertTrue ("Node should be an InputTag", node[0] instanceof InputTag);
+        InputTag input = (InputTag)node[0];
+        assertTrue ("Node should be an XML tag", input.isEmptyXmlTag ());
+        input.setAttribute ("value", "bar", (char)0);
+        assertTrue ("Node should be an XML tag after adding an attribute", input.isEmptyXmlTag ());
+        String new_tag = input.toHtml ();
+        assertStringEquals ("HTML incorrect", "<input type='text' name value=bar />", new_tag);
     }
 }

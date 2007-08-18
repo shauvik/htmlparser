@@ -330,13 +330,16 @@ public class TagNode
     public void setAttribute (Attribute attribute)
     {
         boolean replaced;
+        boolean empty_xml;
         Vector attributes;
         int length;
         String name;
         Attribute test;
         String test_name;
+        int size;
 
         replaced = false;
+        empty_xml = false;
         attributes = getAttributesEx ();
         length =  attributes.size ();
         if (0 < length)
@@ -352,6 +355,41 @@ public class TagNode
                         attributes.setElementAt (attribute, i);
                         replaced = true;
                     }
+            }
+            // see bug #1761484 tag.setAttribute() not compatible with <tag/>
+            if (!replaced)
+            {
+                test = (Attribute)attributes.elementAt (length - 1);
+                test_name = test.getName ();
+                if (null != test_name)
+                {
+                    size = test_name.length ();
+                    empty_xml = test_name.charAt (size - 1) == '/';
+                    if (empty_xml)
+                    {
+                        // we need to split the attribute if it's not just a /
+                        if (1 != size)
+                        {
+                            attributes.remove (length - 1);
+                            attributes.addElement (new Attribute (test_name.substring (0, size - 1), null));
+                            attributes.addElement (new Attribute (" "));
+                            attributes.addElement (new Attribute ("/", null));
+                            length += 2;
+                        }
+                        else if ((1 != length) && !((Attribute)attributes.elementAt (length - 2)).isWhitespace ())
+                        {
+                            attributes.insertElementAt (new Attribute (" "), length - 1);
+                            length ++;
+                        }
+                        // at this point the / is the last attribute, and whitespace precedes it
+                        attributes.insertElementAt (attribute, length - 1);
+                        length++;
+                        // need to insert whitespace if there is a value and it's not quoted
+                        if ((null != attribute.getValue ()) && (0 == attribute.getQuote ()))
+                            attributes.insertElementAt (new Attribute (" "), length - 1);
+                        replaced = true;
+                    }
+                }
             }
         }
         if (!replaced)
