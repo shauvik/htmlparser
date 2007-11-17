@@ -85,6 +85,15 @@ public class ConnectionManager
             + " Today, you are not one of the lucky ones.",
         "Cutting the wind with a knife. Bookmarking a URL."
             + " Both are ephemeral.",
+        "The code was willing, it considered your request, but the chips were weak.",
+        "Errors have occurred. We won't tell you where or why. Lazy programmers.",
+        "This site has been moved. We'd tell you where, but then we'd have to delete you.",
+        "There is a chasm of carbon and silicon the software can't bridge.",
+        "To have no errors would be life without meaning; no struggle, no joy.",
+        "Hal, open the file. Hal, open the damn file, Hal open the, please Hal.",
+        "Having been erased, the document you're seeking must now be retyped.",
+        "The ten thousand things how long do any persist? That page, too, has gone.",
+        "Rather than a beep or a rude error message, these words: \"File not found.\"",
     };
 
     /**
