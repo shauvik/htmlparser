@@ -569,15 +569,23 @@ public class ParserTest extends ParserTestCase
 //        }
 //    }
 
-    public void testNullUrl() {
+    public void testNullUrl()
+    {
         try
         {
-            new Parser("http://none.existant.url.org", Parser.DEVNULL);
-            assertTrue("Should have thrown an exception!",false);
+            try
+            {
+                Parser parser = new Parser("http://nobody.finds.this.org", Parser.DEVNULL);
+                assertTrue("Should have thrown a checked exception!",false);
+            }
+            catch (ParserException e)
+            {
+                // expected outcome
+            }
         }
-        catch (ParserException e)
+        catch (Exception e)
         {
-            // expected outcome
+            fail ("non checked exception thrown - " + e.getMessage());
         }
     }
 
