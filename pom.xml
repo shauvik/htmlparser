@@ -121,9 +121,15 @@
   <licenses>
     <license>
       <name>Common Public License</name>
-      <url>http://opensource.org/licenses/cpl1.0.txt</url>
+      <url>http://htmlparser.sourceforge.net/cpl1.0.txt</url>
       <distribution>repo</distribution>
       <comments>The HTML Parser code is licensed under the Common Public License.</comments>
+    </license>
+    <license>
+      <name>GNU Lesser General Public License</name>
+      <url>http://htmlparser.sourceforge.net/lgpl3.0.txt</url>
+      <distribution>repo</distribution>
+      <comments>The HTML Parser code is also licensed under the GNU Lesser General Public License.</comments>
     </license>
   </licenses>
   <modules>
@@ -141,10 +147,7 @@
         <reportSets>
           <reportSet>
             <reports>
-<!--
-Dependencies is severely broken:
               <report>dependencies</report>
--->
               <report>project-team</report>
               <report>mailing-list</report>
               <report>issue-tracking</report>
