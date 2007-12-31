@@ -1,5 +1,5 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.htmlparser</groupId>
   <artifactId>filterbuilder</artifactId>
@@ -62,7 +62,6 @@
         <enabled>false</enabled>
       </snapshots>
       <releases>
-        <enabled>true</enabled>
       </releases>
     </pluginRepository>
     <pluginRepository>
@@ -70,7 +69,6 @@
       <id>apache.snapshots</id>
       <url>http://svn.apache.org/maven-snapshot-repository</url>
       <snapshots>
-        <enabled>true</enabled>
       </snapshots>
       <releases>
         <enabled>false</enabled>
@@ -84,7 +82,6 @@
         <enabled>false</enabled>
       </snapshots>
       <releases>
-        <enabled>true</enabled>
       </releases>
     </pluginRepository>
     <pluginRepository>
@@ -92,7 +89,6 @@
       <name>Codehaus Snapshot Development Repository</name>
       <url>http://snapshots.repository.codehaus.org</url>
       <snapshots>
-        <enabled>true</enabled>
       </snapshots>
       <releases>
         <enabled>false</enabled>
@@ -126,5 +122,46 @@
         </dependency>
       </dependencies>
     </profile>
+    <profile>
+            <id>netbeans-public</id>
+            <activation>
+                <property>
+                    <name>netbeans.execution</name>
+                    <value>true</value>
+                </property>
+            </activation>
+            <build>
+                <plugins>
+                    <plugin>
+                        <artifactId>maven-jar-plugin</artifactId>
+                        <configuration>
+                            <archive>
+                                <manifest>
+                                    <addClasspath>true</addClasspath>
+                                    <classpathPrefix>lib</classpathPrefix>
+                                    <mainClass>org.htmlparser.parserapplications.filterbuilder.FilterBuilder</mainClass>
+                                </manifest>
+                            </archive>
+                        </configuration>
+                    </plugin>
+                    <plugin>
+                        <artifactId>maven-assembly-plugin</artifactId>
+                        <executions>
+                            <execution>
+                                <id>nb</id>
+                                <phase>package</phase>
+                                <goals>
+                                    <goal>directory</goal>
+                                </goals>
+                                <configuration>
+                                    <descriptor>${basedir}/src/main/assemblies/netbeans-run.xml</descriptor>
+                                    <finalName>executable</finalName>
+                                </configuration>
+                            </execution>
+                        </executions>
+                    </plugin>
+                </plugins>
+            </build>
+        </profile>
   </profiles>
 </project>

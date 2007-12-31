@@ -144,6 +144,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-project-info-reports-plugin</artifactId>
+        <inherited>false</inherited>
         <reportSets>
           <reportSet>
             <reports>
@@ -171,6 +172,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-site-plugin</artifactId>
+        <inherited>false</inherited>
         <configuration>
           <locales>en</locales>
         </configuration>
@@ -239,6 +241,7 @@
       </plugin>
       <plugin>
         <artifactId>maven-assembly-plugin</artifactId>
+        <inherited>false</inherited>
         <configuration>
           <descriptors>
             <descriptor>src/main/assembly/binaries.xml</descriptor>
@@ -265,6 +268,7 @@ So we revert back to the antrun plugin to get this functionality, see above.
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-javadoc-plugin</artifactId>
+        <inherited>false</inherited>
         <configuration>
           <doctitle>${project.name} ${project.version}</doctitle>
           <header>&lt;A HREF=&quot;http://htmlparser.sourceforge.net&quot;>${project.name} Home Page&lt;/A></header>
