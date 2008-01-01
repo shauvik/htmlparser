@@ -9,7 +9,14 @@
       <outputDirectory></outputDirectory>
       <includes>
         <include>readme.html</include>
-        <include>license.txt</include>
+      </includes>
+    </fileSet>
+    <fileSet>
+      <directory>src/site/resources</directory>
+      <outputDirectory></outputDirectory>
+      <includes>
+        <include>cpl1.0.txt</include>
+        <include>lgpl3.0.txt</include>
       </includes>
     </fileSet>
     <fileSet>
