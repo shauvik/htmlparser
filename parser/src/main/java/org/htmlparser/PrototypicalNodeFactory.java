@@ -38,6 +38,7 @@ import org.htmlparser.nodes.RemarkNode;
 import org.htmlparser.nodes.TagNode;
 import org.htmlparser.tags.AppletTag;
 import org.htmlparser.tags.BaseHrefTag;
+import org.htmlparser.tags.BlockquoteTag;
 import org.htmlparser.tags.BodyTag;
 import org.htmlparser.tags.Bullet;
 import org.htmlparser.tags.BulletList;
@@ -329,6 +330,7 @@ public class PrototypicalNodeFactory
         registerTag (new TextareaTag ());
         registerTag (new TitleTag ());
         registerTag (new Div ());
+        registerTag (new BlockquoteTag ());
         registerTag (new Span ());
         registerTag (new BodyTag ());
         registerTag (new HeadTag ());
