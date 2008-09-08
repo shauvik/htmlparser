@@ -575,7 +575,7 @@ public class ParserTest extends ParserTestCase
         {
             try
             {
-                Parser parser = new Parser("http://nobody.finds.this.org", Parser.DEVNULL);
+                Parser parser = new Parser("http://this.url.does.not.exist", Parser.DEVNULL);
                 assertTrue("Should have thrown a checked exception!",false);
             }
             catch (ParserException e)
