@@ -277,7 +277,7 @@ public class LexerTests extends ParserTestCase
         char[] ref;
         char[] test;
 
-        URL url = new URL ("http://en.wikipedia.org/wiki/Main_Page");
+        URL url = new URL ("http://news.bbc.co.uk/");
         lexer = new Lexer (url.openConnection ());
         position = 0;
         buffer = new StringBuffer (80000);
