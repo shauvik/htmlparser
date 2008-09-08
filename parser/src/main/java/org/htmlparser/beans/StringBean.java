@@ -43,7 +43,7 @@ import org.htmlparser.visitors.NodeVisitor;
  * Extract strings from a URL.
  * <p>Text within &lt;SCRIPT&gt;&lt;/SCRIPT&gt; tags is removed.</p>
  * <p>The text within &lt;PRE&gt;&lt;/PRE&gt; tags is not altered.</p>
- * <p>The property <code>Strings</code>, which is the output property is null
+ * <p>The property <code>Strings</code>, which is the output property is <code>null</code>
  * until a URL is set. So a typical usage is:</p>
  * <pre>
  *     StringBean sb = new StringBean ();
@@ -692,7 +692,8 @@ public class StringBean extends NodeVisitor implements Serializable
         else if (name.equalsIgnoreCase ("STYLE"))
             mIsStyle = false;
         // Bug # 1574684 text extracted merges words in some cases
-        if ((name.charAt (0) == 'H') && (2 == name.length ()) && Character.isDigit (name.charAt (1)))
+        // Length check must be first as otherwise the 'tag' </> will cause a StringIndexOutOfBoundsException to be thrown. 
+        if ((2 == name.length ()) && (name.charAt (0) == 'H') && (Character.isDigit (name.charAt (1))))
             carriageReturn ();
     }
 
