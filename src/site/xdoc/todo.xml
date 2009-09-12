@@ -9,7 +9,7 @@
     <link rel="stylesheet" type="text/css" href="javadoc/stylesheet.css" title="Style"/>
   </head>
   <body>
-    <section name="ToDo Before SVN Commit">
+    <section name="ToDo List">
       <subsection name="Samples">
         <p>Adding the copy operation to set up the samples in the target site causes dependancy problems (at least in the install phase):
         <source>
@@ -107,19 +107,6 @@
                 &lt;img src=&quot;http://sourceforge.net/sflogo.php?group_id&amp;#61;24399&amp;amp;type&amp;#61;1&quot; width=&quot;88&quot; height=&quot;31&quot; border=&quot;0&quot; alt=&quot;SourceForge.net&quot;/&gt;&lt;/A&gt;
               &lt;/footer&gt;
               &lt;search/&gt;
-          </source>
-        </p>
-        <p>dependencies report is failing with null pointer because of:
-          <source>
-                  &lt;dependencies&gt;
-                    &lt;dependency&gt;
-                      &lt;groupId&gt;com.sun&lt;/groupId&gt;
-                      &lt;artifactId&gt;tools&lt;/artifactId&gt;
-                      &lt;version&gt;1.5.0&lt;/version&gt;
-                      &lt;scope&gt;system&lt;/scope&gt;
-                      &lt;systemPath&gt;${java.home}/../lib/tools.jar&lt;/systemPath&gt;
-                    &lt;/dependency&gt;
-                  &lt;/dependencies&gt;
           </source>
         </p>
         <p>contributors.html -&gt; project members, may need a new velocity template</p>
