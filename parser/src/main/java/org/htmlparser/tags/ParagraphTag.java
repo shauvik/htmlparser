@@ -38,7 +38,8 @@ public class ParagraphTag extends CompositeTag
     /**
      * The set of tag names that indicate the end of this tag.
      */
-    private static final String[] mEnders = new String[] {"ADDRESS", "BLOCKQUOTE", "CENTER", "DD", "DIR", "DIV", "DL", "DT", "FIELDSET", "FORM", "H1", "H2", "H3", "H4", "H5", "H6", "HR", "ISINDEX", "LI", "MENU", "NOFRAMES", "OL", "P", "PARAM", "PRE", "UL"};
+    // 'UL' has been removed from this list, see bug: <p> tag nodes with a body are mis-represent - ID: 2875009
+    private static final String[] mEnders = new String[] {"ADDRESS", "BLOCKQUOTE", "CENTER", "DD", "DIR", "DIV", "DL", "DT", "FIELDSET", "FORM", "H1", "H2", "H3", "H4", "H5", "H6", "HR", "ISINDEX", "LI", "MENU", "NOFRAMES", "OL", "P", "PARAM", "PRE"};
     
     /**
      * The set of end tag names that indicate the end of this tag.
