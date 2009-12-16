@@ -990,10 +990,10 @@ public class ParserTest extends ParserTestCase
     parser.setInputHTML("<p><ul><li>[body]</li></ul></p>");
 
     StringBuilder sb = new StringBuilder();
+    String temp;
     for (NodeIterator iterator = parser.elements(); iterator
     .hasMoreNodes();) {
-      String temp = iterator.nextNode().toHtml();
-      System.out.println(temp);
+      temp = iterator.nextNode().toHtml();
       sb.append(temp);
     }
     assertEquals("<p><ul><li>[body]</li></ul></p>", sb.toString());
