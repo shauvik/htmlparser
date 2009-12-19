@@ -32,6 +32,7 @@ import org.htmlparser.NodeFilter;
 import org.htmlparser.lexer.Page;
 import org.htmlparser.util.NodeList;
 import org.htmlparser.util.ParserException;
+import org.htmlparser.util.SimpleNodeIterator;
 import org.htmlparser.visitors.NodeVisitor;
 
 /**
@@ -268,9 +269,15 @@ public abstract class AbstractNode implements Node, Serializable
      * Sets the parent of this node.
      * @param node The node that contains this node. Must be a <code>CompositeTag</code>.
      */
+    /* See bug: https://sourceforge.net/tracker/?func=detail&aid=1755537&group_id=24399&atid=381399
+     * A check needs to be performed to see that a tag cannot be its own parent or child and if it
+     * is then just ignore it 
+     */
     public void setParent (Node node)
     {
+      if(this != node){
         parent = node;
+      }        
     }
 
     /**
@@ -286,9 +293,26 @@ public abstract class AbstractNode implements Node, Serializable
      * Set the children of this node.
      * @param children The new list of children this node contains.
      */
+    /* See bug: https://sourceforge.net/tracker/?func=detail&aid=1755537&group_id=24399&atid=381399
+     * A check needs to be performed to see that a tag cannot be its own parent
+     * or child and if it is the case then just ignore it 
+     */
     public void setChildren (NodeList children)
     {
-        this.children = children;
+      /* Always Initialize the children field as in the constructor its being
+       * initialized to null
+       */
+      this.children = new NodeList();
+      /* Do nothing if the children node list contains the node
+       * (i.e. the node whose children is being set) itself
+       */
+      for(SimpleNodeIterator  it = children.elements(); it.hasMoreNodes();){
+        Node nodetoadd = it.nextNode();
+        if(this != nodetoadd){
+          this.children.add(nodetoadd);
+        }
+      }
+      //this.children = children;
     }
     
     /**
