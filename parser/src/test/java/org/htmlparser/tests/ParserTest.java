@@ -999,4 +999,15 @@ public class ParserTest extends ParserTestCase
     assertEquals("<p><ul><li>[body]</li></ul></p>", sb.toString());
   }
 
+  /**
+   * See bug:
+   * https://sourceforge.net/tracker/?func=detail&aid=1755537&group_id=24399&atid=381399
+   */
+    public void testTagIsOwnParent() throws Exception {
+      Parser parser = new Parser();
+      parser.setInputHTML("<a/>something</a>");
+      NodeList html = parser.parse(null);
+      Node root = html.elementAt(0);
+      assertNotSame("tag is its own parent",root.getParent(),root);
+    }
 }
