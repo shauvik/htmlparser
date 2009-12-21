@@ -1000,7 +1000,7 @@ public class ParserTest extends ParserTestCase
   }
 
   /**
-   * See bug:
+   * See bug: element is its own parent - ID: 1755537  
    * https://sourceforge.net/tracker/?func=detail&aid=1755537&group_id=24399&atid=381399
    */
     public void testTagIsOwnParent() throws Exception {
