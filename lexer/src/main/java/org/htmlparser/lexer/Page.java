@@ -626,8 +626,10 @@ Serializable
       throw new IllegalArgumentException ("connection cannot be null");
     boolean ret = true;
     URL url = connection.getURL();
-    if(url.getAuthority() == null || url.getAuthority().isEmpty() || 
-            url.getProtocol() == null || url.getProtocol().isEmpty()){
+    // fix Bug 3026739 String.isEmpty does not exists on Android SDK
+    // don't use isEmpty, use 0 == length instead
+    if(url.getAuthority() == null || (0 == url.getAuthority().length()) || 
+            url.getProtocol() == null || (0 == url.getProtocol().length())){
       ret = false;
     }
     return ret;
