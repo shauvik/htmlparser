@@ -330,7 +330,7 @@ public class PageAttribute
         if (null == value)
         {
             if ((null != mPage) && (0 <= mValueEnd))
-                mPage.getText (buffer, mNameStart, mNameEnd);
+                mPage.getText (buffer, mValueStart, mValueEnd);
         }
         else
             buffer.append (value);
