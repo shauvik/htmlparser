@@ -641,7 +641,7 @@ public class ScriptScannerTest extends ParserTestCase
             "<TITLE>Script Encoder Sample Page</TITLE>\n" +
             "<SCRIPT LANGUAGE=\"JScript.Encode\">\n" +
             "<!--//\n" +
-            "//Copyright© 1998 Microsoft Corporation. All Rights Reserved.\n" +
+            "//Copyright\u00a9 1998 Microsoft Corporation. All Rights Reserved.\n" +
             "//**Start Encode**\r\n" +
             "function verifyCorrectBrowser(){\r\n" +
             "  if(navigator.appName == \"Microsoft Internet Explorer\")\r\n" +
@@ -672,7 +672,7 @@ public class ScriptScannerTest extends ParserTestCase
             "<TITLE>Script Encoder Sample Page</TITLE>\n" +
             "<SCRIPT LANGUAGE=\"JScript.Encode\">\n" +
             "<!--//\n" +
-            "//Copyright© 1998 Microsoft Corporation. All Rights Reserved.\n" +
+            "//Copyright\u00a9 1998 Microsoft Corporation. All Rights Reserved.\n" +
             "//**Start Encode**#@~^ZwIAAA==@#@&0;	mDkW	P7nDb0zZKD.n1YAMGhk+Dvb`@#@&P,kW`UC7kLlDGDcl22gl:n~{'~Jtr1DGkW6YP&xDnD	+OPA62sKD+ME#@#@&P,~~k6PvxC\\rLmYGDcCwa.n.kkWU bx[+X66Pcr*cJ#,@*{~!*@#@&P,P~~,D+D;D	`YM;n#p@#@&P~P~n^/n@#@&~P,P~~M+Y;.	`Wl^d#I@#@&)@#@&6E	^YbWUPT+O)awDK2DblYKCo`*	@#@&~~7l.PkOD8Px~rCl[~Dtr/,8+U,l	Pl1Y!CV,n4,/rO~Pm~wmo+,^G:alDk8Vn~SkOt,Ei@#@&~~7lD~dDD+P{~r4.Khk+DkPKOtD~Y4lU~ri@#@&~P7lD,dOD2P{PEHr^MWdW6OP&xOnMx+O~A62VK.D~lRZPJp@#@&~P7l.PkY.*,'PrAW!VN,4C\\P(+nx~sKl[+9 Jp@#@&~,k0~c7+.k6z;W.M+1YAMWSd+M`b#@#@&~~,PNK^Es+xD ADbY`dY.q,_~/D.&,_~dDDcbI@#@&~Psk+@#@&P,PP9W1;:xORSDrO`/D.F,_PkO. ,_,/ODf~3PdYM*#p@#@&N@#@&z&R @*@#@&qrIAAA==^#~@</SCRIPT>\n" +
             "</HEAD>\n" +
             "<BODY onload=\"getAppropriatePage()\">\n" +
