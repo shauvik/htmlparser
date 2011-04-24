@@ -132,6 +132,11 @@
       <comments>The HTML Parser code is also licensed under the GNU Lesser General Public License.</comments>
     </license>
   </licenses>
+  <parent>
+    <groupId>org.sonatype.oss</groupId>
+    <artifactId>oss-parent</artifactId>
+    <version>7</version>
+  </parent>
   <modules>
     <module>lexer</module>
     <module>parser</module>
@@ -264,13 +269,6 @@
       </plugin>
     </plugins>
   </build>
-  <distributionManagement>
-    <snapshotRepository>
-      <id>sourceforge</id>
-      <name>sourceforge-snapshot-repository</name>
-      <url>scpexe://shell.sourceforge.net/home/groups/h/ht/htmlparser/htdocs/m2-snapshot-repo</url>
-    </snapshotRepository>
-  </distributionManagement>
   <profiles>
     <profile>
       <id>default-tools.jar</id>
