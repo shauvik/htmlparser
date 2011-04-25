@@ -40,6 +40,11 @@ public class HasParentFilter
         NodeFilter
 {
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
      * The filter to apply to the parent.
      */
     protected NodeFilter mParentFilter;

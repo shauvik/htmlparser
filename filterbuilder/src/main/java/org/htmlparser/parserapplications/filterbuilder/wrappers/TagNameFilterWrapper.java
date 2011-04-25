@@ -54,6 +54,11 @@ public class TagNameFilterWrapper
         ActionListener
 {
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
      * The underlying filter.
      */
     protected TagNameFilter mFilter;
@@ -124,10 +129,10 @@ public class TagNameFilterWrapper
      */
     public void setNodeFilter (NodeFilter filter, Parser context)
     {
-        Set set;
+        Set<String> set;
 
         mFilter = (TagNameFilter)filter;
-        set = new HashSet ();
+        set = new HashSet<String> ();
         context.reset ();
         try
         {
@@ -138,7 +143,7 @@ public class TagNameFilterWrapper
         {
             // oh well, we tried
         }
-        for (Iterator iterator = set.iterator (); iterator.hasNext (); )
+        for (Iterator<String> iterator = set.iterator (); iterator.hasNext (); )
             mName.addItem (iterator.next ());
         mName.setSelectedItem (mFilter.getName ());
     }
@@ -196,7 +201,7 @@ public class TagNameFilterWrapper
      * @param set The set to add to.
      * @param node The node to get the names from.
      */
-    protected void addName (Set set, Node node)
+    protected void addName (Set<String> set, Node node)
     {
         NodeList children;
 

@@ -31,8 +31,6 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileWriter;
 import java.io.PrintWriter;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.Locale;
 
 import org.htmlparser.Node;
@@ -372,7 +370,7 @@ public class ParserTest extends ParserTestCase
     {
       try
       {
-        Parser parser = new Parser("http://this.url.does.not.exist", Parser.DEVNULL);
+        new Parser("http://this.url.does.not.exist", Parser.DEVNULL);
         assertTrue("Should have thrown a checked exception!",false);
       }
       catch (ParserException e)

@@ -47,6 +47,11 @@ import org.htmlparser.util.ParserException;
 public class LinkBean extends Object implements Serializable
 {
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
      * Property name in event where the URL contents changes.
      */
     public static final String PROP_LINKS_PROPERTY = "links";
@@ -92,7 +97,7 @@ public class LinkBean extends Object implements Serializable
     {
         NodeFilter filter;
         NodeList list;
-        Vector vector;
+        Vector<URL> vector;
         LinkTag link;
         URL[] ret;
 
@@ -107,7 +112,7 @@ public class LinkBean extends Object implements Serializable
             mParser.reset ();
             list = mParser.extractAllNodesThatMatch (filter);
         }
-        vector = new Vector();
+        vector = new Vector<URL> ();
         for (int i = 0; i < list.size (); i++)
             try
             {

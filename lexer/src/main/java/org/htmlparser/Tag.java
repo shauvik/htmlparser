@@ -25,7 +25,6 @@
 
 package org.htmlparser;
 
-import java.util.Hashtable;
 import java.util.Vector;
 
 import org.htmlparser.scanners.Scanner;
@@ -94,7 +93,7 @@ public interface Tag extends Node
      * @return Returns the list of {@link Attribute Attributes} in the tag.
      * @see #setAttributesEx
      */
-    Vector getAttributesEx ();
+    Vector<Attribute> getAttributesEx ();
 
     /**
      * Sets the attributes.
@@ -104,7 +103,7 @@ public interface Tag extends Node
      * @param attribs The attribute collection to set.
      * @see #getAttributesEx
      */
-    void setAttributesEx (Vector attribs);
+    void setAttributesEx (Vector<Attribute> attribs);
 
     /**
      * Return the name of this tag.

@@ -47,6 +47,11 @@ public class AppletTag
         CompositeTag
 {
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
      * The set of names handled by this tag.
      */
     private static final String[] mIds = new String[] {"APPLET"};
@@ -85,16 +90,16 @@ public class AppletTag
      * Extract the applet <code>PARAM</code> tags from the child list.
      * @return The list of applet parameters (keys and values are String objects).
      */
-    public Hashtable createAppletParamsTable ()
+    public Hashtable<String,String> createAppletParamsTable ()
     {
         NodeList kids;
         Node node;
         Tag tag;
         String paramName;
         String paramValue;
-        Hashtable ret;
+        Hashtable<String,String> ret;
 
-        ret = new Hashtable ();
+        ret = new Hashtable<String,String> ();
         kids = getChildren ();
         if (null != kids)
             for (int i = 0; i < kids.size (); i++)
@@ -109,7 +114,7 @@ public class AppletTag
                         if (null != paramName && 0 != paramName.length ())
                         {
                             paramValue = tag.getAttribute ("VALUE");
-                            ret.put (paramName,paramValue);
+                            ret.put (paramName, paramValue);
                         }
                     }
                 }
@@ -131,7 +136,7 @@ public class AppletTag
      * Get the applet parameters.
      * @return The list of parameter values (keys and values are String objects).
      */
-    public Hashtable getAppletParams ()
+    public Hashtable<String,String> getAppletParams ()
     {
         return (createAppletParamsTable ());
     }
@@ -162,14 +167,14 @@ public class AppletTag
      */
     public String getParameter (String key)
     {
-        return ((String)(getAppletParams ().get (key)));
+        return (getAppletParams ().get (key));
     }
 
     /**
      * Get an enumeration over the (String) parameter names.
      * @return An enumeration of the <code>PARAM<code> tag <code>NAME<code> attributes.
      */
-    public Enumeration getParameterNames ()
+    public Enumeration<String> getParameterNames ()
     {
         return (getAppletParams ().keys ());
     }
@@ -187,14 +192,14 @@ public class AppletTag
      * Set the enclosed <code>PARM<code> children.
      * @param newAppletParams The new parameters.
      */
-    public void setAppletParams (Hashtable newAppletParams)
+    public void setAppletParams (Hashtable<String,String> newAppletParams)
     {
         NodeList kids;
         Node node;
         Tag tag;
         String paramName;
         String paramValue;
-        Vector attributes;
+        Vector<Attribute> attributes;
         Text string;
 
         kids = getChildren ();
@@ -228,11 +233,11 @@ public class AppletTag
             }
 
         // add newAppletParams to kids
-        for (Enumeration e = newAppletParams.keys (); e.hasMoreElements (); )
+        for (Enumeration<String> e = newAppletParams.keys (); e.hasMoreElements (); )
         {
-            attributes = new Vector (); // should the tag copy the attributes?
-            paramName = (String)e.nextElement ();
-            paramValue = (String)newAppletParams.get (paramName);
+            attributes = new Vector<Attribute> (); // should the tag copy the attributes?
+            paramName = e.nextElement ();
+            paramValue = newAppletParams.get (paramName);
             attributes.addElement (new Attribute ("PARAM", null));
             attributes.addElement (new Attribute (" "));
             attributes.addElement (new Attribute ("VALUE", paramValue, '"'));
@@ -270,8 +275,8 @@ public class AppletTag
      */
     public String toString ()
     {
-        Hashtable parameters;
-        Enumeration params;
+    	Hashtable<String,String> parameters;
+        Enumeration<String> params;
         String paramName;
         String paramValue;
         boolean found;
@@ -297,8 +302,8 @@ public class AppletTag
         else
             for (int cnt = 0; params.hasMoreElements (); cnt++)
             {
-                paramName = (String)params.nextElement ();
-                paramValue = (String)parameters.get (paramName);
+                paramName = params.nextElement ();
+                paramValue = parameters.get (paramName);
                 ret.append (cnt);
                 ret.append (": Parameter name = ");
                 ret.append (paramName);

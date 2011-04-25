@@ -25,7 +25,6 @@
 
 package org.htmlparser.lexerapplications.thumbelina;
 
-import java.awt.Canvas;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Graphics;
@@ -40,7 +39,6 @@ import java.awt.event.HierarchyListener;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.image.ImageObserver;
-import java.util.Enumeration;
 import java.util.HashSet;
 import java.util.Iterator;
 import javax.swing.JPanel;
@@ -61,7 +59,12 @@ public class PicturePanel
         ComponentListener,
         HierarchyListener
 {
-    class Watcher implements ImageObserver
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	class Watcher implements ImageObserver
     {
         Component mTarget;
         Image mImage;
@@ -310,8 +313,8 @@ public class PicturePanel
         clip = graphics.getClipBounds ();
         synchronized (mMosaic)
         {
-            Rectangle s;
-            s = graphics.getClipBounds ();
+            //Rectangle s;
+            //s = graphics.getClipBounds ();
             //System.out.print ("" + s.x + "," + s.y + "," + s.width + "," + s.height + " ");
             super.paint (graphics);
             if (0 != mMosaic.getTileCount ())

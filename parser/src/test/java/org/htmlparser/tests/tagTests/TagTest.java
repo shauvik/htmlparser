@@ -25,8 +25,6 @@
 
 package org.htmlparser.tests.tagTests;
 
-import org.htmlparser.Attribute;
-
 import org.htmlparser.Node;
 import org.htmlparser.PrototypicalNodeFactory;
 import org.htmlparser.Tag;
@@ -161,7 +159,7 @@ public class TagTest extends ParserTestCase
                 node = en.nextNode();
 
                 tag = (Tag)node;
-                a = ((Attribute)(tag.getAttributesEx ().elementAt (0))).getName ();
+                a = (tag.getAttributesEx ().elementAt (0)).getName ();
                 href = tag.getAttribute ("HREF");
                 myValue = tag.getAttribute ("MYPARAMETER");
                 nice = tag.getAttribute ("YOURPARAMETER");
@@ -229,7 +227,7 @@ public class TagTest extends ParserTestCase
                 node = en.nextNode();
 
                 tag = (Tag)node;
-                a = ((Attribute)(tag.getAttributesEx ().elementAt (0))).getName ();
+                a = (tag.getAttributesEx ().elementAt (0)).getName ();
                 href = tag.getAttribute ("HREF");
                 myValue = tag.getAttribute ("MYPARAMETER");
                 nice = tag.getAttribute ("YOURPARAMETER");
@@ -295,7 +293,7 @@ public class TagTest extends ParserTestCase
                 node = en.nextNode();
 
                 tag = (Tag)node;
-                a = ((Attribute)(tag.getAttributesEx ().elementAt (0))).getName ();
+                a = (tag.getAttributesEx ().elementAt (0)).getName ();
                 nice = tag.getAttribute ("YOURPARAMETER");
                 assertEquals ("Link tag (A)",a,"A");
                 assertEquals ("yourParameter value","Kaarle",nice);

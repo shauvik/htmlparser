@@ -41,6 +41,11 @@ public class SubFilterList
         JPanel
 {
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
      * Padding for the drop target.
      */
     protected int mExtra = 25; // for now

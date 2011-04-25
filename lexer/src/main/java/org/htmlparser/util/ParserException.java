@@ -33,7 +33,12 @@ package org.htmlparser.util;
 public class ParserException
   extends ChainedException
 {
-  public ParserException() {}
+  /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+public ParserException() {}
 
   public ParserException(String message)
   {

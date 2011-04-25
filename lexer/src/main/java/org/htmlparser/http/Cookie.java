@@ -65,6 +65,11 @@ public class Cookie
         Serializable
 {
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
      * Special characters to watch out for.
      * From RFC 2068, token special case characters.
      */

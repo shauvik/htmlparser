@@ -41,6 +41,10 @@ public class TextNode
         Text
 {
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	/**
      * The contents of the string node, or override text.
      */
     protected String mText;

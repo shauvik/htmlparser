@@ -56,6 +56,11 @@ public class StringFilterWrapper
         Runnable
 {
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
      * The underlying filter.
      */
     protected StringFilter mFilter;

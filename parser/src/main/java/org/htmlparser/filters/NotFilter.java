@@ -34,6 +34,10 @@ import org.htmlparser.NodeFilter;
 public class NotFilter implements NodeFilter
 {
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	/**
      * The filter to gainsay.
      */
     protected NodeFilter mPredicate;

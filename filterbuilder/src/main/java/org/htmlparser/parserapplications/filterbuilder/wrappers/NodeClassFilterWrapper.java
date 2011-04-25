@@ -57,6 +57,11 @@ public class NodeClassFilterWrapper
 //        DocumentListener
 {
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
      * The underlying filter.
      */
     protected NodeClassFilter mFilter;
@@ -128,7 +133,7 @@ public class NodeClassFilterWrapper
     {
         NodeFactory factory;
         PrototypicalNodeFactory proto;
-        Set names;
+        Set<String> names;
         String name;
         Tag tag;
 
@@ -140,9 +145,9 @@ public class NodeClassFilterWrapper
             proto = (PrototypicalNodeFactory)factory;
             // iterate over the classes
             names = proto.getTagNames ();
-            for (Iterator iterator = names.iterator (); iterator.hasNext (); )
+            for (Iterator<String> iterator = names.iterator (); iterator.hasNext (); )
             {
-                name = (String)iterator.next ();
+                name = iterator.next ();
                 tag = proto.get (name);
                 mClass.addItem (tag.getClass ().getName ());
             }

@@ -53,7 +53,7 @@ public class ConnectionManager
      * Default Request header fields.
      * So far this is just "User-Agent" and "Accept-Encoding".
      */
-    protected static Hashtable mDefaultRequestProperties = new Hashtable ();
+    protected static Hashtable<String,String> mDefaultRequestProperties = new Hashtable<String,String> ();
     static
     {
         mDefaultRequestProperties.put ("User-Agent", "HTMLParser/"
@@ -106,7 +106,7 @@ public class ConnectionManager
     /**
      * Request header fields.
      */
-    protected Hashtable mRequestProperties;
+    protected Hashtable<String,String> mRequestProperties;
 
     /**
      * The proxy server name.
@@ -142,7 +142,7 @@ public class ConnectionManager
      * Cookie storage, a hashtable (by site or host) of vectors of Cookies.
      * This will be null if cookie processing is disabled (default).
      */
-    protected Hashtable mCookieJar;
+    protected Hashtable<String,Vector<Cookie>> mCookieJar;
 
     /**
      * The object to be notified prior to and after each connection.
@@ -172,7 +172,7 @@ public class ConnectionManager
      * Create a connection manager with the given connection properties.
      * @param properties Name/value pairs to be added to the HTTP request.
      */
-    public ConnectionManager (Hashtable properties)
+    public ConnectionManager (Hashtable<String,String> properties)
     {
         mRequestProperties = properties;
         mProxyHost = null;
@@ -199,7 +199,7 @@ public class ConnectionManager
      * @see #mDefaultRequestProperties
      * @see #setRequestProperties
      */
-    public static Hashtable getDefaultRequestProperties ()
+    public static Hashtable<String,String> getDefaultRequestProperties ()
     {
         return (mDefaultRequestProperties);
     }
@@ -259,7 +259,7 @@ public class ConnectionManager
      * @see #mDefaultRequestProperties
      * @see #setRequestProperties
      */
-    public static void setDefaultRequestProperties (Hashtable properties)
+    public static void setDefaultRequestProperties (Hashtable<String,String> properties)
     {
         mDefaultRequestProperties = properties;
     }
@@ -270,7 +270,7 @@ public class ConnectionManager
      * excluding proxy items, cookies and URL authorization.
      * @return The request header properties for this connection manager.
      */
-    public Hashtable getRequestProperties ()
+    public Hashtable<String,String> getRequestProperties ()
     {
         return (mRequestProperties);
     }
@@ -286,7 +286,7 @@ public class ConnectionManager
      * Cookie property which is constructed from the current cookie jar.
      * @param properties The new fixed properties.
      */
-    public void setRequestProperties (Hashtable properties)
+    public void setRequestProperties (Hashtable<String,String> properties)
     {
         mRequestProperties = properties;
     }
@@ -423,7 +423,7 @@ public class ConnectionManager
     public void setCookieProcessingEnabled (boolean enable)
     {
         if (enable)
-            mCookieJar = (null == mCookieJar) ? new Hashtable () : mCookieJar;
+            mCookieJar = (null == mCookieJar) ? new Hashtable<String,Vector<Cookie>> () : mCookieJar;
         else
             mCookieJar = null;
     }
@@ -436,7 +436,7 @@ public class ConnectionManager
     public void setCookie (Cookie cookie, String domain)
     {
         String path;
-        Vector cookies;
+        Vector<Cookie> cookies;
         Cookie probe;
         boolean found; // flag if a cookie with current name is already there
 
@@ -444,14 +444,14 @@ public class ConnectionManager
             domain = cookie.getDomain ();
         path = cookie.getPath ();
         if (null == mCookieJar)
-            mCookieJar = new Hashtable (); // turn on cookie processing
-        cookies = (Vector)mCookieJar.get (domain);
+            mCookieJar = new Hashtable<String,Vector<Cookie>> (); // turn on cookie processing
+        cookies = mCookieJar.get (domain);
         if (null != cookies)
         {
             found = false;
             for (int j = 0; j < cookies.size (); j++)
             {
-                probe = (Cookie)cookies.elementAt (j);
+                probe = cookies.elementAt (j);
                 if (probe.getName ().equalsIgnoreCase (cookie.getName ()))
                 {
                     // we keep paths sorted most specific to least
@@ -476,7 +476,7 @@ public class ConnectionManager
         }
         else
         {   // new cookie list needed
-            cookies = new Vector ();
+            cookies = new Vector<Cookie> ();
             cookies.addElement (cookie);
             mCookieJar.put (domain, cookies);
         }
@@ -557,8 +557,8 @@ public class ConnectionManager
         boolean repeat;
         int repeated;
         Properties sysprops;
-        Hashtable properties;
-        Enumeration enumeration;
+        Hashtable<String,String> properties;
+        Enumeration<String> enumeration;
         String key;
         String value;
         String set = null; // old proxySet value
@@ -613,8 +613,8 @@ public class ConnectionManager
                             for (enumeration = properties.keys ();
                                     enumeration.hasMoreElements ();)
                             {
-                                key = (String)enumeration.nextElement ();
-                                value = (String)properties.get (key);
+                                key = enumeration.nextElement ();
+                                value = properties.get (key);
                                 ret.setRequestProperty (key, value);
                             }
 
@@ -901,7 +901,7 @@ public class ConnectionManager
      */
     public void addCookies (URLConnection connection)
     {
-        Vector list;
+        Vector<Cookie> list;
         URL url;
         String host;
         String path;
@@ -918,14 +918,14 @@ public class ConnectionManager
                 path = "/";
             if (null != host)
             {   // http://www.objectsdevelopment.com/portal/modules/freecontent/content/javawebserver.html
-                list = addCookies ((Vector)mCookieJar.get (host), path, list);
+                list = addCookies (mCookieJar.get (host), path, list);
                 domain = getDomain (host);
                 if (null != domain)
-                    list = addCookies ((Vector)mCookieJar.get (domain),
+                    list = addCookies (mCookieJar.get (domain),
                         path, list);
                 else
                     // maybe it is the domain we're accessing
-                    list = addCookies ((Vector)mCookieJar.get ("." + host),
+                    list = addCookies (mCookieJar.get ("." + host),
                         path, list);
             }
             if (null != list)
@@ -941,7 +941,7 @@ public class ConnectionManager
      * @param list The list of qualified cookies.
      * @return The list of qualified cookies.
      */
-    protected Vector addCookies (Vector cookies, String path, Vector list)
+    protected Vector<Cookie> addCookies (Vector<Cookie> cookies, String path, Vector<Cookie> list)
     {
         Cookie cookie;
         Date expires;
@@ -952,7 +952,7 @@ public class ConnectionManager
             now = new Date ();
             for (int i = 0; i < cookies.size (); i++)
             {
-                cookie = (Cookie)cookies.elementAt (i);
+                cookie = cookies.elementAt (i);
                 expires = cookie.getExpiryDate ();
                 if ((null != expires) && expires.before (now))
                 {
@@ -963,7 +963,7 @@ public class ConnectionManager
                     if (path.startsWith (cookie.getPath ()))
                     {
                         if (null == list)
-                            list = new Vector ();
+                            list = new Vector<Cookie> ();
                         list.addElement (cookie);
                     }
             }
@@ -1023,7 +1023,7 @@ public class ConnectionManager
      * @return A string suitable for inclusion as the value of
      * the "Cookie:" request property.
      */
-    protected String generateCookieProperty (Vector cookies)
+    protected String generateCookieProperty (Vector<Cookie> cookies)
     {
         int version;
         Cookie cookie;
@@ -1036,7 +1036,7 @@ public class ConnectionManager
         version = 0;
         for (int i = 0; i < cookies.size (); i++)
             version = Math.max (version,
-                ((Cookie)cookies.elementAt (i)).getVersion ());
+                (cookies.elementAt (i)).getVersion ());
         if (0 != version)
         {
             buffer.append ("$Version=\"");
@@ -1045,7 +1045,7 @@ public class ConnectionManager
         }
         for (int i = 0; i < cookies.size (); i++)
         {
-            cookie = (Cookie)cookies.elementAt (i);
+            cookie = cookies.elementAt (i);
             if (0 != buffer.length ())
                 buffer.append ("; ");
             buffer.append (cookie.getName ());
@@ -1086,7 +1086,7 @@ public class ConnectionManager
     public void parseCookies (URLConnection connection)
     {
         String string;
-        Vector cookies;
+        Vector<Cookie> cookies;
         StringTokenizer tokenizer;
         String token;
         int index;
@@ -1109,7 +1109,7 @@ public class ConnectionManager
 //                            |       "Path" "=" value
 //                            |       "Secure"
 //                            |       "Version" "=" 1*DIGIT
-            cookies = new Vector ();
+            cookies = new Vector<Cookie> ();
             tokenizer = new StringTokenizer (string, ";,", true);
             cookie = null;
             while (tokenizer.hasMoreTokens ())
@@ -1231,14 +1231,14 @@ public class ConnectionManager
      * @param list The list of cookies extracted from the response header.
      * @param connection The connection (used when a cookie has no domain).
      */
-    protected void saveCookies (Vector list, URLConnection connection)
+    protected void saveCookies (Vector<Cookie> list, URLConnection connection)
     {
         Cookie cookie;
         String domain;
 
         for (int i = 0; i < list.size (); i++)
         {
-            cookie = (Cookie)list.elementAt (i);
+            cookie = list.elementAt (i);
             domain = cookie.getDomain ();
             if (null == domain)
                 domain = connection.getURL ().getHost ();

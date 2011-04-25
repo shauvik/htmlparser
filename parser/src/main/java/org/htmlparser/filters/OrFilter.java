@@ -34,6 +34,10 @@ import org.htmlparser.NodeFilter;
 public class OrFilter implements NodeFilter
 {
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	/**
      * The predicates that are to be or'ed together;
      */
     protected NodeFilter[] mPredicates;

@@ -54,6 +54,11 @@ implements
 Serializable
 {
   /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+/**
    * The default charset.
    * This should be <code>{@value}</code>,
    * see RFC 2616 (http://www.ietf.org/rfc/rfc2616.txt?number=2616)
@@ -323,14 +328,14 @@ Serializable
 
     try
     {
-      Class cls;
+      Class<?> cls;
       Method method;
       Object object;
 
       cls = Class.forName ("java.nio.charset.Charset");
-      method = cls.getMethod ("forName", new Class[] { String.class });
+      method = cls.getMethod ("forName", new Class<?>[] { String.class });
       object = method.invoke (null, new Object[] { name });
-      method = cls.getMethod ("name", new Class[] { });
+      method = cls.getMethod ("name", new Class<?>[] { });
       object = method.invoke (object, new Object[] { });
       ret = (String)object;
     }

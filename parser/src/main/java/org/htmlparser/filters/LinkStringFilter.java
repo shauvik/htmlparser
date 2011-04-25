@@ -37,6 +37,11 @@ import org.htmlparser.tags.LinkTag;
 public class LinkStringFilter implements NodeFilter
 {
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
      * The pattern to search for in the link.
      */
     protected String mPattern;

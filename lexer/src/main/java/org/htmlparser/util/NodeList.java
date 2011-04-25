@@ -34,7 +34,11 @@ import org.htmlparser.visitors.NodeVisitor;
 
 public class NodeList implements Serializable
 {
-    private static final int INITIAL_CAPACITY=10;
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	private static final int INITIAL_CAPACITY=10;
     //private static final int CAPACITY_INCREMENT=20;
     private Node nodeData[];
     private int size;
@@ -361,11 +365,7 @@ public class NodeList implements Serializable
      * </pre>
      */
     public void visitAllNodesWith (NodeVisitor visitor)
-        throws
-            ParserException
     {
-        Node node;
-
         visitor.beginParsing ();
         for (int i = 0; i < size; i++)
             nodeData[i].accept (visitor);

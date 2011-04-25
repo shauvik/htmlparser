@@ -48,6 +48,11 @@ import org.htmlparser.util.NodeList;
 public class CssSelectorNodeFilter implements NodeFilter
 {
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
      * Regular expression to split the selector into tokens.
      */
     private static Pattern tokens =
@@ -337,7 +342,11 @@ public class CssSelectorNodeFilter implements NodeFilter
 
     private static class HasAncestorFilter implements NodeFilter
     {
-        private NodeFilter atest;
+        /**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+		private NodeFilter atest;
 
         public HasAncestorFilter (NodeFilter n)
         {
@@ -358,7 +367,11 @@ public class CssSelectorNodeFilter implements NodeFilter
 
     private static class AdjacentFilter implements NodeFilter
     {
-        private NodeFilter sibtest;
+        /**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+		private NodeFilter sibtest;
 
         public AdjacentFilter (NodeFilter n)
         {
@@ -380,7 +393,12 @@ public class CssSelectorNodeFilter implements NodeFilter
 
     private static class YesFilter implements NodeFilter
     {
-        public boolean accept (Node n)
+        /**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+
+		public boolean accept (Node n)
         {
             return (true);
         }
@@ -388,7 +406,11 @@ public class CssSelectorNodeFilter implements NodeFilter
 
     private static class AttribMatchFilter implements NodeFilter
     {
-        private Pattern rel;
+        /**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+		private Pattern rel;
         private String attrib;
 
         public AttribMatchFilter (String attrib, String regex)

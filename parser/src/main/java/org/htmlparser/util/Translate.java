@@ -35,6 +35,7 @@ import java.io.PrintStream;
 import java.io.PrintWriter;
 import java.io.Reader;
 import java.io.UnsupportedEncodingException;
+import java.util.List;
 
 import org.htmlparser.util.sort.Sort;
 
@@ -45,6 +46,11 @@ import org.htmlparser.util.sort.Sort;
 class CharacterReferenceEx extends CharacterReference
 {
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
      * The starting point in the string.
      */
     protected int mStart;
@@ -745,7 +751,7 @@ public class Translate
      * of Integer elements, the start and end index of the original character
      * reference.
      */
-    public static String decode (String string, java.util.List list)
+    public static String decode (String string, List<Integer> list)
     {
         CharacterReferenceEx key;
         int amp;

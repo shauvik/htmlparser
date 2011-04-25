@@ -27,11 +27,7 @@ package org.htmlparser.lexerapplications.thumbelina;
 
 import java.awt.Component;
 import java.awt.Dimension;
-import java.awt.Image;
-import java.awt.Insets;
 import java.awt.Point;
-import java.io.File;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.Random;
 import javax.swing.JViewport;
@@ -119,7 +115,6 @@ public class Sequencer
         Component parent;
         Component grandparent;
         Dimension dim;
-        Insets insets;
         int minx;
         int miny;
         int maxx;
@@ -138,7 +133,7 @@ public class Sequencer
         else
             dim = mThumbelina.getPicturePanel ().getSize ();
         // JPanel:
-//        insets = mThumbelina.getPicturePanel ().getInsets ();
+//        Insets insets = mThumbelina.getPicturePanel ().getInsets ();
 //        dim.width -= (insets.left + insets.right);
 //        dim.height -= (insets.top + insets.bottom);
 //        minx = insets.left;
@@ -239,14 +234,12 @@ public class Sequencer
      */
     public void add (Picture picture, final boolean background)
     {
-        int size;
-                                                                                                             
         if (picture.getValid ())
             if (background)
                 synchronized (mPending)
                 {
                     mPending.add (picture);
-//                    size = mPending.size ();
+//                    int size = mPending.size ();
 //                    if (mThumbelina.mReadyProgress.getMaximum () < size)
 //                        mThumbelina.mReadyProgress.setMaximum (size);
 //                    mThumbelina.mReadyProgress.setValue (size);
@@ -269,7 +262,6 @@ public class Sequencer
     public void run ()
     {
         Picture picture;
-        int size;
 
         while (true)
         {
@@ -289,7 +281,7 @@ public class Sequencer
                         {
                             ie.printStackTrace ();
                         }
-//                    size = mPending.size ();
+//                    int size = mPending.size ();
 //                    if (mThumbelina.mReadyProgress.getMaximum () < size)
 //                        mThumbelina.mReadyProgress.setMaximum (size);
 //                    mThumbelina.mReadyProgress.setValue (size);

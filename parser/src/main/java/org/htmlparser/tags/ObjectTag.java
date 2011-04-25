@@ -45,6 +45,11 @@ import org.htmlparser.util.SimpleNodeIterator;
 public class ObjectTag extends CompositeTag
 {
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
      * The set of names handled by this tag.
      */
     private static final String[] mIds = new String[] {"OBJECT"};
@@ -83,16 +88,16 @@ public class ObjectTag extends CompositeTag
      * Extract the object <code>PARAM</code> tags from the child list.
      * @return The list of object parameters (keys and values are String objects).
      */
-    public Hashtable createObjectParamsTable ()
+    public Hashtable<String,String> createObjectParamsTable ()
     {
         NodeList kids;
         Node node;
         Tag tag;
         String paramName;
         String paramValue;
-        Hashtable ret;
+        Hashtable<String,String> ret;
 
-        ret = new Hashtable ();
+        ret = new Hashtable<String,String> ();
         kids = getChildren ();
         if (null != kids)
             for (int i = 0; i < kids.size (); i++)
@@ -192,7 +197,7 @@ public class ObjectTag extends CompositeTag
      * Get the object parameters.
      * @return The list of parameter values (keys and values are String objects).
      */
-    public Hashtable getObjectParams ()
+    public Hashtable<String,String> getObjectParams ()
     {
         return createObjectParamsTable ();
     }
@@ -204,14 +209,14 @@ public class ObjectTag extends CompositeTag
      */
     public String getParameter (String key)
     {
-        return ((String)(getObjectParams ().get (key.toUpperCase ())));
+        return (getObjectParams ().get (key.toUpperCase ()));
     }
     
     /**
      * Get an enumeration over the (String) parameter names.
      * @return An enumeration of the <code>PARAM<code> tag <code>NAME<code> attributes.
      */
-    public Enumeration getParameterNames ()
+    public Enumeration<String> getParameterNames ()
     {
         return getObjectParams ().keys ();
     }
@@ -292,14 +297,14 @@ public class ObjectTag extends CompositeTag
      * Set the enclosed <code>PARAM<code> children.
      * @param newObjectParams The new parameters.
      */
-    public void setObjectParams (Hashtable newObjectParams)
+    public void setObjectParams (Hashtable<String,String> newObjectParams)
     {
         NodeList kids;
         Node node;
         Tag tag;
         String paramName;
         String paramValue;
-        Vector attributes;
+        Vector<Attribute> attributes;
         TextNode string;
         
         kids = getChildren ();
@@ -333,11 +338,11 @@ public class ObjectTag extends CompositeTag
             }
         
         // add newObjectParams to kids
-        for (Enumeration e = newObjectParams.keys (); e.hasMoreElements (); )
+        for (Enumeration<String> e = newObjectParams.keys (); e.hasMoreElements (); )
         {
-            attributes = new Vector (); // should the tag copy the attributes?
-            paramName = (String)e.nextElement ();
-            paramValue = (String)newObjectParams.get (paramName);
+            attributes = new Vector<Attribute> (); // should the tag copy the attributes?
+            paramName = e.nextElement ();
+            paramValue = newObjectParams.get (paramName);
             attributes.addElement (new Attribute ("PARAM", null));
             attributes.addElement (new Attribute (" "));
             attributes.addElement (new Attribute ("VALUE", paramValue, '"'));
@@ -357,8 +362,8 @@ public class ObjectTag extends CompositeTag
      */
     public String toString ()
     {
-        Hashtable parameters;
-        Enumeration params;
+        Hashtable<String,String> parameters;
+        Enumeration<String> params;
         String paramName;
         String paramValue;
         boolean found;
@@ -399,8 +404,8 @@ public class ObjectTag extends CompositeTag
         else
             for (int cnt = 0; params.hasMoreElements (); cnt++)
             {
-                paramName = (String)params.nextElement ();
-                paramValue = (String)parameters.get (paramName);
+                paramName = params.nextElement ();
+                paramValue = parameters.get (paramName);
                 ret.append (cnt);
                 ret.append (": Parameter name = ");
                 ret.append (paramName);

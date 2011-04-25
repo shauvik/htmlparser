@@ -47,6 +47,10 @@ public class HTMLTextBean
         PropertyChangeListener
 {
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	/**
      * The underlying bean that provides our htmlparser specific properties.
      */
     protected StringBean mBean;

@@ -32,6 +32,11 @@ package org.htmlparser.scanners;
 public class JspScanner extends TagScanner
 {
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
      * Create a new JspScanner.
      */
     public JspScanner ()

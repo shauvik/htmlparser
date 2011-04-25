@@ -25,7 +25,6 @@
 
 package org.htmlparser.tests.tagTests;
 
-import java.util.Hashtable;
 import junit.framework.TestSuite;
 import org.htmlparser.Node;
 

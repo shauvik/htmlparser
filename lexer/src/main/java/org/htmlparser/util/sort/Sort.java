@@ -60,7 +60,7 @@ public class Sort
      * @exception ClassCastException If the vector contains objects that
      * are not <code>Ordered</code>.
      */
-    public static void QuickSort (Vector v) throws ClassCastException
+    public static void QuickSort (Vector<Object> v) throws ClassCastException
     {
         QuickSort (v, 0, v.size () - 1);
     }
@@ -80,7 +80,7 @@ public class Sort
      * @exception ClassCastException If the vector contains objects that
      * are not <code>Ordered</code>.
      */
-    public static void QuickSort (Vector v, int lo0, int hi0) throws ClassCastException
+    public static void QuickSort (Vector<Object> v, int lo0, int hi0) throws ClassCastException
     {
         int lo = lo0;
         int hi = hi0;
@@ -120,7 +120,7 @@ public class Sort
         }
     }
 
-    private static void swap (Vector v, int i, int j)
+    private static void swap (Vector<Object> v, int i, int j)
     {
         Object o;
 
@@ -357,9 +357,9 @@ public class Sort
      * @exception ClassCastException If the keys of the hashtable
      * are not <code>Ordered</code>.
      */
-    public static Object[] QuickSort (Hashtable h) throws ClassCastException
+    public static Object[] QuickSort (Hashtable<Object,Object> h) throws ClassCastException
     {
-        Enumeration e;
+        Enumeration<Object> e;
         boolean are_strings;
         Object[] ret;
 
@@ -447,7 +447,7 @@ public class Sort
      * @param hi The upper index within which to look.
      * @return The index at which reference was found or is to be inserted.
      */
-    public static int bsearch (Vector vector, Ordered ref, int lo, int hi)
+    public static int bsearch (Vector<Object> vector, Ordered ref, int lo, int hi)
     {   int num;
         int mid;
         int half;
@@ -487,7 +487,7 @@ public class Sort
      * @param ref The name to search for.
      * @return The index at which reference was found or is to be inserted.
      */
-    public static int bsearch (Vector vector, Ordered ref)
+    public static int bsearch (Vector<Object> vector, Ordered ref)
     {
         return (bsearch (vector, ref, 0, vector.size () - 1));
     }

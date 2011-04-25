@@ -136,7 +136,12 @@ public class FilterBuilder
         DropTargetListener,
         ClipboardOwner
 {
-    static final String TITLE = "HTML Parser FilterBuilder";
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	static final String TITLE = "HTML Parser FilterBuilder";
 
     static final URL mDocumentBase;
     
@@ -197,7 +202,7 @@ public class FilterBuilder
     /**
      * Selected commands.
      */
-    protected Vector mSelection;
+    protected Vector<Filter> mSelection;
 
     /**
      * If true selection moved.
@@ -430,7 +435,7 @@ public class FilterBuilder
         addMouseMotionListener (this);
 
         // clipboard buffer
-        mSelection = new Vector ();
+        mSelection = new Vector<Filter> ();
     }
 
     /**

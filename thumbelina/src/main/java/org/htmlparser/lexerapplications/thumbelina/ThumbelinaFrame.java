@@ -72,6 +72,11 @@ public class ThumbelinaFrame
         PropertyChangeListener
 {
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
      * Window title.
      */
     private static final String TITLE = "Thumbelina";

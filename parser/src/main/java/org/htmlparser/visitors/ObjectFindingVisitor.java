@@ -30,14 +30,14 @@ import org.htmlparser.Tag;
 import org.htmlparser.util.NodeList;
 
 public class ObjectFindingVisitor extends NodeVisitor {
-    private Class classTypeToFind;
+    private Class<?> classTypeToFind;
     private NodeList tags;
 
-    public ObjectFindingVisitor(Class classTypeToFind) {
+    public ObjectFindingVisitor(Class<?> classTypeToFind) {
         this(classTypeToFind,true);
     }
 
-    public ObjectFindingVisitor(Class classTypeToFind,boolean recurse) {
+    public ObjectFindingVisitor(Class<?> classTypeToFind,boolean recurse) {
         super(recurse, true);
         this.classTypeToFind = classTypeToFind;
         this.tags = new NodeList();

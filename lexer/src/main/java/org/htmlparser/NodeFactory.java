@@ -87,7 +87,7 @@ public interface NodeFactory
      * when creating the node.
      * @return A tag node comprising the indicated characters from the page.
      */
-    Tag createTagNode (Page page, int start, int end, Vector attributes)
+    Tag createTagNode (Page page, int start, int end, Vector<Attribute> attributes)
         throws
             ParserException;
 }

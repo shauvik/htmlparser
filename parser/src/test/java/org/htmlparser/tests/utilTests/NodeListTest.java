@@ -123,7 +123,12 @@ public class NodeListTest extends ParserTestCase {
 
     private Node createHTMLNodeObject() {
         Node node = new AbstractNode(null,10,20) {
-            public void accept(NodeVisitor visitor) {
+            /**
+			 * 
+			 */
+			private static final long serialVersionUID = 1L;
+
+			public void accept(NodeVisitor visitor) {
             }
 
             public String toHtml(boolean verbose) {

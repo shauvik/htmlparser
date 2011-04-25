@@ -41,6 +41,11 @@ public class DefaultParserFeedback
         Serializable
 {
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
      * Constructor argument for a quiet feedback.
      */
     public static final int QUIET = 0;

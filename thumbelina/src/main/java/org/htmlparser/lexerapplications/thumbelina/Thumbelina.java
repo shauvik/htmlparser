@@ -27,19 +27,13 @@ package org.htmlparser.lexerapplications.thumbelina;
 
 import java.awt.BorderLayout;
 import java.awt.Component;
-import java.awt.Image;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.awt.image.ImageObserver;
 import java.beans.PropertyChangeListener;
 import java.beans.PropertyChangeSupport;
-import java.io.File;
-import java.io.FileNotFoundException;
-import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
@@ -85,6 +79,10 @@ public class Thumbelina
         PictureListener
 {
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	/**
      * Property name for current URL binding.
      */
     public static final String PROP_CURRENT_URL_PROPERTY = "currentURL";
@@ -373,10 +371,10 @@ public class Thumbelina
      * Append the given URLs to the queue.
      * @param list The list of URL objects to add.
      */
-    public void append (final ArrayList list)
+    public void append (final ArrayList<URL> list)
     {
         for (int i = 0; i < list.size (); i++)
-            append ((URL)list.get (i));
+            append (list.get (i));
     }
 
     /**
@@ -1000,7 +998,6 @@ public class Thumbelina
      */
     protected void fetch (final URL[] images)
     {
-        Image image;
         int size;
 
         for (int j = 0; j < images.length; j++)
@@ -1035,11 +1032,11 @@ public class Thumbelina
     // post the received image
     public void pictureReceived (Picture picture)
     {
-        URL url;
+//        URL url;
         
         synchronized (mTracked)
         {
-            url = (URL)mTracked.remove (picture.getIdentity ().toString ());
+//            url = (URL)mTracked.remove (picture.getIdentity ().toString ());
             mTracked.notify ();
             mQueueProgress.setValue (mTracked.size ());
 //            if (success)
@@ -1050,8 +1047,6 @@ public class Thumbelina
     // post the received image
     public void pictureReady (Picture picture)
     {
-        URL url;
-        
         mSequencer.add (picture, true); // (null != url)
     }
     //
@@ -1197,7 +1192,6 @@ public class Thumbelina
         Object[] hrefs;
         Picture picture;
         URL url;
-        Image image;
 
         source = (JList)event.getSource ();
         if (source == mHistory && !event.getValueIsAdjusting ())
@@ -1212,7 +1206,6 @@ public class Thumbelina
                     try
                     {
                         url = new URL ("http://" + (String)hrefs[i]);
-                        image = getToolkit ().createImage (url);
                         picture = new Picture (url, this, null);
                         System.out.println ("refetching " + hrefs[i]);
                         Thread thread = new Thread (picture);

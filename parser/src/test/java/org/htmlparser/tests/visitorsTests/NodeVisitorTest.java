@@ -58,11 +58,11 @@ public class NodeVisitorTest extends ParserTestCase {
     }
 
     class ParameterVisitor extends NodeVisitor {
-        Map paramsMap = new HashMap();
+        Map<String,String> paramsMap = new HashMap<String,String> ();
         String lastKeyVisited;
 
         public String getValue(String key) {
-            return (String)paramsMap.get(key);
+            return (paramsMap.get (key));
         }
 
         public void visitStringNode(Text stringNode) {

@@ -64,6 +64,11 @@ public class HasAttributeFilterWrapper
         DocumentListener
 {
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
      * The underlying filter.
      */
     protected HasAttributeFilter mFilter;
@@ -126,9 +131,9 @@ public class HasAttributeFilterWrapper
      * @param set The set to add to.
      * @param node The node with attributes to add.
      */
-    protected void addAttributes (Set set, Node node)
+    protected void addAttributes (Set<String> set, Node node)
     {
-        Vector attributes;
+        Vector<Attribute> attributes;
         Attribute attribute;
         String name;
         NodeList children;
@@ -158,9 +163,9 @@ public class HasAttributeFilterWrapper
      * @param set The set to add to.
      * @param node The node with attributes to add.
      */
-    protected void addAttributeValues (Set set, Node node)
+    protected void addAttributeValues (Set<String> set, Node node)
     {
-        Vector attributes;
+        Vector<Attribute> attributes;
         Attribute attribute;
         String value;
         NodeList children;
@@ -235,12 +240,12 @@ public class HasAttributeFilterWrapper
      */
     public void setNodeFilter (NodeFilter filter, Parser context)
     {
-        Set set;
+        Set<String> set;
         String name;
         String value;
 
         mFilter = (HasAttributeFilter)filter;
-        set = new HashSet ();
+        set = new HashSet<String> ();
         context.reset ();
         try
         {
@@ -251,7 +256,7 @@ public class HasAttributeFilterWrapper
         {
             // oh well, we tried
         }
-        for (Iterator iterator = set.iterator (); iterator.hasNext (); )
+        for (Iterator<String> iterator = set.iterator (); iterator.hasNext (); )
             mAttributeName.addItem (iterator.next ());
         name = mFilter.getAttributeName ();
         if (!name.equals (""))

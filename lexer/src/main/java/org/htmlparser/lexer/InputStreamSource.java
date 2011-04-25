@@ -44,6 +44,11 @@ public class InputStreamSource
         Source
 {
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
      * An initial buffer size.
      * Has a default value of {16384}.
      */

@@ -73,6 +73,11 @@ import org.htmlparser.visitors.NodeVisitor;
 public class StringBean extends NodeVisitor implements Serializable
 {
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
      * Property name in event where the URL contents changes.
      */
     public static final String PROP_STRINGS_PROPERTY = "strings";

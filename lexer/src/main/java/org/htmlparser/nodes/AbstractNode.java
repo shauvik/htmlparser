@@ -44,6 +44,11 @@ import org.htmlparser.visitors.NodeVisitor;
 public abstract class AbstractNode implements Node, Serializable
 {
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
      * The page this node came from.
      */
     protected Page mPage;

@@ -52,6 +52,11 @@ public abstract class Filter
         NodeFilter
 {
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
      * Create a new filter from the class name.
      * @param class_name The class to instatiate.
      * @return The constructed filter object.
@@ -63,7 +68,7 @@ public abstract class Filter
         ret = null;
         try
         {
-            Class cls = Class.forName (class_name);
+            Class<?> cls = Class.forName (class_name);
             ret = (Filter)cls.newInstance ();
             mWrappers.put (ret.getNodeFilter ().getClass ().getName (), class_name);
         }
@@ -91,7 +96,7 @@ public abstract class Filter
      * Map from cilter class to wrapper.
      * Populated as part of each wrapper being loaded.
      */
-    protected static Hashtable mWrappers = new Hashtable ();
+    protected static Hashtable<String,String> mWrappers = new Hashtable<String,String> ();
 
     /**
      * Line separator string.
@@ -342,13 +347,13 @@ public abstract class Filter
     public static Filter[] reconstitute (String string, Parser context)
     {
         Filter[] ret;
-        Vector vector;
+        Vector<Filter> vector;
         int index;
         String code;
         Object object;
         Filter filter;
         
-        vector = new Vector ();
+        vector = new Vector<Filter> ();
         try
         {
             while (string.startsWith ("["))

@@ -42,6 +42,11 @@ public class StringFilter
         NodeFilter
 {
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
      * The string to search for.
      */
     protected String mPattern;

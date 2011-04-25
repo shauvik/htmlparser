@@ -31,6 +31,11 @@ package org.htmlparser.tags;
 public class HeadingTag extends CompositeTag
 {
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
      * The set of names handled by this tag.
      */
     private static final String[] mIds = new String[] {"H1", "H2", "H3", "H4", "H5", "H6"};

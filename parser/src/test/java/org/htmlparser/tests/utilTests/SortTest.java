@@ -80,17 +80,20 @@ public class SortTest extends ParserTestCase
     /**
      * A class implementing the Sortable interface.
      */
-    class List extends Vector implements Sortable
+    class List extends Vector<Item> implements Sortable
     {
-        List (String words)
+        /**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+		List (String words)
         {
             StringTokenizer toks;
 
             toks = new StringTokenizer (words);
-            outer:
             while (toks.hasMoreTokens ())
                addElement (new Item (toks.nextToken ()));
-            Sort.QuickSort ((Sortable)this);
+            Sort.QuickSort (this);
         }
 
         //
@@ -107,11 +110,11 @@ public class SortTest extends ParserTestCase
         }
         public Ordered fetch (int index, Ordered reuse)
         {
-            return ((Ordered)elementAt (index));
+            return (elementAt (index));
         }
         public void swap (int i, int j)
         {
-            Object o = elementAt (i);
+            Item o = elementAt (i);
             setElementAt (elementAt (j), i);
             setElementAt (o, j);
         }
@@ -122,7 +125,12 @@ public class SortTest extends ParserTestCase
      */
     class SortableFile extends File implements Ordered
     {
-        public SortableFile (String name)
+        /**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+
+		public SortableFile (String name)
         {
             super (name);
         }
@@ -203,7 +211,7 @@ public class SortTest extends ParserTestCase
             "All mimsy were the borogroves " +
             "And the mome raths outgrabe.");
         StringBuffer b = new StringBuffer ();
-        for (Enumeration e = list.elements (); e.hasMoreElements ();)
+        for (Enumeration<Item> e = list.elements (); e.hasMoreElements ();)
         {
             if (0 != b.length ())
                 b.append (' ');
@@ -223,7 +231,7 @@ public class SortTest extends ParserTestCase
     public void testSortVector ()
     {
         // sort a directory by date (oldest first)
-        Vector directory = new Vector ();
+        Vector<Object> directory = new Vector<Object> ();
         File dir = new File (".");
         String[] listing = dir.list ();
         for (int i = 0; i < listing.length; i++)

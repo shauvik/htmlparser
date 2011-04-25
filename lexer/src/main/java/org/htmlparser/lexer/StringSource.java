@@ -36,6 +36,11 @@ public class StringSource
         Source
 {
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
      * The source of characters.
      */
     protected String mString;

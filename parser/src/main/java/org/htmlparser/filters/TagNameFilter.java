@@ -39,6 +39,10 @@ public class TagNameFilter
         NodeFilter
 {
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	/**
      * The tag name to match.
      */
     protected String mName;

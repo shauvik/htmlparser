@@ -40,6 +40,11 @@ public class VerticalLayoutManager
         Serializable
 { 
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
      * Constructs a VerticalLayoutManager object.
      */
     public VerticalLayoutManager ()

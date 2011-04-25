@@ -596,7 +596,11 @@ public class CompositeTagScannerTest extends ParserTestCase {
     }
 
     public static class CustomScanner extends CompositeTagScanner {
-        private static final String MATCH_NAME [] = { "CUSTOM" };
+        /**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+		private static final String MATCH_NAME [] = { "CUSTOM" };
         public CustomScanner() {
         }
 
@@ -606,7 +610,11 @@ public class CompositeTagScannerTest extends ParserTestCase {
     }
 
     public static class AnotherScanner extends CompositeTagScanner {
-        private static final String MATCH_NAME [] = { "ANOTHER" };
+        /**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+		private static final String MATCH_NAME [] = { "ANOTHER" };
         public AnotherScanner() {
         }
 
@@ -623,6 +631,11 @@ public class CompositeTagScannerTest extends ParserTestCase {
     public static class CustomTag extends CompositeTag
     {
         /**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+
+		/**
          * The set of names handled by this tag.
          */
         private static final String[] mIds = new String[] {"CUSTOM"};
@@ -672,6 +685,11 @@ public class CompositeTagScannerTest extends ParserTestCase {
     public static class AnotherTag extends CompositeTag
     {
         /**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+
+		/**
          * The set of names handled by this tag.
          */
         private static final String[] mIds = new String[] {"ANOTHER"};

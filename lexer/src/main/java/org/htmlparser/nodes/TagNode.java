@@ -25,7 +25,6 @@
 
 package org.htmlparser.nodes;
 
-import java.util.Enumeration;
 import java.util.Hashtable;
 import java.util.Locale;
 import java.util.Vector;
@@ -52,6 +51,11 @@ public class TagNode
         Tag
 {
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
      * An empty set of tag names.
      */
     private final static String[] NONE = new String[0];
@@ -72,15 +76,15 @@ public class TagNode
      * The first element is the tag name, subsequent elements being either
      * whitespace or real attributes.
      */
-    protected Vector mAttributes;
+    protected Vector<Attribute> mAttributes;
 
     /**
      * Set of tags that breaks the flow.
      */
-    protected static final Hashtable breakTags;
+    protected static final Hashtable<String,Boolean> breakTags;
     static
     {
-        breakTags = new Hashtable (30);
+        breakTags = new Hashtable<String,Boolean> (30);
         breakTags.put ("BLOCKQUOTE", Boolean.TRUE);
         breakTags.put ("BODY", Boolean.TRUE);
         breakTags.put ("BR", Boolean.TRUE);
@@ -118,7 +122,7 @@ public class TagNode
      */
     public TagNode ()
     {
-        this (null, -1, -1, new Vector ());
+        this (null, -1, -1, new Vector<Attribute> ());
     }
 
     /**
@@ -129,7 +133,7 @@ public class TagNode
      * @param attributes The list of attributes that were parsed in this tag.
      * @see Attribute
      */
-    public TagNode (Page page, int start, int end, Vector attributes)
+    public TagNode (Page page, int start, int end, Vector<Attribute> attributes)
     {
         super (page, start, end);
 
@@ -284,7 +288,7 @@ public class TagNode
      */
     public Attribute getAttributeEx (String name)
     {
-        Vector attributes;
+        Vector<Attribute> attributes;
         int size;
         Attribute attribute;
         String string;
@@ -298,7 +302,7 @@ public class TagNode
             size = attributes.size ();
             for (int i = 0; i < size; i++)
             {
-                attribute = (Attribute)attributes.elementAt (i);
+                attribute = attributes.elementAt (i);
                 string = attribute.getName ();
                 if ((null != string) && name.equalsIgnoreCase (string))
                 {
@@ -331,7 +335,7 @@ public class TagNode
     {
         boolean replaced;
         boolean empty_xml;
-        Vector attributes;
+        Vector<Attribute> attributes;
         int length;
         String name;
         Attribute test;
@@ -347,7 +351,7 @@ public class TagNode
             name = attribute.getName ();
             for (int i = 1; i < attributes.size (); i++)
             {
-                test = (Attribute)attributes.elementAt (i);
+                test = attributes.elementAt (i);
                 test_name = test.getName ();
                 if (null != test_name)
                     if (test_name.equalsIgnoreCase (name))
@@ -359,7 +363,7 @@ public class TagNode
             // see bug #1761484 tag.setAttribute() not compatible with <tag/>
             if (!replaced)
             {
-                test = (Attribute)attributes.elementAt (length - 1);
+                test = attributes.elementAt (length - 1);
                 test_name = test.getName ();
                 if (null != test_name)
                 {
@@ -376,7 +380,7 @@ public class TagNode
                             attributes.addElement (new Attribute ("/", null));
                             length += 2;
                         }
-                        else if ((1 != length) && !((Attribute)attributes.elementAt (length - 2)).isWhitespace ())
+                        else if ((1 != length) && !(attributes.elementAt (length - 2)).isWhitespace ())
                         {
                             attributes.insertElementAt (new Attribute (" "), length - 1);
                             length ++;
@@ -395,7 +399,7 @@ public class TagNode
         if (!replaced)
         {
             // add whitespace between attributes
-            if ((0 != length) && !((Attribute)attributes.elementAt (length - 1)).isWhitespace ())
+            if ((0 != length) && !(attributes.elementAt (length - 1)).isWhitespace ())
                 attributes.addElement (new Attribute (" "));
             attributes.addElement (attribute);
         }
@@ -407,7 +411,7 @@ public class TagNode
      * The first element is the tag name, subsequent elements being either
      * whitespace or real attributes.
      */
-    public Vector getAttributesEx ()
+    public Vector<Attribute> getAttributesEx ()
     {
         return (mAttributes);
     }
@@ -449,14 +453,14 @@ public class TagNode
      */
     public String getRawTagName ()
     {
-        Vector attributes;
+        Vector<Attribute> attributes;
         String ret;
 
         ret = null;
         
         attributes = getAttributesEx ();
         if (0 != attributes.size ())
-            ret = ((Attribute)attributes.elementAt (0)).getName ();
+            ret = (attributes.elementAt (0)).getName ();
 
         return (ret);
     }
@@ -470,14 +474,14 @@ public class TagNode
     public void setTagName (String name)
     {
         Attribute attribute;
-        Vector attributes;
+        Vector<Attribute> attributes;
         Attribute zeroth;
 
         attribute = new Attribute (name, null, (char)0);
         attributes = getAttributesEx ();
         if (null == attributes)
         {
-            attributes = new Vector ();
+            attributes = new Vector<Attribute> ();
             setAttributesEx (attributes);
         }
         if (0 == attributes.size ())
@@ -485,7 +489,7 @@ public class TagNode
             attributes.addElement (attribute);
         else
         {
-            zeroth = (Attribute)attributes.elementAt (0);
+            zeroth = attributes.elementAt (0);
             // check for attribute that looks like a name
             if ((null == zeroth.getValue ()) && (0 == zeroth.getQuote ()))
                 attributes.setElementAt (attribute, 0);
@@ -515,7 +519,7 @@ public class TagNode
      * and the second element being the value.
      * @param attribs The attribute collection to set.
      */
-    public void setAttributesEx (Vector attribs)
+    public void setAttributesEx (Vector<Attribute> attribs)
     {
         mAttributes = attribs;
     }
@@ -614,7 +618,7 @@ public class TagNode
     {
         int length;
         int size;
-        Vector attributes;
+        Vector<Attribute> attributes;
         Attribute attribute;
         StringBuffer ret;
 
@@ -623,14 +627,14 @@ public class TagNode
         size = attributes.size ();
         for (int i = 0; i < size; i++)
         {
-            attribute = (Attribute)attributes.elementAt (i);
+            attribute = attributes.elementAt (i);
             length += attribute.getLength ();
         }
         ret = new StringBuffer (length);
         ret.append ("<");
         for (int i = 0; i < size; i++)
         {
-            attribute = (Attribute)attributes.elementAt (i);
+            attribute = attributes.elementAt (i);
             attribute.toString (ret);
         }
         ret.append (">");
@@ -706,7 +710,7 @@ public class TagNode
      */
     public boolean isEmptyXmlTag ()
     {
-        Vector attributes;
+        Vector<Attribute> attributes;
         int size;
         Attribute attribute;
         String name;
@@ -719,7 +723,7 @@ public class TagNode
         size = attributes.size ();
         if (0 < size)
         {
-            attribute = (Attribute)attributes.elementAt (size - 1);
+            attribute = attributes.elementAt (size - 1);
             name = attribute.getName ();
             if (null != name)
             {
@@ -739,7 +743,7 @@ public class TagNode
      */
     public void setEmptyXmlTag (boolean emptyXmlTag)
     {
-        Vector attributes;
+        Vector<Attribute> attributes;
         int size;
         Attribute attribute;
         String name;
@@ -750,7 +754,7 @@ public class TagNode
         size = attributes.size ();
         if (0 < size)
         {
-            attribute = (Attribute)attributes.elementAt (size - 1);
+            attribute = attributes.elementAt (size - 1);
             name = attribute.getName ();
             if (null != name)
             {

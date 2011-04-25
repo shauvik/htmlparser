@@ -30,6 +30,7 @@ import java.net.MalformedURLException;
 import java.net.URLConnection;
 import java.util.Vector;
 
+import org.htmlparser.Attribute;
 import org.htmlparser.Node;
 import org.htmlparser.NodeFactory;
 import org.htmlparser.Remark;
@@ -61,6 +62,11 @@ public class Lexer
     // This is done so as to facilitate ant script processing.
 
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
      * The floating point version number ({@value}).
      */
     public static final double
@@ -658,7 +664,7 @@ public class Lexer
      * @param attributes The attributes contained in this tag.
      * @return The created Tag node.
      */
-    public Tag createTagNode (Page page, int start, int end, Vector attributes)
+    public Tag createTagNode (Page page, int start, int end, Vector<Attribute> attributes)
     {
         return (new TagNode (page, start, end, attributes));
     }
@@ -905,7 +911,7 @@ public class Lexer
      * @param attributes The list so far.
      * @param bookmarks The array of positions.
      */
-    private void whitespace (Vector attributes, int[] bookmarks)
+    private void whitespace (Vector<Attribute> attributes, int[] bookmarks)
     {
         if (bookmarks[1] > bookmarks[0])
             attributes.addElement (new PageAttribute (
@@ -917,7 +923,7 @@ public class Lexer
      * @param attributes The list so far.
      * @param bookmarks The array of positions.
      */
-    private void standalone (Vector attributes, int[] bookmarks)
+    private void standalone (Vector<Attribute> attributes, int[] bookmarks)
     {
         attributes.addElement (new PageAttribute (
             mPage, bookmarks[1], bookmarks[2], -1, -1, (char)0));
@@ -928,7 +934,7 @@ public class Lexer
      * @param attributes The list so far.
      * @param bookmarks The array of positions.
      */
-    private void empty (Vector attributes, int[] bookmarks)
+    private void empty (Vector<Attribute> attributes, int[] bookmarks)
     {
         attributes.addElement (new PageAttribute (
             mPage, bookmarks[1], bookmarks[2], bookmarks[2] + 1, -1, (char)0));
@@ -939,7 +945,7 @@ public class Lexer
      * @param attributes The list so far.
      * @param bookmarks The array of positions.
      */
-    private void naked (Vector attributes, int[] bookmarks)
+    private void naked (Vector<Attribute> attributes, int[] bookmarks)
     {
         attributes.addElement (new PageAttribute (
             mPage, bookmarks[1], bookmarks[2], bookmarks[3],
@@ -951,7 +957,7 @@ public class Lexer
      * @param attributes The list so far.
      * @param bookmarks The array of positions.
      */
-    private void single_quote (Vector attributes, int[] bookmarks)
+    private void single_quote (Vector<Attribute> attributes, int[] bookmarks)
     {
         attributes.addElement (new PageAttribute (
             mPage, bookmarks[1], bookmarks[2], bookmarks[4] + 1,
@@ -963,7 +969,7 @@ public class Lexer
      * @param attributes The list so far.
      * @param bookmarks The array of positions.
      */
-    private void double_quote (Vector attributes, int[] bookmarks)
+    private void double_quote (Vector<Attribute> attributes, int[] bookmarks)
     {
         attributes.addElement (new PageAttribute (
             mPage, bookmarks[1], bookmarks[2], bookmarks[5] + 1,
@@ -1043,10 +1049,10 @@ public class Lexer
         char ch;
         int state;
         int[] bookmarks;
-        Vector attributes;
+        Vector<Attribute> attributes;
 
         done = false;
-        attributes = new Vector ();
+        attributes = new Vector<Attribute> ();
         state = 0;
         bookmarks = new int[8];
         bookmarks[0] = mCursor.getPosition ();
@@ -1212,7 +1218,7 @@ public class Lexer
      * @exception ParserException If the nodefactory creation of the tag node fails.
      * @return The new Tag node.
      */
-    protected Node makeTag (int start, int end, Vector attributes)
+    protected Node makeTag (int start, int end, Vector<Attribute> attributes)
         throws
             ParserException
     {
@@ -1399,13 +1405,13 @@ public class Lexer
         boolean done;
         char ch;
         int state;
-        Vector attributes;
+        Vector<Attribute> attributes;
         int code;
 
         done = false;
         state = 0;
         code = 0;
-        attributes = new Vector ();
+        attributes = new Vector<Attribute> ();
         // <%xyz%>
         // 012223d
         // <%=xyz%>
@@ -1580,13 +1586,13 @@ public class Lexer
         boolean done;
         char ch;
         int state;
-        Vector attributes;
+        Vector<Attribute> attributes;
         int code;
 
         done = false;
         state = 0;
         code = 0;
-        attributes = new Vector ();
+        attributes = new Vector<Attribute> ();
         // <?xyz?>
         // 011112d
         while (!done)

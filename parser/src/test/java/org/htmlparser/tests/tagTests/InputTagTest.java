@@ -25,11 +25,7 @@
 
 package org.htmlparser.tests.tagTests;
 
-import org.htmlparser.tags.FormTag;
 import org.htmlparser.tags.InputTag;
-import org.htmlparser.tags.TableColumn;
-import org.htmlparser.tags.TableRow;
-import org.htmlparser.tags.TableTag;
 import org.htmlparser.tests.ParserTestCase;
 import org.htmlparser.util.ParserException;
 

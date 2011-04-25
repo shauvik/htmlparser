@@ -212,6 +212,11 @@ public class Attribute
         Serializable
 {
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
      * The name of this attribute.
      * The part before the equals sign, or the stand-alone attribute.
      * This will be <code>null</code> if the attribute is whitespace.

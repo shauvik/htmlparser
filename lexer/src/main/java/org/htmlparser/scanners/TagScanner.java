@@ -47,6 +47,11 @@ public class TagScanner
         Serializable
 {
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
      * Create a (non-composite) tag scanner.
      */
     public TagScanner ()

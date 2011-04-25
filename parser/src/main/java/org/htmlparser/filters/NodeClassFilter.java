@@ -34,9 +34,13 @@ import org.htmlparser.NodeFilter;
 public class NodeClassFilter implements NodeFilter
 {
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	/**
      * The class to match.
      */
-    protected Class mClass;
+    protected Class<?> mClass;
 
     /**
      * Creates a NodeClassFilter that accepts Html tags.
@@ -50,7 +54,7 @@ public class NodeClassFilter implements NodeFilter
      * Creates a NodeClassFilter that accepts tags of the given class.
      * @param cls The class to match.
      */
-    public NodeClassFilter (Class cls)
+    public NodeClassFilter (Class<?> cls)
     {
         mClass = cls;
     }
@@ -59,7 +63,7 @@ public class NodeClassFilter implements NodeFilter
      * Get the class to match.
      * @return Returns the class.
      */
-    public Class getMatchClass ()
+    public Class<?> getMatchClass ()
     {
         return (mClass);
     }
@@ -68,7 +72,7 @@ public class NodeClassFilter implements NodeFilter
      * Set the class to match.
      * @param cls The node class to match.
      */
-    public void setMatchClass (Class cls)
+    public void setMatchClass (Class<?> cls)
     {
         mClass = cls;
     }

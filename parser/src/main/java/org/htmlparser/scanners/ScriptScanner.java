@@ -29,14 +29,8 @@ import java.util.Vector;
 
 import org.htmlparser.Attribute;
 import org.htmlparser.Node;
-import org.htmlparser.NodeFactory;
-import org.htmlparser.PrototypicalNodeFactory;
-import org.htmlparser.Remark;
 import org.htmlparser.Tag;
-import org.htmlparser.Text;
-import org.htmlparser.lexer.Cursor;
 import org.htmlparser.lexer.Lexer;
-import org.htmlparser.lexer.Page;
 import org.htmlparser.scanners.ScriptDecoder;
 import org.htmlparser.tags.ScriptTag;
 import org.htmlparser.util.NodeList;
@@ -50,6 +44,10 @@ public class ScriptScanner
         CompositeTagScanner
 {
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	/**
      * Strict parsing of CDATA flag.
      * If this flag is set true, the parsing of script is performed without
      * regard to quotes. This means that erroneous script such as:
@@ -97,7 +95,7 @@ public class ScriptScanner
         int position;
         Node node;
         Attribute attribute;
-        Vector vector;
+        Vector<Attribute> vector;
 
         if (tag instanceof ScriptTag)
         {
@@ -125,7 +123,7 @@ public class ScriptScanner
         if (null == node)
         {
             attribute = new Attribute ("/script", null);
-            vector = new Vector ();
+            vector = new Vector<Attribute> ();
             vector.addElement (attribute);
             node = lexer.getNodeFactory ().createTagNode (
                 lexer.getPage (), position, position, vector);

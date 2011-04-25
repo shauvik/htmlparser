@@ -25,8 +25,6 @@
 
 package org.htmlparser.tests.scannersTests;
 
-import java.util.Hashtable;
-
 import org.htmlparser.Node;
 import org.htmlparser.Parser;
 import org.htmlparser.filters.NodeClassFilter;

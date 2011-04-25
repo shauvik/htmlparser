@@ -35,6 +35,11 @@ import org.htmlparser.util.SimpleNodeIterator;
 public class FormTag extends CompositeTag
 {
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
      * The {@value} method.
      * @see #getFormMethod
      */

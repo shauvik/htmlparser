@@ -354,10 +354,10 @@ public class ParserTestCase extends TestCase {
     private void assertActualTagHasNoExtraAttributes(String displayMessage, Tag expectedTag, Tag actualTag)
     {
         assertStringEquals (displayMessage+"\ntag name", expectedTag.getTagName (), actualTag.getTagName ());
-        Vector v = actualTag.getAttributesEx ();
+        Vector<Attribute> v = actualTag.getAttributesEx ();
         for (int i = 1; i < v.size (); i++)
         {
-            Attribute a = (Attribute)v.elementAt (i);
+            Attribute a = v.elementAt (i);
             if (a.isWhitespace ())
                 continue;
             String expectedValue = expectedTag.getAttribute (a.getName ());
@@ -372,10 +372,10 @@ public class ParserTestCase extends TestCase {
         Tag actualTag)
     {
         assertStringEquals (displayMessage+"\ntag name", expectedTag.getTagName (), actualTag.getTagName ());
-        Vector v = actualTag.getAttributesEx ();
+        Vector<Attribute> v = actualTag.getAttributesEx ();
         for (int i = 1; i < v.size (); i++)
         {
-            Attribute a = (Attribute)v.elementAt (i);
+            Attribute a = v.elementAt (i);
             if (a.isWhitespace ())
                 continue;
             String actualValue = actualTag.getAttribute (a.getName ());
@@ -401,7 +401,7 @@ public class ParserTestCase extends TestCase {
 
     public void assertSuperType(
         String message,
-        Class expectedType,
+        Class<?> expectedType,
         Object object)
     {   
         String expectedTypeName = expectedType.getName();
@@ -417,7 +417,7 @@ public class ParserTestCase extends TestCase {
 
     public void assertType(
         String message,
-        Class expectedType,
+        Class<?> expectedType,
         Object object)
     {
         if (!expectedType.isAssignableFrom (object.getClass ()))
@@ -470,7 +470,7 @@ public class ParserTestCase extends TestCase {
      * -swing -- use junit.swingui.TestRunner (default)
      * </pre>
      * All other options are passed on to the junit framework.
-     * Decides the test class by examiing the system properties looking
+     * Decides the test class by examining the system properties looking
      * for a property that starts with "org.htmlparser.tests.", this is
      * used as the name of the class (the value is ignored).
      * Each class that subclasses ParserTestCase can inherit this mainline
@@ -488,9 +488,9 @@ public class ParserTestCase extends TestCase {
         int i;
         String arguments[];
         Properties properties;
-        Enumeration enumeration;
+        Enumeration<?> enumeration;
         String name;
-        Class cls;
+        Class<?> cls;
 
         runner = null;
         for (i = 0; (i < args.length) && (null == runner); i++)
@@ -539,13 +539,13 @@ public class ParserTestCase extends TestCase {
                     arguments[arguments.length - 2] = "-noloading";
                     arguments[arguments.length - 1] = name;
                 }
-                else
-                {
-                    // append the test class
-                    arguments = new String[args.length + 1];
-                    System.arraycopy (args, 0, arguments, 0, args.length);
-                    arguments[args.length] = name;
-                }
+//                else
+//                {
+//                    // append the test class
+//                    arguments = new String[args.length + 1];
+//                    System.arraycopy (args, 0, arguments, 0, args.length);
+//                    arguments[args.length] = name;
+//                }
                 break; // JUnit only handles one class on the command line
             }
         }
@@ -555,7 +555,7 @@ public class ParserTestCase extends TestCase {
         {
             cls = Class.forName (runner);
             java.lang.reflect.Method method = cls.getDeclaredMethod (
-                "main", new Class[] { String[].class });
+                "main", new Class<?>[] { String[].class });
             method.invoke (
                 null,
                 new Object[] { arguments });

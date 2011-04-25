@@ -62,7 +62,11 @@ import java.util.Vector;
 public class ChainedException
   extends Exception
 {
-  protected Throwable throwable;
+  /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+protected Throwable throwable;
 
   public ChainedException() {}
 
@@ -84,22 +88,22 @@ public class ChainedException
 
   public String[] getMessageChain()
   {
-    Vector list = getMessageList();
+    Vector<String> list = getMessageList();
     String[] chain = new String[list.size()];
     list.copyInto (chain);
     return chain;
   }
 
-  public Vector getMessageList()
+  public Vector<String> getMessageList()
   {
-    Vector list = new Vector();
+    Vector<String> list = new Vector<String> ();
     list.addElement(getMessage());
     if (throwable != null)
     {
       if (throwable instanceof ChainedException)
       {
         ChainedException chain = (ChainedException)throwable;
-        Vector sublist = chain.getMessageList ();
+        Vector<String> sublist = chain.getMessageList ();
         for (int i = 0; i < sublist.size (); i++)
             list.addElement (sublist.elementAt (i));
       }

@@ -53,6 +53,11 @@ public class RegexFilterWrapper
         DocumentListener
 {
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
      * Mapping for RegexFilter constants to strings.
      */
     public static Object[][] mMap;

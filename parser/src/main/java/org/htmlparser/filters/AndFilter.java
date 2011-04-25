@@ -36,6 +36,10 @@ public class AndFilter
         NodeFilter
 {
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	/**
      * The predicates that are to be and'ed together;
      */
     protected NodeFilter[] mPredicates;

@@ -43,6 +43,11 @@ public class PageIndex
         Sortable
 {
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
      * Starting increment for allocations.
      */
     protected static final int mStartIncrement = 100;

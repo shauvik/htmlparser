@@ -56,9 +56,9 @@ public class HttpHeader
     {
         // dump it
         StringBuffer buffer;
-        Map map;
+        Map<String,List<String>> map;
         String key;
-        List items;
+        List<String> items;
 
         buffer = new StringBuffer (1024);
         buffer.append (connection.getRequestMethod ());
@@ -66,10 +66,10 @@ public class HttpHeader
         buffer.append (connection.getURL ());
         buffer.append (" HTTP/1.1\n");
         map  = connection.getRequestProperties ();
-        for (Iterator iter = map.keySet ().iterator (); iter.hasNext (); )
+        for (Iterator<String> iter = map.keySet ().iterator (); iter.hasNext (); )
         {
-            key = (String)iter.next ();
-            items = (List)map.get (key);
+            key = iter.next ();
+            items = map.get (key);
             buffer.append (key);
             buffer.append (": ");
             for (int i = 0; i < items.size (); i++)

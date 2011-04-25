@@ -44,8 +44,8 @@ public class AppletTagTest extends ParserTestCase {
     }
 
     public void testToHTML() throws ParserException {
-        String [][]paramsData = {{"Param1","Value1"},{"Name","Somik"},{"Age","23"}};
-        Hashtable paramsMap = new Hashtable();
+        String[][] paramsData = {{"Param1","Value1"},{"Name","Somik"},{"Age","23"}};
+        Hashtable<String, String> paramsMap = new Hashtable<String, String> ();
         String testHTML = new String("<APPLET CODE=Myclass.class ARCHIVE=test.jar CODEBASE=www.kizna.com>\n");
         for (int i = 0;i<paramsData.length;i++)
         {
@@ -71,8 +71,8 @@ public class AppletTagTest extends ParserTestCase {
 
     public void testScan() throws ParserException
     {
-        String [][]paramsData = {{"Param1","Value1"},{"Name","Somik"},{"Age","23"}};
-        Hashtable paramsMap = new Hashtable();
+        String[][] paramsData = {{"Param1","Value1"},{"Name","Somik"},{"Age","23"}};
+        Hashtable<String, String> paramsMap = new Hashtable<String, String> ();
         String testHTML = new String("<APPLET CODE=Myclass.class ARCHIVE=test.jar CODEBASE=www.kizna.com>\n");
         for (int i = 0;i<paramsData.length;i++)
         {
@@ -91,9 +91,9 @@ public class AppletTagTest extends ParserTestCase {
         assertEquals("Codebase","www.kizna.com",appletTag.getCodeBase());
         // Check the params data
         int cnt = 0;
-        for (Enumeration e = appletTag.getParameterNames();e.hasMoreElements();)
+        for (Enumeration<String> e = appletTag.getParameterNames(); e.hasMoreElements();)
         {
-            String paramName = (String)e.nextElement();
+            String paramName = e.nextElement();
             String paramValue = appletTag.getParameter(paramName);
             assertEquals("Param "+cnt+" value",paramsMap.get(paramName),paramValue);
             cnt++;
@@ -102,8 +102,8 @@ public class AppletTagTest extends ParserTestCase {
     }
     
     public void testChangeCodebase() throws ParserException {
-        String [][]paramsData = {{"Param1","Value1"},{"Name","Somik"},{"Age","23"}};
-        Hashtable paramsMap = new Hashtable();
+        String[][] paramsData = {{"Param1","Value1"},{"Name","Somik"},{"Age","23"}};
+        Hashtable<String, String> paramsMap = new Hashtable<String, String> ();
         String testHTML = new String("<APPLET CODE=Myclass.class ARCHIVE=test.jar CODEBASE=www.kizna.com>\n");
         for (int i = 0;i<paramsData.length;i++)
         {
@@ -129,8 +129,8 @@ public class AppletTagTest extends ParserTestCase {
     }
 
     public void testChangeArchive() throws ParserException {
-        String [][]paramsData = {{"Param1","Value1"},{"Name","Somik"},{"Age","23"}};
-        Hashtable paramsMap = new Hashtable();
+        String[][] paramsData = {{"Param1","Value1"},{"Name","Somik"},{"Age","23"}};
+        Hashtable<String, String> paramsMap = new Hashtable<String, String> ();
         String testHTML = "<APPLET CODE=Myclass.class ARCHIVE=test.jar CODEBASE=www.kizna.com>\n";
         for (int i = 0;i<paramsData.length;i++)
         {
@@ -152,8 +152,8 @@ public class AppletTagTest extends ParserTestCase {
     }
 
     public void testChangeAppletClass() throws ParserException {
-        String [][]paramsData = {{"Param1","Value1"},{"Name","Somik"},{"Age","23"}};
-        Hashtable paramsMap = new Hashtable();
+        String[][] paramsData = {{"Param1","Value1"},{"Name","Somik"},{"Age","23"}};
+        Hashtable<String, String> paramsMap = new Hashtable<String, String>();
         String testHTML = new String("<APPLET CODE=Myclass.class ARCHIVE=test.jar CODEBASE=www.kizna.com>\n");
         for (int i = 0;i<paramsData.length;i++)
         {
@@ -175,8 +175,8 @@ public class AppletTagTest extends ParserTestCase {
     }
 
     public void testChangeAppletParams() throws ParserException {
-        String [][]paramsData = {{"Param1","Value1"},{"Name","Somik"},{"Age","23"}};
-        Hashtable paramsMap = new Hashtable();
+        String[][] paramsData = {{"Param1","Value1"},{"Name","Somik"},{"Age","23"}};
+        Hashtable<String, String> paramsMap = new Hashtable<String, String> ();
         String testHTML = new String("<APPLET CODE=Myclass.class ARCHIVE=test.jar CODEBASE=www.kizna.com>\n");
         for (int i = 0;i<paramsData.length;i++)
         {
@@ -190,7 +190,7 @@ public class AppletTagTest extends ParserTestCase {
         parseAndAssertNodeCount(3);
         assertTrue("Node should be an applet tag",node[0] instanceof AppletTag);
         AppletTag appletTag = (AppletTag)node[0];
-        paramsMap = new Hashtable();
+        paramsMap = new Hashtable<String, String> ();
         String [][] newparamsData = {{"First","One"},{"Second","Two"},{"Third","3"}};
         for (int i = 0;i<paramsData.length;i++)
         {

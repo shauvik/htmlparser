@@ -52,6 +52,10 @@ public abstract class Source
         Serializable
 {
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	/**
      * Return value when the source is exhausted.
      * Has a value of {@value}.
      */

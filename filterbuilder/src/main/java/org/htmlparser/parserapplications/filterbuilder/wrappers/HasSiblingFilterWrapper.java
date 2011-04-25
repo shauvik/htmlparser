@@ -45,6 +45,11 @@ public class HasSiblingFilterWrapper
         ActionListener
 {
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
      * The underlying filter.
      */
     protected HasSiblingFilter mFilter;

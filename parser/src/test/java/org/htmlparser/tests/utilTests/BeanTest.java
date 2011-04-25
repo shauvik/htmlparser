@@ -177,13 +177,13 @@ public class BeanTest extends ParserTestCase
             ParserException
     {
         Parser parser;
-        Vector vector;
+        Vector<Node> vector;
         NodeIterator enumeration;
         byte[] data;
 
         parser = new Parser ("http://htmlparser.sourceforge.net/test/example.html");
         enumeration = parser.elements ();
-        vector = new Vector (50);
+        vector = new Vector<Node> (50);
         while (enumeration.hasMoreNodes ())
             vector.addElement (enumeration.nextNode ());
 
@@ -194,7 +194,7 @@ public class BeanTest extends ParserTestCase
         while (enumeration.hasMoreNodes ())
             assertEquals (
                 "Nodes before and after serialization differ",
-                ((Node)vector.remove (0)).toHtml (),
+                (vector.remove (0)).toHtml (),
                 enumeration.nextNode ().toHtml ());
     }
 
@@ -205,13 +205,13 @@ public class BeanTest extends ParserTestCase
             ParserException
     {
         Parser parser;
-        Vector vector;
+        Vector<Node> vector;
         NodeIterator enumeration;
         byte[] data;
 
         parser = new Parser ("http://htmlparser.sourceforge.net/test/example.html");
         enumeration = parser.elements ();
-        vector = new Vector (50);
+        vector = new Vector<Node> (50);
         while (enumeration.hasMoreNodes ())
             vector.addElement (enumeration.nextNode ());
 
@@ -222,7 +222,7 @@ public class BeanTest extends ParserTestCase
         while (enumeration.hasMoreNodes ())
             assertEquals (
                 "Nodes before and after serialization differ",
-                ((Node)vector.remove (0)).toHtml (),
+                (vector.remove (0)).toHtml (),
                 enumeration.nextNode ().toHtml ());
     }
 

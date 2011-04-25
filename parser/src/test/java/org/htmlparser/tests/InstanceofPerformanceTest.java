@@ -53,7 +53,7 @@ public class InstanceofPerformanceTest {
         "</FORM>";
 
     FormTag formTag;
-    Vector formChildren;
+    Vector<Node> formChildren;
     public void setUp() throws Exception {
         Parser parser =
             Parser.createParser(
@@ -63,7 +63,7 @@ public class InstanceofPerformanceTest {
         NodeIterator e = parser.elements();
         Node node = e.nextNode();
         formTag = (FormTag)node;
-        formChildren = new Vector();
+        formChildren = new Vector<Node> ();
         for (SimpleNodeIterator se = formTag.children();se.hasMoreNodes();) {
             formChildren.addElement(se.nextNode());
         }
@@ -73,7 +73,7 @@ public class InstanceofPerformanceTest {
         System.out.println("doInstanceofTest("+index+")");
         long start = System.currentTimeMillis();
         for (long i=0;i<numTimes;i++) {
-            for (Enumeration e = formChildren.elements();e.hasMoreElements();) {
+            for (Enumeration<Node> e = formChildren.elements();e.hasMoreElements();) {
                 e.nextElement();
             }
         }

@@ -39,6 +39,11 @@ public class Cursor
         Cloneable
 {
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
      * This cursor's position.
      */
     protected int mPosition;

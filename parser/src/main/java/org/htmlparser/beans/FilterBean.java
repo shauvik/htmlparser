@@ -52,6 +52,11 @@ public class FilterBean
         Serializable
 {
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
      * Property name in event where the URL contents changes.
      */
     public static final String PROP_NODES_PROPERTY = "nodes";

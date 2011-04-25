@@ -38,6 +38,10 @@ public class BaseHrefTag
         TagNode
 {
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	/**
      * The set of names handled by this tag.
      */
     private static final String[] mIds = new String[] {"BASE"};

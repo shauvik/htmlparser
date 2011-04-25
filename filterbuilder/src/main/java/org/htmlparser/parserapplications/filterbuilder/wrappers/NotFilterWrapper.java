@@ -40,6 +40,11 @@ public class NotFilterWrapper
         Filter
 {
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
      * The drop target container.
      */
     protected SubFilterList mContainer;

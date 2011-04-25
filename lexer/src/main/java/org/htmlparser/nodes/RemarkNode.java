@@ -41,6 +41,10 @@ public class RemarkNode
         Remark
 {
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	/**
      * The contents of the remark node, or override text.
      */
     protected String mText;

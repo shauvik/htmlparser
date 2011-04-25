@@ -30,7 +30,6 @@ import java.net.HttpURLConnection;
 import java.net.URLConnection;
 
 import org.htmlparser.filters.TagNameFilter;
-import org.htmlparser.filters.NodeClassFilter;
 import org.htmlparser.http.ConnectionManager;
 import org.htmlparser.http.ConnectionMonitor;
 import org.htmlparser.http.HttpHeader;
@@ -112,10 +111,15 @@ public class Parser
         Serializable,
         ConnectionMonitor
 {
+    /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
     // Please don't change the formatting of the version variables below.
     // This is done so as to facilitate ant script processing.
 
-    /**
+	/**
      * The floating point version number ({@value}).
      */
     public static final double
@@ -170,7 +174,7 @@ public class Parser
 
     static
     {
-        getConnectionManager ().getDefaultRequestProperties ().put (
+        ConnectionManager.getDefaultRequestProperties ().put (
             "User-Agent", "HTMLParser/" + getVersionNumber ());
     
     }

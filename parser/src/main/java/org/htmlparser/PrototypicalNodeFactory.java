@@ -139,6 +139,11 @@ public class PrototypicalNodeFactory
         NodeFactory
 {
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
      * The prototypical text node.
      */
     protected Text mText;
@@ -157,7 +162,7 @@ public class PrototypicalNodeFactory
      * The list of tags to return.
      * The list is keyed by tag name.
      */
-    protected Map mBlastocyst;
+    protected Map<String,Tag> mBlastocyst;
 
     /**
      * Create a new factory with all tags registered.
@@ -216,7 +221,7 @@ public class PrototypicalNodeFactory
      */
     public Tag put (String id, Tag tag)
     {
-        return ((Tag)mBlastocyst.put (id, tag));
+        return (mBlastocyst.put (id, tag));
     }
 
     /**
@@ -227,7 +232,7 @@ public class PrototypicalNodeFactory
      */
     public Tag get (String id)
     {
-        return ((Tag)mBlastocyst.get (id));
+        return (mBlastocyst.get (id));
     }
 
     /**
@@ -238,7 +243,7 @@ public class PrototypicalNodeFactory
      */
     public Tag remove (String id)
     {
-        return ((Tag)mBlastocyst.remove (id));
+        return (mBlastocyst.remove (id));
     }
 
     /**
@@ -246,14 +251,14 @@ public class PrototypicalNodeFactory
      */
     public void clear ()
     {
-        mBlastocyst = new Hashtable ();
+        mBlastocyst = new Hashtable<String,Tag> ();
     }
 
     /**
      * Get the list of tag names.
      * @return The names of the tags currently registered.
      */
-    public Set getTagNames ()
+    public Set<String> getTagNames ()
     {
         return (mBlastocyst.keySet ());
     }
@@ -487,7 +492,7 @@ public class PrototypicalNodeFactory
      * @param attributes The attributes contained in this tag.
      * @return A tag node comprising the indicated characters from the page.
      */
-    public Tag createTagNode (Page page, int start, int end, Vector attributes)
+    public Tag createTagNode (Page page, int start, int end, Vector<Attribute> attributes)
     {
         Attribute attribute;
         String id;
@@ -498,7 +503,7 @@ public class PrototypicalNodeFactory
 
         if (0 != attributes.size ())
         {
-            attribute = (Attribute)attributes.elementAt (0);
+            attribute = attributes.elementAt (0);
             id = attribute.getName ();
             if (null != id)
             {
@@ -509,7 +514,7 @@ public class PrototypicalNodeFactory
                     {
                         if (id.endsWith ("/"))
                             id = id.substring (0, id.length () - 1);
-                        prototype = (Tag)mBlastocyst.get (id);
+                        prototype = mBlastocyst.get (id);
                         if (null != prototype)
                         {
                             ret = (Tag)prototype.clone ();

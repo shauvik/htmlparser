@@ -57,7 +57,7 @@ public class Attributes
     /**
      * The non-whitespace attributes.
      */
-    protected Vector mAttributes;
+    protected Vector<Attribute> mAttributes;
 
     /**
      * Create an attibute access object.
@@ -73,23 +73,23 @@ public class Attributes
         mAttributes = null;
     }
 
-    protected Vector getAttributes ()
+    protected Vector<Attribute> getAttributes ()
     {
-        Vector attributes;
+        Vector<Attribute> attributes;
         int size;
         Attribute attribute;
         String string;
 
         if (null == mAttributes)
         {
-            mAttributes = new Vector ();
+            mAttributes = new Vector<Attribute> ();
             attributes = mTag.getAttributesEx ();
             if (null != attributes)
             {
                 size = attributes.size ();
                 for (int i = 1; i < size; i++)
                 {
-                    attribute = (Attribute)attributes.elementAt (i);
+                    attribute = attributes.elementAt (i);
                     string = attribute.getName ();
                     if (null != string) // not whitespace
                         mAttributes.add (attribute);
@@ -170,7 +170,7 @@ public class Attributes
         Attribute attribute;
         String ret;
         
-        attribute = (Attribute)(getAttributes ().elementAt (index));
+        attribute = getAttributes ().elementAt (index);
         ret = attribute.getName ();
         
         return (ret);
@@ -220,7 +220,7 @@ public class Attributes
         Attribute attribute;
         String ret;
         
-        attribute = (Attribute)(getAttributes ().elementAt (index));
+        attribute = getAttributes ().elementAt (index);
         ret = attribute.getValue ();
         if (null == ret)
             ret = "";
@@ -245,7 +245,7 @@ public class Attributes
      */
     public int getIndex (String uri, String localName)
     {
-        Vector attributes;
+        Vector<Attribute> attributes;
         int size;
         Attribute attribute;
         String string;
@@ -257,7 +257,7 @@ public class Attributes
         size = attributes.size ();
         for (int i = 1; i < size; i++)
         {
-            attribute = (Attribute)attributes.elementAt (i);
+            attribute = attributes.elementAt (i);
             string = attribute.getName ();
             mSupport.processName (string, mParts, true);
             if (  uri.equals (mParts[0])

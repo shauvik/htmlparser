@@ -42,7 +42,7 @@ public class HtmlTreeModel implements TreeModel
     /**
      * The list of tree listeners.
      */
-    protected Vector mTreeListeners;
+    protected Vector<TreeModelListener> mTreeListeners;
     
     /**
      * The root {@link Node}.
@@ -59,7 +59,7 @@ public class HtmlTreeModel implements TreeModel
      */
     public HtmlTreeModel (NodeList root)
     {
-        mTreeListeners = new Vector ();
+        mTreeListeners = new Vector<TreeModelListener> ();
         // for simplicity we encapsulate the nodelist in a Html tag
         mRoot = new Html ();
         mRoot.setChildren (root);
@@ -207,15 +207,16 @@ public class HtmlTreeModel implements TreeModel
      * @param path {@inheritDoc}
      * @param newValue {@inheritDoc}
      */
+	@SuppressWarnings("unchecked")
     public void valueForPathChanged (TreePath path, Object newValue)
     {
         TreeModelEvent event;
-        Vector v;
+        Vector<TreeModelListener> v;
 
         event = new TreeModelEvent (this, path);
         synchronized (mTreeListeners)
         {
-            v = (Vector)mTreeListeners.clone ();
+            v = (Vector<TreeModelListener>)(mTreeListeners.clone ());
         }
         
         for (int i = 0; i < v.size (); i++)

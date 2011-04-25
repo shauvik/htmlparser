@@ -43,6 +43,11 @@ import org.htmlparser.util.ParserException;
 public class CompositeTagScanner extends TagScanner
 {
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
      * Determine whether to use JVM or NodeList stack.
      * This can be set to true to get the original behaviour of
      * recursion into composite tags on the JVM stack.
@@ -185,7 +190,7 @@ public class CompositeTagScanner extends TagScanner
                                 // If there is something, we close off all the tags
                                 // walked over and continue on as if nothing
                                 // happened.
-                                Vector attributes = new Vector ();
+                                Vector<Attribute> attributes = new Vector<Attribute> ();
                                 attributes.addElement (new Attribute (name, null));
                                 Tag opener = lexer.getNodeFactory ().createTagNode (
                                     lexer.getPage (), next.getStartPosition (), next.getEndPosition (),
@@ -226,8 +231,6 @@ public class CompositeTagScanner extends TagScanner
                                 else
                                     addChild (ret, next); // default behaviour
                             }
-                            else
-                                addChild (ret, next);
                         }
                     }
                     else
@@ -321,10 +324,10 @@ public class CompositeTagScanner extends TagScanner
     {
         Tag ret;
         String name;
-        Vector attributes;
+        Vector<Attribute> attributes;
         
         name = "/" + tag.getRawTagName ();
-        attributes = new Vector ();
+        attributes = new Vector<Attribute> ();
         attributes.addElement (new Attribute (name, (String)null));
         ret = lexer.getNodeFactory ().createTagNode (
                                     page, position, position, attributes);

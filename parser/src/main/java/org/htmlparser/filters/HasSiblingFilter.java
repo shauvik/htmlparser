@@ -39,6 +39,10 @@ public class HasSiblingFilter
         NodeFilter
 {
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	/**
      * The filter to apply to the sibling.
      */
     protected NodeFilter mSiblingFilter;

@@ -25,7 +25,7 @@
 
 package org.htmlparser.tests.tagTests;
 
-import java.util.Properties;
+import java.util.Hashtable;
 
 import org.htmlparser.Parser;
 import org.htmlparser.PrototypicalNodeFactory;
@@ -87,14 +87,14 @@ public class BaseHrefTagTest extends ParserTestCase {
         Parser parser;
         String url;
         String relative_url;
-        Properties props;
+        Hashtable<String,String> props;
         String absolute_url;
 
         parser = new Parser ();
         url = "http://www.codeproject.com";
         relative_url = "/favicon.ico";
         
-        props = new Properties ();
+        props = new Hashtable<String,String> ();
         props.put ("User-Agent", "Mozilla/4.0 (compatible; MSIE 5.00; Windows 98)");
         Parser.getConnectionManager ().setRequestProperties (props);
         

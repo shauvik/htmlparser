@@ -39,6 +39,11 @@ public class NullLayoutManager
         Serializable
 { 
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
      * Constructs a NullLayoutManager object.
      */
     public NullLayoutManager ()

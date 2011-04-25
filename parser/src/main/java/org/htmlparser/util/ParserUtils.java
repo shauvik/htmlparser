@@ -77,7 +77,7 @@ public class ParserUtils
      * @param type The class to search for.
      * @return A node array with the matching nodes.
      */
-    public static Node[] findTypeInNode(Node node, Class type)
+    public static Node[] findTypeInNode(Node node, Class<?> type)
     {
         NodeFilter filter;
         NodeList ret;
@@ -102,7 +102,7 @@ public class ParserUtils
     public static String[] splitButDigits (String input, String charsDoNotBeRemoved)
     {
  	
-        ArrayList output = new ArrayList();
+        ArrayList<String> output = new ArrayList<String> ();
         int minCapacity = 0;
         StringBuffer str = new StringBuffer();
 
@@ -247,7 +247,7 @@ public class ParserUtils
     public static String[] splitSpaces (String input, String charsToBeRemoved)
     {
  	
-        ArrayList output = new ArrayList();
+        ArrayList<String> output = new ArrayList<String> ();
         int minCapacity = 0;
         StringBuffer str = new StringBuffer();
 
@@ -392,7 +392,7 @@ public class ParserUtils
     public static String[] splitButChars (String input, String charsDoNotBeRemoved)
     {
  	
-        ArrayList output = new ArrayList();
+        ArrayList<String> output = new ArrayList<String> ();
         int minCapacity = 0;
         StringBuffer str = new StringBuffer();
 
@@ -536,7 +536,7 @@ public class ParserUtils
     public static String[] splitChars (String input, String charsToBeRemoved)
     {
  	
-        ArrayList output = new ArrayList();
+        ArrayList<String> output = new ArrayList<String> ();
         int minCapacity = 0;
         StringBuffer str = new StringBuffer();
 
@@ -698,7 +698,7 @@ public class ParserUtils
         throws ParserException, UnsupportedEncodingException
     {
  	
-        ArrayList outputArrayList = new ArrayList();
+        ArrayList<String> outputArrayList = new ArrayList<String> ();
         int minCapacity = 0;
         String output = new String();
         String inputModified = new String(input);
@@ -770,7 +770,7 @@ public class ParserUtils
                 outputStr[j] = new String((String) outputObj[j]);
                 outputStringBuffer.append(outputStr[j]);
             }
-            outputArrayList = new ArrayList();
+            outputArrayList = new ArrayList<String>();
             inputModified = new String(outputStringBuffer.toString());
             dummyString = createDummyString (' ', inputModified.length());
         }
@@ -786,7 +786,7 @@ public class ParserUtils
      * instead of tags[] string array.
      * @see ParserUtils#splitTags (String input, String[] tags, boolean recursive, boolean insideTag).
      */
-    public static String[] splitTags (String input, Class nodeType)
+    public static String[] splitTags (String input, Class<?> nodeType)
         throws ParserException, UnsupportedEncodingException
     {
         return splitTags (input, new NodeClassFilter (nodeType), true, true);
@@ -799,7 +799,7 @@ public class ParserUtils
      * instead of tags[] string array.
      * @see ParserUtils#splitTags (String input, String[] tags, boolean recursive, boolean insideTag).
      */
-    public static String[] splitTags (String input, Class nodeType, boolean recursive, boolean insideTag)
+    public static String[] splitTags (String input, Class<?> nodeType, boolean recursive, boolean insideTag)
         throws ParserException, UnsupportedEncodingException
     {
         return splitTags (input, new NodeClassFilter (nodeType), recursive, insideTag);
@@ -829,7 +829,7 @@ public class ParserUtils
         throws ParserException, UnsupportedEncodingException
     {
  	
-        ArrayList outputArrayList = new ArrayList();
+        ArrayList<String> outputArrayList = new ArrayList<String> ();
         int minCapacity = 0;
         String output = new String();
         
@@ -1033,7 +1033,7 @@ public class ParserUtils
      * instead of tags[] string array.
      * @see ParserUtils#trimTags (String input, String[] tags, boolean recursive, boolean insideTag).
      */
-    public static String trimTags (String input, Class nodeType)
+    public static String trimTags (String input, Class<?> nodeType)
         throws ParserException, UnsupportedEncodingException
     {
         return trimTags (input, new NodeClassFilter (nodeType), true, true);
@@ -1047,7 +1047,7 @@ public class ParserUtils
      * instead of tags[] string array.
      * @see ParserUtils#trimTags (String input, String[] tags, boolean recursive, boolean insideTag).
      */
-    public static String trimTags (String input, Class nodeType, boolean recursive, boolean insideTag)
+    public static String trimTags (String input, Class<?> nodeType, boolean recursive, boolean insideTag)
         throws ParserException, UnsupportedEncodingException
     {
         return trimTags (input, new NodeClassFilter (nodeType), recursive, insideTag);

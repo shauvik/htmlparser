@@ -68,6 +68,11 @@ import org.htmlparser.Text;
 public class RegexFilter implements NodeFilter
 {
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
      * Use match() matching strategy.
      */
     public static final int MATCH = 1;

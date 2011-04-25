@@ -589,10 +589,10 @@ public class LexerTests extends ParserTestCase
   //        tests.testSpeedStreamWithTags ();
   //    }
 
-  static final HashSet mAcceptable;
+  static final HashSet<String> mAcceptable;
   static
   {
-    mAcceptable = new HashSet ();
+    mAcceptable = new HashSet<String> ();
     mAcceptable.add ("A");
     mAcceptable.add ("BODY");
     mAcceptable.add ("BR");
@@ -999,8 +999,9 @@ public class LexerTests extends ParserTestCase
     String url="http:/ifastnet.com/notify/2.php"; //notice the missing / in http://
     HttpURLConnection urlCon = (HttpURLConnection) new
     URL(url).openConnection();
-    try{
-      Parser parser = new Parser(urlCon);
+    try
+    {
+      new Parser(urlCon);
       fail("Parser Exception with the message \"URL not valid\" should have been thrown");
     }
     catch(ParserException pe){
@@ -1016,7 +1017,7 @@ public class LexerTests extends ParserTestCase
     HttpURLConnection urlCon = (HttpURLConnection) new
     URL(url).openConnection();
     try{
-      Parser parser = new Parser(urlCon);
+      new Parser(urlCon);
       fail("Parser Exception with the message \"URL not valid\" should have been thrown");
     }
     catch(ParserException pe){

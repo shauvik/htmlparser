@@ -268,8 +268,8 @@ public class StreamTests extends ParserTestCase
     public void testMarkReset () throws IOException
     {
         String link;
-        ArrayList bytes1;
-        ArrayList bytes2;
+        ArrayList<Byte> bytes1;
+        ArrayList<Byte> bytes2;
         URL url;
         URLConnection connection;
         Stream stream;
@@ -278,8 +278,8 @@ public class StreamTests extends ParserTestCase
 
         // pick a small file > 2000 bytes
         link = "http://htmlparser.sourceforge.net/javadoc/overview-summary.html";
-        bytes1 = new ArrayList ();
-        bytes2 = new ArrayList ();
+        bytes1 = new ArrayList<Byte> ();
+        bytes2 = new ArrayList<Byte> ();
         try
         {
             url = new URL (link);
@@ -343,8 +343,8 @@ public class StreamTests extends ParserTestCase
     public void testMarkResetThreaded () throws IOException
     {
         String link;
-        ArrayList bytes1;
-        ArrayList bytes2;
+        ArrayList<Byte> bytes1;
+        ArrayList<Byte> bytes2;
         URL url;
         URLConnection connection;
         Stream stream;
@@ -353,8 +353,8 @@ public class StreamTests extends ParserTestCase
 
         // pick a small file > 2000 bytes
         link = "http://htmlparser.sourceforge.net/javadoc/overview-summary.html";
-        bytes1 = new ArrayList ();
-        bytes2 = new ArrayList ();
+        bytes1 = new ArrayList<Byte> ();
+        bytes2 = new ArrayList<Byte> ();
         try
         {
             url = new URL (link);

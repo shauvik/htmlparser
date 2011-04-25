@@ -46,6 +46,11 @@ public class EncodingChangeException
         ParserException
 {
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
      * The old encoding.
      */
     private String mOldEncoding;

@@ -39,6 +39,11 @@ import org.htmlparser.Tag;
 public class HasAttributeFilter implements NodeFilter
 {
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
      * The attribute to check for.
      */
     protected String mAttribute;

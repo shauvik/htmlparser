@@ -40,6 +40,11 @@ import org.htmlparser.util.NodeList;
 public class TableTag extends CompositeTag
 {
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
      * The set of names handled by this tag.
      */
     private static final String[] mIds = new String[] {"TABLE"};

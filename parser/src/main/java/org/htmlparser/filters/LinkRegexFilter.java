@@ -40,6 +40,10 @@ import org.htmlparser.tags.LinkTag;
 public class LinkRegexFilter implements NodeFilter
 {
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	/**
      * The regular expression to use on the link.
      */
     protected Pattern mRegex;

@@ -43,6 +43,11 @@ public class TileSet
         java.awt.event.WindowListener
 {
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
      * The list of Tiles.
      */
     protected ArrayList<Tile> mRegions;
@@ -78,13 +83,11 @@ public class TileSet
     public void add (final Tile tile)
     {
         ArrayList<Tile> regions; // this will be the new set
-        Iterator<Tile> iterator;
         Rectangle intersection;
         ArrayList<Tile> splits;
         Map<Object,ArrayList<Tile>> table;
         Rectangle rectangle;
         Rectangle r;
-        int size;
         Tile test;
 
         regions = new ArrayList<Tile> ();

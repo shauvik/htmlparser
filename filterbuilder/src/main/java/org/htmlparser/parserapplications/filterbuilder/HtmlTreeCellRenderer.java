@@ -34,10 +34,8 @@ import javax.swing.tree.TreeCellRenderer;
 
 import org.htmlparser.Attribute;
 import org.htmlparser.Node;
-import org.htmlparser.lexer.Cursor;
 import org.htmlparser.nodes.TagNode;
 import org.htmlparser.nodes.TextNode;
-import org.htmlparser.util.ParserException;
 import org.htmlparser.util.Translate;
 
 /**
@@ -50,6 +48,11 @@ public class HtmlTreeCellRenderer
         TreeCellRenderer
 {
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
      * Create a new tree cell renderer for Nodes.
      */
     public HtmlTreeCellRenderer ()
@@ -72,7 +75,7 @@ public class HtmlTreeCellRenderer
     {
         int length;
         int size;
-        Vector attributes;
+        Vector<Attribute> attributes;
         Attribute attribute;
         String s;
         boolean children;
@@ -83,14 +86,14 @@ public class HtmlTreeCellRenderer
         size = attributes.size ();
         for (int i = 0; i < size; i++)
         {
-            attribute = (Attribute)attributes.elementAt (i);
+            attribute = attributes.elementAt (i);
             length += attribute.getLength ();
         }
         ret = new StringBuffer (length);
         ret.append ("<");
         for (int i = 0; i < size; i++)
         {
-            attribute = (Attribute)attributes.elementAt (i);
+            attribute = attributes.elementAt (i);
             attribute.toString (ret);
         }
         ret.append (">");

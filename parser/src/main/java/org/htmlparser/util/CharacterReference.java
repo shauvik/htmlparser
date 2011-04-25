@@ -44,6 +44,11 @@ public class CharacterReference
         Ordered
 {
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
      * The character value as an integer.
      */
     protected int mCharacter;

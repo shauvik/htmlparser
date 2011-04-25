@@ -37,6 +37,11 @@ import org.htmlparser.util.SimpleNodeIterator;
 public class FrameSetTag extends CompositeTag
 {
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
      * The set of names handled by this tag.
      */
     private static final String[] mIds = new String[] {"FRAMESET"};

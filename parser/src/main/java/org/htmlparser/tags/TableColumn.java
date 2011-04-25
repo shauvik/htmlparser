@@ -31,6 +31,11 @@ package org.htmlparser.tags;
 public class TableColumn extends CompositeTag
 {
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
      * The set of names handled by this tag.
      */
     private static final String[] mIds = new String[] {"TD"};

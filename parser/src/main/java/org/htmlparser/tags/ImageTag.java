@@ -40,6 +40,11 @@ public class ImageTag
         TagNode
 {
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
      * The set of names handled by this tag.
      */
     private static final String[] mIds = new String[] {"IMG"};
@@ -83,7 +88,7 @@ public class ImageTag
     */
     public String extractImageLocn ()
     {
-        Vector attributes;
+        Vector<Attribute> attributes;
         int size;
         Attribute attribute;
         String string;
@@ -100,7 +105,7 @@ public class ImageTag
         size = attributes.size ();
         for (int i = 0; (i < size) && (state < 3); i++)
         {
-            attribute = (Attribute)attributes.elementAt (i);
+            attribute = attributes.elementAt (i);
             string = attribute.getName ();
             data = attribute.getValue ();
             switch (state)

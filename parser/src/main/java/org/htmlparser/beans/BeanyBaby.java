@@ -54,9 +54,14 @@ public class BeanyBaby
         MouseListener
 {
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
      * Bread crumb trail of visited URLs.
      */
-    protected Vector mTrail;
+    protected Vector<String> mTrail;
 
     /**
      * Current position on the bread crumb trail.
@@ -67,7 +72,7 @@ public class BeanyBaby
     public BeanyBaby ()
     {
         initComponents ();
-        mTrail = new Vector ();
+        mTrail = new Vector<String> ();
         mCrumb = -1;
 
         // shenanigans to get the splitter bar at the midpoint
@@ -172,7 +177,7 @@ public class BeanyBaby
                 if (mCrumb > 0)
                 {
                     mCrumb--;
-                    url = (String)mTrail.elementAt (mCrumb);
+                    url = mTrail.elementAt (mCrumb);
                     mCrumb--;
                     setURL (url);
                 }
@@ -182,7 +187,7 @@ public class BeanyBaby
                 if (mCrumb < mTrail.size ())
                 {
                     mCrumb++;
-                    url = (String)mTrail.elementAt (mCrumb);
+                    url = mTrail.elementAt (mCrumb);
                     mCrumb--;
                     setURL (url);
                 }

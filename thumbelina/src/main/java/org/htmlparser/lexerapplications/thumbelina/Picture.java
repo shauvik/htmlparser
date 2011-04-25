@@ -25,7 +25,6 @@
 
 package org.htmlparser.lexerapplications.thumbelina;
 
-import java.awt.Component;
 import java.awt.Image;
 import java.awt.Point;
 import java.awt.Rectangle;
@@ -52,6 +51,11 @@ public class Picture
         Tile
 {
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
      * Copy buffer size.
      * Resources are moved to disk in chunks this size or less.
      */
@@ -180,9 +184,7 @@ public class Picture
         long size;
         byte[] bytes;
         FileInputStream in;
-        Image ret;
 
-        ret = null;
         if ((null == mImage) && getValid ())
         {
             if (null != mLocalFile)
@@ -232,7 +234,6 @@ public class Picture
         InputStream in;
         FileOutputStream out;
         int read;
-        URL url;
         Image image;
 
         suffix = mURL.toString ();

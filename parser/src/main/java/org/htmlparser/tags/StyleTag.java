@@ -33,6 +33,11 @@ import org.htmlparser.scanners.StyleScanner;
 public class StyleTag extends CompositeTag
 {
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
+	/**
      * The set of names handled by this tag.
      */
     private static final String[] mIds = new String[] {"STYLE"};

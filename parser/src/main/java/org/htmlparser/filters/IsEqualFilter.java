@@ -34,6 +34,10 @@ import org.htmlparser.NodeFilter;
 public class IsEqualFilter implements NodeFilter
 {
     /**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+	/**
      * The node to match.
      */
     protected Node mNode;

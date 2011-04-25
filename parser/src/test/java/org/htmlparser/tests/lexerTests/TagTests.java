@@ -25,7 +25,6 @@
 
 package org.htmlparser.tests.lexerTests;
 
-import org.htmlparser.Node;
 import org.htmlparser.Parser;
 import org.htmlparser.PrototypicalNodeFactory;
 import org.htmlparser.Tag;

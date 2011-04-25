@@ -96,25 +96,25 @@ public class SiteCapturer
      * sequential order (FIFO queue) leading to a breadth
      * first traversal of the web site space.
      */
-    protected ArrayList mPages;
+    protected ArrayList<String> mPages;
 
     /**
      * The set of pages already captured.
      * Used to avoid repeated acquisition of the same page.
      */
-    protected HashSet mFinished;
+    protected HashSet<String> mFinished;
 
     /**
      * The list of resources to copy.
      * Images and other resources are added to this list as they are discovered.
      */
-    protected ArrayList mImages;
+    protected ArrayList<String> mImages;
 
     /**
      * The set of resources already copied.
      * Used to avoid repeated acquisition of the same images and other resources.
      */
-    protected HashSet mCopied;
+    protected HashSet<String> mCopied;
 
     /**
      * The parser to use for processing.
@@ -147,10 +147,10 @@ public class SiteCapturer
 
         mSource = null;
         mTarget = null;
-        mPages = new ArrayList ();
-        mFinished = new HashSet ();
-        mImages = new ArrayList ();
-        mCopied = new HashSet ();
+        mPages = new ArrayList<String> ();
+        mFinished = new HashSet<String> ();
+        mImages = new ArrayList<String> ();
+        mCopied = new HashSet<String> ();
         mParser = new Parser ();
         factory = new PrototypicalNodeFactory ();
         factory.registerTag (new LocalLinkTag ());
@@ -409,7 +409,7 @@ public class SiteCapturer
         FileOutputStream out;
         int read;
 
-        link = (String)mImages.remove (0);
+        link = mImages.remove (0);
         mCopied.add (link);
 
         if (getCaptureResources ())
@@ -487,7 +487,7 @@ public class SiteCapturer
         PrintWriter out;
 
         // get the next URL and add it to the done pile
-        url = (String)mPages.remove (0);
+        url = mPages.remove (0);
         System.out.println ("processing " + url);
         mFinished.add (url);
 
@@ -585,7 +585,12 @@ public class SiteCapturer
      */
     class LocalLinkTag extends LinkTag
     {
-        public void doSemanticAction ()
+        /**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+
+		public void doSemanticAction ()
             throws
                 ParserException
         {
@@ -628,7 +633,12 @@ public class SiteCapturer
      */
     class LocalFrameTag extends FrameTag
     {
-        public void doSemanticAction ()
+        /**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+
+		public void doSemanticAction ()
             throws
                 ParserException
         {
@@ -673,7 +683,12 @@ public class SiteCapturer
      */
     class LocalImageTag extends ImageTag
     {
-        public void doSemanticAction ()
+        /**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+
+		public void doSemanticAction ()
             throws
                 ParserException
         {
@@ -702,7 +717,12 @@ public class SiteCapturer
      */
     class LocalBaseHrefTag extends BaseHrefTag
     {
-        // we don't want to have a base pointing back at the source page
+        /**
+		 * 
+		 */
+		private static final long serialVersionUID = 1L;
+
+		// we don't want to have a base pointing back at the source page
         public String toHtml ()
         {
             return ("");
