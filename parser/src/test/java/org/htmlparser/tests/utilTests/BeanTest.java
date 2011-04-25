@@ -131,8 +131,7 @@ public class BeanTest extends ParserTestCase
     public void testZeroArgPageConstructor ()
         throws
             IOException,
-            ClassNotFoundException,
-            ParserException
+            ClassNotFoundException
     {
         Page page;
         byte[] data;
@@ -145,8 +144,7 @@ public class BeanTest extends ParserTestCase
     public void testZeroArgLexerConstructor ()
         throws
             IOException,
-            ClassNotFoundException,
-            ParserException
+            ClassNotFoundException
     {
         Lexer lexer;
         byte[] data;
@@ -159,9 +157,8 @@ public class BeanTest extends ParserTestCase
     public void testZeroArgParserConstructor ()
         throws
             IOException,
-            ClassNotFoundException,
-            ParserException
-    {
+            ClassNotFoundException
+{
         Parser parser;
         byte[] data;
 
@@ -229,8 +226,7 @@ public class BeanTest extends ParserTestCase
     public void testSerializableStringBean ()
         throws
             IOException,
-            ClassNotFoundException,
-            ParserException
+            ClassNotFoundException
     {
         StringBean sb;
         String text;
@@ -252,8 +248,7 @@ public class BeanTest extends ParserTestCase
     public void testSerializableLinkBean ()
         throws
             IOException,
-            ClassNotFoundException,
-            ParserException
+            ClassNotFoundException
     {
         LinkBean lb;
         URL[] links;

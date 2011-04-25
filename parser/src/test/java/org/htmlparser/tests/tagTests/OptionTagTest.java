@@ -76,7 +76,7 @@ public class OptionTagTest extends ParserTestCase
         parseAndAssertNodeCount(13);
     }
 
-    public void testToHTML() throws ParserException
+    public void testToHTML()
     {
         for(int j=0;j<nodeCount;j++)
         {
@@ -113,7 +113,7 @@ public class OptionTagTest extends ParserTestCase
         assertStringEquals("HTML String", option13, OptionTag.toHtml());
     }
 
-    public void testToString() throws ParserException
+    public void testToString ()
     {
         for(int j=0;j<11;j++)
         {

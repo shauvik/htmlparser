@@ -44,8 +44,6 @@ import org.htmlparser.util.Translate;
 public class HtmlTreeCellRenderer
     extends
         DefaultTreeCellRenderer
-    implements
-        TreeCellRenderer
 {
     /**
 	 * 

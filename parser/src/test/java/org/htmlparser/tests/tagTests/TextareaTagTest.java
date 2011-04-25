@@ -66,7 +66,7 @@ public class TextareaTagTest extends ParserTestCase
         parseAndAssertNodeCount(5);
     }
 
-    public void testToHTML() throws ParserException
+    public void testToHTML()
     {
         assertTrue("Node 1 should be Textarea Tag",node[0] instanceof TextareaTag);
         assertTrue("Node 2 should be Textarea Tag",node[1] instanceof TextareaTag);

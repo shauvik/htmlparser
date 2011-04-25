@@ -62,12 +62,14 @@ public class BodyTagTest extends ParserTestCase {
         bodyTag = (BodyTag)html.getChild(1);
     }
 
-    public void testToPlainTextString() throws ParserException {
+    public void testToPlainTextString()
+    {
         // check the label node
         assertEquals("Body","Yahoo!",bodyTag.toPlainTextString());
     }
 
-    public void testToHTML() throws ParserException {
+    public void testToHTML()
+    {
         assertStringEquals("Raw String", html, bodyTag.toHtml());
     }
 

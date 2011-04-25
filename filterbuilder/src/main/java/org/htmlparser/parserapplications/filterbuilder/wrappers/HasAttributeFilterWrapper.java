@@ -143,7 +143,7 @@ public class HasAttributeFilterWrapper
             attributes = ((Tag)node).getAttributesEx ();
             for (int i = 1; i < attributes.size (); i++)
             {
-                attribute = (Attribute)attributes.elementAt (i);
+                attribute = attributes.elementAt (i);
                 name = attribute.getName ();
                 if (null != name)
                     set.add (name);
@@ -175,7 +175,7 @@ public class HasAttributeFilterWrapper
             attributes = ((Tag)node).getAttributesEx ();
             for (int i = 1; i < attributes.size (); i++)
             {
-                attribute = (Attribute)attributes.elementAt (i);
+                attribute = attributes.elementAt (i);
                 if (null != attribute.getName ())
                 {
                     value = attribute.getValue ();

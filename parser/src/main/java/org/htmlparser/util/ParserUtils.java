@@ -25,7 +25,6 @@
 
 package org.htmlparser.util;
 
-import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 
 import org.htmlparser.Node;
@@ -672,7 +671,7 @@ public class ParserUtils
      * @see ParserUtils#splitTags (String input, String[] tags, boolean recursive, boolean insideTag).
      */
     public static String[] splitTags (String input, String[] tags)
-        throws ParserException, UnsupportedEncodingException
+        throws ParserException
     {
         return splitTags (input, tags, true, true);
     }
@@ -695,7 +694,7 @@ public class ParserUtils
      * @return The string array containing the strings delimited by tags.
      */
     public static String[] splitTags (String input, String[] tags, boolean recursive, boolean insideTag)
-        throws ParserException, UnsupportedEncodingException
+        throws ParserException
     {
  	
         ArrayList<String> outputArrayList = new ArrayList<String> ();
@@ -787,7 +786,7 @@ public class ParserUtils
      * @see ParserUtils#splitTags (String input, String[] tags, boolean recursive, boolean insideTag).
      */
     public static String[] splitTags (String input, Class<?> nodeType)
-        throws ParserException, UnsupportedEncodingException
+        throws ParserException
     {
         return splitTags (input, new NodeClassFilter (nodeType), true, true);
     }
@@ -800,7 +799,7 @@ public class ParserUtils
      * @see ParserUtils#splitTags (String input, String[] tags, boolean recursive, boolean insideTag).
      */
     public static String[] splitTags (String input, Class<?> nodeType, boolean recursive, boolean insideTag)
-        throws ParserException, UnsupportedEncodingException
+        throws ParserException
     {
         return splitTags (input, new NodeClassFilter (nodeType), recursive, insideTag);
     }
@@ -813,7 +812,7 @@ public class ParserUtils
      * @see ParserUtils#splitTags (String input, String[] tags, boolean recursive, boolean insideTag).
      */
     public static String[] splitTags (String input, NodeFilter filter)
-        throws ParserException, UnsupportedEncodingException
+        throws ParserException
     {
         return splitTags (input, filter, true, true);
     }
@@ -826,7 +825,7 @@ public class ParserUtils
      * @see ParserUtils#splitTags (String input, String[] tags, boolean recursive, boolean insideTag).
      */
     public static String[] splitTags (String input, NodeFilter filter, boolean recursive, boolean insideTag)
-        throws ParserException, UnsupportedEncodingException
+        throws ParserException
     {
  	
         ArrayList<String> outputArrayList = new ArrayList<String> ();
@@ -943,7 +942,7 @@ public class ParserUtils
      * @see ParserUtils#trimTags (String input, String[] tags, boolean recursive, boolean insideTag).
      */
     public static String trimTags (String input, String[] tags)
-        throws ParserException, UnsupportedEncodingException
+        throws ParserException
     {
         return trimTags (input, tags, true, true);
     }
@@ -967,7 +966,7 @@ public class ParserUtils
      * @return The string without tags.
      */
     public static String trimTags (String input, String[] tags, boolean recursive, boolean insideTag)
-        throws ParserException, UnsupportedEncodingException
+        throws ParserException
     {
  	
         StringBuffer output = new StringBuffer();
@@ -1034,7 +1033,7 @@ public class ParserUtils
      * @see ParserUtils#trimTags (String input, String[] tags, boolean recursive, boolean insideTag).
      */
     public static String trimTags (String input, Class<?> nodeType)
-        throws ParserException, UnsupportedEncodingException
+        throws ParserException
     {
         return trimTags (input, new NodeClassFilter (nodeType), true, true);
     }
@@ -1048,7 +1047,7 @@ public class ParserUtils
      * @see ParserUtils#trimTags (String input, String[] tags, boolean recursive, boolean insideTag).
      */
     public static String trimTags (String input, Class<?> nodeType, boolean recursive, boolean insideTag)
-        throws ParserException, UnsupportedEncodingException
+        throws ParserException
     {
         return trimTags (input, new NodeClassFilter (nodeType), recursive, insideTag);
     }
@@ -1062,7 +1061,7 @@ public class ParserUtils
      * @see ParserUtils#trimTags (String input, String[] tags, boolean recursive, boolean insideTag).
      */
     public static String trimTags (String input, NodeFilter filter)
-        throws ParserException, UnsupportedEncodingException
+        throws ParserException
     {
         return trimTags (input, filter, true, true);
     }
@@ -1076,7 +1075,7 @@ public class ParserUtils
      * @see ParserUtils#trimTags (String input, String[] tags, boolean recursive, boolean insideTag).
      */
     public static String trimTags (String input, NodeFilter filter, boolean recursive, boolean insideTag)
-        throws ParserException, UnsupportedEncodingException
+        throws ParserException
     {
  	
         StringBuffer output = new StringBuffer();
@@ -1133,7 +1132,6 @@ public class ParserUtils
      * @return The Parser Object with the string as input stream.
      */
     public static Parser createParserParsingAnInputString (String input)
-        throws ParserException, UnsupportedEncodingException
     {
  	
         Parser parser = new Parser();
@@ -1147,7 +1145,7 @@ public class ParserUtils
     }
 
     private static NodeList getLinks (String output, String tag, boolean recursive)
-        throws ParserException, UnsupportedEncodingException
+        throws ParserException
     {
         
         Parser parser = new Parser();
@@ -1188,7 +1186,7 @@ public class ParserUtils
     }
     
     private static NodeList getLinks (String output, NodeFilter filter, boolean recursive)
-        throws ParserException, UnsupportedEncodingException
+        throws ParserException
     {
         
         Parser parser = new Parser();

@@ -1760,7 +1760,7 @@ public class FilterBuilder
         count = mSelection.size ();
         for (int i = 0; i < count; i++)
         {
-            filter = (Filter)mSelection.elementAt (i);
+            filter = mSelection.elementAt (i);
             filter.setSelected (select);
         }
     }
@@ -1787,7 +1787,7 @@ public class FilterBuilder
         count = mSelection.size ();
         for (int i = 0; i < count; i++)
         {
-            filter = (Filter)mSelection.elementAt (i);
+            filter = mSelection.elementAt (i);
             point = filter.getLocation ();
             point.translate (translation.x, translation.y);
             synchronized (filter.getTreeLock ())
@@ -1821,7 +1821,7 @@ public class FilterBuilder
         ret = null;
 
         if (0 < mSelection.size ())
-            ret = (Filter)mSelection.lastElement ();
+            ret = mSelection.lastElement ();
             
         return (ret);
     }

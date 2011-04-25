@@ -29,7 +29,6 @@ import java.awt.Dimension;
 import java.awt.FontMetrics;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.io.Serializable;
 import java.net.URLConnection;
 
 import javax.swing.JTextArea;
@@ -43,7 +42,6 @@ public class HTMLTextBean
     extends
         JTextArea
     implements
-        Serializable,
         PropertyChangeListener
 {
     /**

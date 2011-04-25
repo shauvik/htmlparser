@@ -426,7 +426,7 @@ public abstract class Filter
         ret = null;
         
         class_name = filter.getClass ().getName ();
-        class_name = (String)mWrappers.get (class_name);
+        class_name = mWrappers.get (class_name);
         if (null != class_name)
         {
             try

@@ -83,7 +83,7 @@ public class SelectTagTest extends ParserTestCase
         selectTag = (SelectTag) node[0];
     }
 
-    public void testToHTML() throws ParserException
+    public void testToHTML()
     {
         assertStringEquals("HTML String", correctedHTML, selectTag.toHtml());
     }

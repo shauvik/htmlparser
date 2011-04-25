@@ -995,7 +995,8 @@ public class LexerTests extends ParserTestCase
   /**
    * See bug: Creating a parser with an un-connectable HttpURLConnection - ID: 2899333
    */
-  public void testUnConnectableURL_1() throws ParserException, MalformedURLException, IOException {
+  public void testUnConnectableURL_1() throws MalformedURLException, IOException
+  {
     String url="http:/ifastnet.com/notify/2.php"; //notice the missing / in http://
     HttpURLConnection urlCon = (HttpURLConnection) new
     URL(url).openConnection();
@@ -1012,7 +1013,8 @@ public class LexerTests extends ParserTestCase
   /**
    * See bug: Creating a parser with an un-connectable HttpURLConnection - ID: 2899333
    */
-  public void testUnConnectableURL_2() throws ParserException, MalformedURLException, IOException {
+  public void testUnConnectableURL_2() throws MalformedURLException, IOException
+  {
     String url="http:///ifastnet.com/notify/2.php"; //notice the extra / in http://
     HttpURLConnection urlCon = (HttpURLConnection) new
     URL(url).openConnection();

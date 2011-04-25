@@ -221,7 +221,7 @@ public class HtmlTreeModel implements TreeModel
         
         for (int i = 0; i < v.size (); i++)
         {
-            TreeModelListener listener = (TreeModelListener)v.elementAt (i);
+            TreeModelListener listener = v.elementAt (i);
             listener.treeStructureChanged (event);
         }
     }

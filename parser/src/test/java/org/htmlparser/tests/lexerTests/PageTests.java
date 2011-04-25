@@ -164,93 +164,93 @@ public class PageTests extends ParserTestCase
     //  ../../        =  http://a/
     //  ../../g       =  http://a/g
 
-    public void test1 () throws ParserException
+    public void test1 ()
     {
         assertEquals ("test1 failed", "https:h", mPage.getAbsoluteURL ("https:h"));
     }
-    public void test2 () throws ParserException
+    public void test2 ()
     {
         assertEquals ("test2 failed", "http://a/b/c/g", mPage.getAbsoluteURL ("g"));
     }
-    public void test3 () throws ParserException
+    public void test3 ()
     {
         assertEquals ("test3 failed", "http://a/b/c/g", mPage.getAbsoluteURL ("./g"));
     }
-    public void test4 () throws ParserException
+    public void test4 ()
     {
         assertEquals ("test4 failed", "http://a/b/c/g/", mPage.getAbsoluteURL ("g/"));
     }
-    public void test5 () throws ParserException
+    public void test5 ()
     {
         assertEquals ("test5 failed", "http://a/g", mPage.getAbsoluteURL ("/g"));
     }
-    public void test6 () throws ParserException
+    public void test6 ()
     {
         assertEquals ("test6 failed", "http://g", mPage.getAbsoluteURL ("//g"));
     }
-    public void test7 () throws ParserException
+    public void test7 ()
     {
         assertEquals ("test7 strict failed", "http://a/b/c/?y", mPage.getAbsoluteURL ("?y", true));
         assertEquals ("test7 non-strict failed", "http://a/b/c/d;p?y", mPage.getAbsoluteURL ("?y"));
     }
-    public void test8 () throws ParserException
+    public void test8 ()
     {
         assertEquals ("test8 failed", "http://a/b/c/g?y", mPage.getAbsoluteURL ("g?y"));
     }
-    public void test9 () throws ParserException
+    public void test9 ()
     {
         assertEquals ("test9 failed", "https:h", mPage.getAbsoluteURL ("https:h"));
     }
-    public void test10 () throws ParserException
+    public void test10 ()
     {
         assertEquals ("test10 failed", "https:h", mPage.getAbsoluteURL ("https:h"));
     }
     //  #s            =  (current document)#s
-    public void test11 () throws ParserException
+    public void test11 ()
     {
         assertEquals ("test11 failed", "http://a/b/c/g#s", mPage.getAbsoluteURL ("g#s"));
     }
-    public void test12 () throws ParserException
+    public void test12 ()
     {
         assertEquals ("test12 failed", "http://a/b/c/g?y#s", mPage.getAbsoluteURL ("g?y#s"));
     }
-    public void test13 () throws ParserException
+    public void test13 ()
     {
         assertEquals ("test13 failed", "http://a/b/c/;x", mPage.getAbsoluteURL (";x"));
     }
-    public void test14 () throws ParserException
+    public void test14 ()
     {
         assertEquals ("test14 failed", "http://a/b/c/g;x", mPage.getAbsoluteURL ("g;x"));
     }
-    public void test15 () throws ParserException
+    public void test15 ()
     {
         assertEquals ("test15 failed", "http://a/b/c/g;x?y#s", mPage.getAbsoluteURL ("g;x?y#s"));
     }
-    public void test16 () throws ParserException
+    public void test16 ()
     {
         assertEquals ("test16 failed", "http://a/b/c/", mPage.getAbsoluteURL ("."));
     }
-    public void test17 () throws ParserException
+    public void test17 ()
     {
         assertEquals ("test17 failed", "http://a/b/c/", mPage.getAbsoluteURL ("./"));
     }
-    public void test18 () throws ParserException
+    public void test18 ()
     {
         assertEquals ("test18 failed", "http://a/b/", mPage.getAbsoluteURL (".."));
     }
-    public void test19 () throws ParserException
+    public void test19 ()
     {
         assertEquals ("test19 failed", "http://a/b/", mPage.getAbsoluteURL ("../"));
     }
-    public void test20 () throws ParserException
+    public void test20 ()
     {
         assertEquals ("test20 failed", "http://a/b/g", mPage.getAbsoluteURL ("../g"));
     }
-    public void test21 () throws ParserException
+    public void test21 ()
     {
         assertEquals ("test21 failed", "http://a/", mPage.getAbsoluteURL ("../.."));
     }
-    public void test22 () throws ParserException
+    public void test22 ()
     {
         assertEquals ("test22 failed", "http://a/g", mPage.getAbsoluteURL ("../../g"));
     }
@@ -327,83 +327,83 @@ public class PageTests extends ParserTestCase
 //    {
 //        assertEquals ("test24 failed", "http://a/../../g", mPage.getAbsoluteURL ("../../../../g"));
 //    }
-    public void test23 () throws ParserException
+    public void test23 ()
     {
         assertEquals ("test23 failed", "http://a/g", mPage.getAbsoluteURL ("../../../g"));
     }
-    public void test24 () throws ParserException
+    public void test24 ()
     {
         assertEquals ("test24 failed", "http://a/g", mPage.getAbsoluteURL ("../../../../g"));
     }
-    public void test25 () throws ParserException
+    public void test25 ()
     {
         assertEquals ("test25 failed", "http://a/./g", mPage.getAbsoluteURL ("/./g"));
     }
-    public void test26 () throws ParserException
+    public void test26 ()
     {
         assertEquals ("test26 failed", "http://a/../g", mPage.getAbsoluteURL ("/../g"));
     }
-    public void test27 () throws ParserException
+    public void test27 ()
     {
         assertEquals ("test27 failed", "http://a/b/c/g.", mPage.getAbsoluteURL ("g."));
     }
-    public void test28 () throws ParserException
+    public void test28 ()
     {
         assertEquals ("test28 failed", "http://a/b/c/.g", mPage.getAbsoluteURL (".g"));
     }
-    public void test29 () throws ParserException
+    public void test29 ()
     {
         assertEquals ("test29 failed", "http://a/b/c/g..", mPage.getAbsoluteURL ("g.."));
     }
-    public void test30 () throws ParserException
+    public void test30 ()
     {
         assertEquals ("test30 failed", "http://a/b/c/..g", mPage.getAbsoluteURL ("..g"));
     }
-    public void test31 () throws ParserException
+    public void test31 ()
     {
         assertEquals ("test31 failed", "http://a/b/g", mPage.getAbsoluteURL ("./../g"));
     }
-    public void test32 () throws ParserException
+    public void test32 ()
     {
         assertEquals ("test32 failed", "http://a/b/c/g/", mPage.getAbsoluteURL ("./g/."));
     }
-    public void test33 () throws ParserException
+    public void test33 ()
     {
         assertEquals ("test33 failed", "http://a/b/c/g/h", mPage.getAbsoluteURL ("g/./h"));
     }
-    public void test34 () throws ParserException
+    public void test34 ()
     {
         assertEquals ("test34 failed", "http://a/b/c/h", mPage.getAbsoluteURL ("g/../h"));
     }
-    public void test35 () throws ParserException
+    public void test35 ()
     {
         assertEquals ("test35 failed", "http://a/b/c/g;x=1/y", mPage.getAbsoluteURL ("g;x=1/./y"));
     }
-    public void test36 () throws ParserException
+    public void test36 ()
     {
         assertEquals ("test36 failed", "http://a/b/c/y", mPage.getAbsoluteURL ("g;x=1/../y"));
     }
-    public void test37 () throws ParserException
+    public void test37 ()
     {
         assertEquals ("test37 failed", "http://a/b/c/g?y/./x", mPage.getAbsoluteURL ("g?y/./x"));
     }
-    public void test38 () throws ParserException
+    public void test38 ()
     {
         assertEquals ("test38 failed", "http://a/b/c/g?y/../x", mPage.getAbsoluteURL ("g?y/../x"));
     }
-    public void test39 () throws ParserException
+    public void test39 ()
     {
         assertEquals ("test39 failed", "http://a/b/c/g#s/./x", mPage.getAbsoluteURL ("g#s/./x"));
     }
-    public void test40 () throws ParserException
+    public void test40 ()
     {
         assertEquals ("test40 failed", "http://a/b/c/g#s/../x", mPage.getAbsoluteURL ("g#s/../x"));
     }
-//    public void test41 () throws HTMLParserException
+//    public void test41 ()
 //    {
 //        assertEquals ("test41 failed", "http:g", mPage.getAbsoluteURL ("http:g"));
 //    }
-    public void test41 () throws ParserException
+    public void test41 ()
     {
         assertEquals ("test41 failed", "http://a/b/c/g", mPage.getAbsoluteURL ("http:g"));
     }

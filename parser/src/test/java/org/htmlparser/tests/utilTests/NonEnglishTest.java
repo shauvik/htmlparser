@@ -27,7 +27,6 @@ package org.htmlparser.tests.utilTests;
 
 import org.htmlparser.beans.StringBean;
 import org.htmlparser.tests.ParserTestCase;
-import org.htmlparser.util.ParserException;
 
 /**
  * Test case for bug #1161137 Non English Character web page.
@@ -45,7 +44,7 @@ public class NonEnglishTest extends ParserTestCase
         super(name);
     }
 
-    public void testNonEnglishCharacters() throws ParserException 
+    public void testNonEnglishCharacters () 
     {
         StringBean sb;
         

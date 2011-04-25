@@ -29,7 +29,6 @@ import java.awt.Dimension;
 import java.awt.FontMetrics;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.io.Serializable;
 import java.net.URL;
 import java.net.URLConnection;
 
@@ -44,7 +43,6 @@ public class HTMLLinkBean
     extends
         JList
     implements
-        Serializable,
         PropertyChangeListener
 {
     /**

@@ -67,16 +67,19 @@ public class TitleTagTest extends ParserTestCase {
         assertTrue("First child should be a title tag",head.getChild(0) instanceof TitleTag);
         titleTag = (TitleTag)head.getChild(0);
     }
-    public void testToPlainTextString() throws ParserException {
+    public void testToPlainTextString ()
+    {
         // check the title node
         assertEquals("Title","Yahoo!",titleTag.toPlainTextString());
     }
 
-    public void testToHTML() throws ParserException {
+    public void testToHTML ()
+    {
         assertStringEquals("Raw String",tag1,titleTag.toHtml());
     }
 
-    public void testToString() throws ParserException  {
+    public void testToString ()
+    {
         assertEquals("Title","TITLE: Yahoo!",titleTag.toString());
     }
 
