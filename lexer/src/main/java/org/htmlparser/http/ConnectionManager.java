@@ -635,7 +635,14 @@ public class ConnectionManager
                         if ((3 == (code / 100)) && (repeated < 20))
                             if (null != (uri = getLocation (http)))
                             {
-                                url = new URL (uri);
+                                if (uri.startsWith("http://") || uri.startsWith("https://")) {
+                                    url = new URL(uri);
+                                }
+                                else {
+                                    String oldUrl = url.toString();
+                                    String domain = oldUrl.substring(0, oldUrl.indexOf("/", 8)+1);
+                                    url = new URL(domain + uri);
+                                }
                                 connection = url.openConnection ();
                                 repeat = true;
                                 repeated++;
